@@ -32,9 +32,11 @@ class BookManager {
     }
     
     // 책 갯수 return
-//    func countBooks() -> Int {
-//
-//    }
+    func countBooks() -> Int {
+        
+        return bookList.count
+        
+    }
     
     // 책 검색
 //    func searchBook(name:String) -> String?{

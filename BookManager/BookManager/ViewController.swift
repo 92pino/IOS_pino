@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         myBookManager.registerBook(bookObject: book3)
         
         print(myBookManager.showAllBooks())
+        print("number of books : \(myBookManager.countBooks())")
     }
 
 }
