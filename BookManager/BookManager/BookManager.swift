@@ -13,13 +13,23 @@ class BookManager {
     
     // 책 등록
     func registerBook(bookObject:Book) {
-        
+        bookList += [bookObject]
     }
     
     // 전체 책 리스트 show
-//    func showAllBooks() -> String {
-//
-//    }
+    func showAllBooks() -> String {
+        
+        var strTemp = ""
+        for bookTemp in bookList {
+            strTemp += "Name : \(bookTemp.name)\n"
+            strTemp += "Genre : \(bookTemp.genre)\n"
+            strTemp += "Author : \(bookTemp.author)\n"
+            strTemp += "-------------------\n"
+        }
+        
+        return strTemp
+        
+    }
     
     // 책 갯수 return
 //    func countBooks() -> Int {
