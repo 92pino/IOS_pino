@@ -17,7 +17,15 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        <#code#>
+        super.viewWillAppear(animated)
+        
+        print("ViewController의 view가 화면에 보여질 예정")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("ViewController의 view가 화면에 보여짐")
     }
 
 }
