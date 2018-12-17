@@ -48,7 +48,7 @@
       <change afterPath="$PROJECT_DIR$/InterefaceBuilder/InterefaceBuilder/ViewController.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ImagePicker/ImagePicker.xcodeproj/project.xcworkspace/xcuserdata/jinbaejeong.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/ImagePicker/ImagePicker.xcodeproj/project.xcworkspace/xcuserdata/jinbaejeong.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ViewTransition/ViewTransition.xcodeproj/project.xcworkspace/xcuserdata/jinbaejeong.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/ViewTransition/ViewTransition.xcodeproj/project.xcworkspace/xcuserdata/jinbaejeong.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewTransition/ViewTransition/ViewController.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ViewTransition/ViewTransition/ViewController.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualBookManager/visualBookManager.xcodeproj/project.xcworkspace/xcuserdata/jinbaejeong.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/visualBookManager/visualBookManager.xcodeproj/project.xcworkspace/xcuserdata/jinbaejeong.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +60,7 @@
     <session id="-1785839482">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -118,10 +119,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
-    <option name="height" value="974" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -146,7 +146,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544077374393" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544111260556" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -181,7 +181,7 @@
     <option name="totallyTimeSpent" value="1855000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="974" extended-state="6" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
