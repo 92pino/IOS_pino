@@ -6,10 +6,10 @@
 | :---: | :---: | :---: | :---: | :---: |
 | **Week 1** | --------------- | -------------------------- | -------------------------- | ---- | 
 | 1 - 1 | 180304 | OT | - | - |
-| 1 - 2 | 180305 | [컴퓨터개론](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180109/180109.md) | - | - |
+| 1 - 2 | 180305 | [컴퓨터개론](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180109/180109.md) | - | [수업자료](https://github.com/92pino/IOS_pino/blob/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20180305/%EC%BB%B4%ED%93%A8%ED%84%B0%20%EA%B0%9C%EB%A1%A0.pdf) |
 | 1 - 3 | 180306 | [Xcode, OOP](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180110/180110.md) | - | - |
 | 1 - 4 | 180307 | [Class](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180111/180111.md) | - | - |
-| 1 - 5 | 180308 | [Calculator](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180112/180112.md) | [Rainbow Calculator](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Practice/180112%20Calculator/RainbowCalculator.md) | - |
+| 1 - 5 | 180308 | [Calculator](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180112/180112.md) | [Rainbow Calculator] (https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Practice/180112%20Calculator/RainbowCalculator.md) | - |
 <!--| **Week 2** | --------------- | -------------------------- | -------------------------- | ---- |
 | 2 - 1 | 180115 | [변수 & 함수](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180115/180115.md) | [함수](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Practice/180115%20Function) | - |
 | 2 - 2 | 180116 | [조건문](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180116/180116.md) | [If / Switch](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Practice/180116%20If:Switch) | - |
