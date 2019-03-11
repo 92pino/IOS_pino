@@ -279,3 +279,65 @@ for idx in (1...5).reversed() {
  
 */
 
+func hello1() {
+    print("Hello, world")
+}
+hello1()
+
+func hello2() -> String {
+    return "Hello, world!"
+}
+print(hello2())
+
+func say(number: Int) {
+    print(number)
+}
+say(number: 10)
+
+func say(word: String) -> Void {
+    print(word)
+}
+
+func say(something: String) {
+    print(something)
+}
+say(word: "Pino")
+say(something: "Pino")
+
+
+func greet(person: String) -> String {
+    let greeting = "Hello, " + person + "!"
+    return greeting
+}
+greet(person: "Pino")
+greet(person: "raon")
+
+greet(person: greet(person: "Pino"))
+
+func greetAgain(person: String) -> String {
+    return "Hello again, " + person + "!"
+}
+
+greetAgain(person: "Pino")
+
+func addNumber(a: Int, b: Int) -> Int {
+    return a + b
+}
+addNumber(a: 10, b: 20)
+addNumber(a: 3, b: 5)
+
+
+func insertName(name: String) -> String {
+    return "제 이름은 \(name)입니다."
+}
+print(insertName(name: "Pino"))
+
+func insertAge(_ age: Int) -> String {
+    return "제 나이는 \(age)입니다."
+}
+insertAge(28)
+
+func sayHello(hello name: String) -> String {
+    return "안녕하세요. 제 이름은 \(name)입니다."
+}
+sayHello(hello: "Pino")
