@@ -37,18 +37,20 @@ a + b
 // Swift 에서 삼항 연산자는 단 하나
 a > 0 ? "positive" : "negative"
 
-//if a > 0 {
-//  "positive"
-//} else {
-//  "negative"
-//}
+/*
+    if a > 0 {
+      "positive"
+    } else {
+      "negative"
+    }
+*/
 
 
 /*:
  ---
  ## Assignment Operators
  ---
- */
+*/
 
 // Basic assignment operator
 var value = 0
@@ -70,10 +72,15 @@ value = value % 2
 
 // Compound Assignment Operators
 value += 10
+// value = value + 10
 value -= 5
+// value = value - 5
 value *= 2
+// value = value * 2
 value /= 2
+// value = value / 2
 value %= 2
+// value = value % 2
 
 // not support : value++ , value--
 
@@ -129,6 +136,8 @@ e.remainder(dividingBy: f)
 // 나머지2
 e.truncatingRemainder(dividingBy: f)
 
+
+//
 /*:
  ---
  ## Question
@@ -193,6 +202,7 @@ a <= b
  ## Question
  - 숫자가 아닌 문자열에 대한 비교는?
  */
+// 맨 앞 글자를 ASCII로 비교 만약 같을 경우 계속 뒤로 가면서 비교
 
 /*:
  ---
@@ -201,20 +211,20 @@ a <= b
  */
 
 // Logical AND Operator
-true && true
-true && false
-false && true
-false && false
+true && true    // true
+true && false   // false
+false && true   // false
+false && false  // false
 
 // Logical OR Operator
-true || true
-true || false
-false || true
-false || false
+true || true    // true
+true || false   // true
+false || true   // true
+false || false  // false
 
 // Logical Negation Operator
-!true
-!false
+!true   // false
+!false  // true
 
 
 // Combining Logical Operators
@@ -244,6 +254,8 @@ if (enteredDoorCode && passedRetinaScan) || hasDoorKey || knowsOverridePassword 
  - 논리 연산자는 순서에 주의 필요. 순서를 신경 써야 하는 이유는?
  */
 
+
+
 func returnTrue() -> Bool {
   print("function called")
   return true
@@ -253,12 +265,15 @@ func returnTrue() -> Bool {
 
 print("\n---------- [ Case 1 ] ----------\n")
 returnTrue() && returnTrue() && false || true && returnTrue() && returnTrue()
+// 4번
 
 print("\n---------- [ Case 2 ] ----------\n")
 returnTrue() && false && returnTrue() || returnTrue() || returnTrue()
+// 2번
 
 print("\n---------- [ Case 3 ] ----------\n")
 returnTrue() || returnTrue() && returnTrue() || false && returnTrue()
+
 
 
 /*:
@@ -317,8 +332,20 @@ names[..<2]
  - 범위 연산의 순서를 반대로(내림차순) 적용하려면?
  */
 // Q. 아래 코드로 테스트
-for index in 1...5 {
+/*for index in (1...5).reversed() {
   print("\(index) times 5 is \(index * 5)")
 }
 
+for index in stride(from: 5, through: 1, by: -1) {
+  print("\(index) times 5 is \(index * 5)")
+}
+*/
+let range = 1...5
+type(of: range)
+range.lowerBound
+range.upperBound
+
+for index in range {
+    print("\(range.upperBound - index + range.lowerBound) times 5 is \((range.upperBound - index + range.lowerBound) * 5)")
+}
 //: [Next](@next)

@@ -77,7 +77,7 @@ func greet(person: String) -> String {
 greet(person: "Anna")
 greet(person: "Brian")
 
-
+greet(person: greet(person: "Anna"))
 
 // Combine the message creation and the return statement into one line
 
@@ -155,6 +155,21 @@ someFunction(argumentLabel: 10)
  ---
  */
 
+func nameOutput(name: String){
+    print(name)
+}
+nameOutput(name: "Pino")
+
+func ageOutput(_ age: Int){
+    print(age)
+}
+
+ageOutput(28)
+
+func helloOutput(person name: String){
+    print("Hello \(name)")
+}
+helloOutput(person: "Pino")
 /*:
  ---
  ### Question.
@@ -163,14 +178,10 @@ someFunction(argumentLabel: 10)
  ---
  */
 
-
-
 // Default Parameter Values
+// 값이 외부에서 들어올 경우 들어온 값을 사용, 값이 안들어올경우 기본 parameter값 사용
 
-func functionWithDefault(
-  paramWithoutDefault: Int,
-  paramWithDefault: Int = 12
-  ) -> Int {
+func functionWithDefault(paramWithoutDefault: Int, paramWithDefault: Int = 12) -> Int {
   return paramWithDefault
 }
 
@@ -205,7 +216,12 @@ arithmeticAverage(3, 8.25, 18.75)
  - 위 arithmeticAverage 함수에 추가로 다른 파라미터를 하나 더 입력받아 결과를 구하는 함수
  ---
  */
+func arithmeticAverage(_ numbers: Double..., and last: Double) {
+    print(numbers)
+    print(last)
+}
 
+print(arithmeticAverage(1,2,3, and:5))
 
 //func arithmeticAverage(_ numbers: Double..., _ last: Double) {
 //  print(numbers)
@@ -259,9 +275,9 @@ func chooseStepFunction(backward: Bool, value: Int) -> Int {
 }
 
 
-var value = 4
-chooseStepFunction(backward: true, value: value)
-chooseStepFunction(backward: false, value: value)
+var val = 4
+chooseStepFunction(backward: true, value: val)
+chooseStepFunction(backward: false, value: val)
 
 
 

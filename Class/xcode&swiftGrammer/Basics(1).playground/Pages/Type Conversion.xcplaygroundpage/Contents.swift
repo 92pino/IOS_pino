@@ -3,14 +3,19 @@
  # Type Conversion
  */
 
+// 형변환
+
 let height = Int8(5)
 let width = 10
 //let area = height * width
 //print(area)
+// 타입이 달라서 연산이 되지 않는다.
 
 
 let h = UInt8(25)
+type(of: h)
 let x = 10 * h
+type(of: x)
 print(x)
 
 /*:
@@ -38,8 +43,13 @@ type(of: str)
 let integer = Int(-15)
 
 let magnitude = integer.magnitude
+type(of: magnitude)
 let absNum = abs(integer)
+type(of: absNum)
 
+// magnitude : UInt로 절대값
+// abs : Int값으로 절대값
+// abs를 주로 사용
 /*:
  ---
  ## Question
@@ -48,5 +58,7 @@ let absNum = abs(integer)
    - 사용성, 안전성, 타입 추론, 변환 등
  ---
  */
-
+// 양수를 사용할 때 Int를 주로 사용
+// UInt를 사용하기위해서는 UInt라는 변환을 무조건 필요로 해서 불편하다
+// 자료 찾아보기
 //: [Next](@next)
