@@ -269,3 +269,13 @@ for i in 0..<count {
 for idx in (1...5).reversed() {
     print("\(idx) times 5 is \(idx * 5)")
 }
+
+/*:
+ ---
+ */
+/*
+ 
+    Function
+ 
+*/
+
