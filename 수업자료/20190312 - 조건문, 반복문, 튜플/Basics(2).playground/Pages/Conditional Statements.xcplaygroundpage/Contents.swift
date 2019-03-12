@@ -50,7 +50,7 @@ if temperatureInFahrenheit <= 32 {
   print("It's very cold. Consider wearing a scarf.")
 } else if temperatureInFahrenheit >= 86 {
   print("It's really warm. Don't forget to wear sunscreen.")
-} else {
+} else {    // 조건문의 범위 == 33 ~ 85
   print("It's not that cold. Wear a t-shirt.")
 }
 
@@ -73,6 +73,9 @@ if (temperatureInFahrenheit > 0) && (temperatureInFahrenheit % 2 == 0) {
 if temperatureInFahrenheit > 0, temperatureInFahrenheit % 2 == 0 {
 }
 
+// Logical And Operator
+if temperatureInFahrenheit > 0 || temperatureInFahrenheit % 2 == 0 {
+}
 /*:
  ---
  ### Question
@@ -156,6 +159,7 @@ default:
 
 
 // Without default case
+// 모든 조건이 만족했을 경우 default가 필요 없다.
 
 let isTrue = true
 type(of: isTrue)
@@ -225,6 +229,7 @@ default:
 let somePoint = (9, 0)
 
 switch somePoint {
+        // (y가 0이거나), (x가 0)이면 실행됨.
 case (let distance, 0), (0, let distance):
   print("On an axis, \(distance) from the origin")
 default:
@@ -253,6 +258,7 @@ case let (x, y):
 
 
 // fallthrough
+// fallthrough가 있을 경우 참인 조건이 실행 된 바로 다음 문장도 실행됨.
 
 print("\n---------- [ fallthrough ] ----------\n")
 let integerToDescribe = 5

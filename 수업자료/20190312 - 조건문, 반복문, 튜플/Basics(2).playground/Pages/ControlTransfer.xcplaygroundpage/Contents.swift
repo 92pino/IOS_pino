@@ -13,6 +13,8 @@
 
 print("---------- [ continue ] ----------\n")
 
+// continue : 반복문에서 continue 라는 키워드를 만나면 바로 다음 반복문으로
+
 for num in 0...15 {
   if num % 2 == 0 {
     continue
@@ -56,12 +58,12 @@ print(returnFunction())
 
 //for i in 1...100 {
 //  print(i)
-//  break
+//  break   // 반복문 중간에서 나와라
 //}
 
 //for i in 1...100 {
 //  print(i)
-//  return
+//  return  return은 반복문에서 사용되는게 아니라 반복문에서 사용.
 //}
 
 // 결과값은?
@@ -84,7 +86,7 @@ print("\n---------- [ break 2 ] ----------\n")
 for i in 0...3 {
   for j in 0...3 {
     if i > 1 {
-      break
+      break // break가 속한 for문만 빠져나온다.
     }
     print("  inner \(j)")
   }

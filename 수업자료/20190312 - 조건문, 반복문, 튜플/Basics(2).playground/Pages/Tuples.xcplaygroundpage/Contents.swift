@@ -93,10 +93,9 @@ result.second
 //something3 == something4
 
 
-(1, "zebra") < (2, "apple")   // true or false ?
-(3, "apple") < (3, "bird")    // true or false ?
-(4, "dog") == (4, "dog")      // true or false ?
-
+(1, "zebra") < (2, "apple")   // true
+(3, "apple") < (3, "bird")    // true
+(4, "dog") == (4, "dog")      // true
 
 /***************************************************
  Q. 다음 튜플 연산에 대한 결과는?
@@ -110,6 +109,7 @@ result.second
  - ("blue", -1) < ("purple", 1)
 
  - ("blue", false) < ("purple", true)
+    // true 와 false의 경우 크기 비교가 안되므로 에러가 발생한다.
  ***************************************************/
 
 
@@ -147,9 +147,10 @@ let fruits = ["A": "Apple", "B": "Banana", "C": "Cherry"]
 //  print(key, value)
 //}
 //
-//for element in fruits {
-//  // 어떤 식으로 출력해야 할까요?
-//}
+for element in fruits {
+  // 어떤 식으로 출력해야 할까요?
+    print(element.key, element.value)
+}
 
 
 

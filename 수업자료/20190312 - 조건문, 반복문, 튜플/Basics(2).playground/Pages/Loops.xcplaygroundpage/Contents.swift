@@ -27,6 +27,7 @@ for index in 1...4 {
 }
 
 // Wildcard Pattern
+// 단순 함수 반복할 경우 주로 사용
 
 for _ in 0...3 {
   print("hello")
@@ -34,11 +35,16 @@ for _ in 0...3 {
 
 
 for chr in "Hello" {
+//    print(chr, terminator: "\n")
+    // print에는 terminator: "\n"이 기본적으로 생략되어있음
+    
+    // default값 "\n"을 " "으로 변경
   print(chr, terminator: " ")
 }
 print()
 
 let list = ["Swift", "Programming", "Language"]
+list.count
 for str in list {
   print(str)
 }
@@ -52,7 +58,18 @@ for str in list {
  ---
  */
 
+/*var base = 3
+var max = 10
+var total = 1
 
+//for _ in 1...max {
+//    print(total = total * base)
+//}
+//print(total)
+
+for _ in (1...max).reversed() {
+    print(total)
+}*/
 /*:
  ---
  ## While Loops
@@ -86,8 +103,14 @@ sum
  - 2 ~ 9 사이의 숫자를 입력받아 해당 숫자에 해당하는 구구단 내용을 출력하는 함수
  ---
  */
-
-
+func num(_ number: Int) {
+    var i = 1
+    while i <= 9 {
+        print("\(i) X \(number) = \(i * number)")
+        i += 1
+    }
+}
+num(9)
 /***************************************************
  repeat {
  <#code#>
@@ -95,6 +118,7 @@ sum
  
  - 루프를 통과하는 각 패스의 끝 부분에서 조건을 평가
  - 다른 언어에서는 do - while 문으로 많이 사용
+ - 한번은 무조건 실행
  ***************************************************/
 
 print("\n---------- [ repeat ~ while ] ----------\n")
@@ -115,7 +139,6 @@ printMultiplicationTable1(for: 3)
  - 자연수 하나를 입력받아 1부터 해당 숫자 사이의 모든 숫자의 합을 구해 그 합을 반환하는 함수
  ---
  */
-
 
 /*:
  ---
