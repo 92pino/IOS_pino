@@ -309,4 +309,10 @@ func sumReturn(_ num: Int) {
 sumReturn(3018)
 
 // 2. 숫자를 나누기와 몫을 이용한 방식
+//
 
+let names = ["Anna", "Alex", "Brian", "Jack"]
+let count = names.count
+for i in 0..<count {
+    print("Person \(i + 1) is called \(names[i])")
+}

@@ -20,7 +20,8 @@ import UIKit
 */
 
 // 두 개의 자연수를 입력받아 두 수를 하나의 숫자로 이어서 합친 결과를 정수로 반환하는 함수
-// 1) 옵셔널(?)값 이용하기
+// 쉬움
+// 1) 옵셔널값 이용하기
 func sumNum(_ num:(Int, Int)) -> Int {
     var temp = 0
     temp = Int(String(num.0) + String(num.1))!
@@ -29,11 +30,17 @@ func sumNum(_ num:(Int, Int)) -> Int {
 sumNum((35,40))
 
 // 2)
-/*func sumNum2(_ num:(Int, Int)) -> Int {
-    
-}
-sumNum((35, 40))*/
 
+func sumNum2(_ firstNum: Int, _ secondNum: Int) -> Int {
+    var total = firstNum, sec = secondNum
+    while sec > 0 {
+        sec /= 10
+        total *= 10
+    }
+    return total + secondNum
+}
+print(sumNum2(127, 34))
+print(sumNum2(1302, 50))
 
 // 문자열 두 개를 입력받아 두 문자열이 같으지 여부를 판단해주는 함수
 // 쉬움
@@ -62,16 +69,29 @@ func divisor(num: Int) -> Int{
 divisor(num: 10)
 
 // 2 이상의 자연수를 입력받아, 소수인지 아닌지를 판별하는 함수
-func decimal(num: Int){
-    for i in 1...num {
-        if num % i == 0 {
-            
-        } else {
-            continue
+// 보통
+    
+func chkNum(number: Int) -> Bool {
+    var chk: Bool = true
+    
+    for num in 2...(number-1) {
+        if number % num == 0 {
+            chk = false
         }
     }
+    return chk
 }
-decimal(num: 5)
+chkNum(number: 15)
+chkNum(number: 5)
+
+// 자연수 하나를 입력받아 피보나치 수열 중에서 입력받은 수에 해당하는 자리의 숫자를 반환하는 함수
+func fib(_ n: Int) -> Int {
+    guard n > 1 else {
+        return n
+    }
+    return fib(n-1) + fib(n-2)  // fib(2) + fib(1) fib(n)
+}
+fib(3)
 
 // 100 이하의 자연수 중 3과 5의 공배수를 모두 출력하는 함수
 // 쉬움
