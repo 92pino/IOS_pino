@@ -11,18 +11,20 @@ import Foundation
  ### Dictionary Literal
  */
 
-
+// key는 key끼리 value는 value끼리 타입이 같아야한다.
 //var dictFromLiteral = ["key 1": "value 1", "key 2": "value 2"]
 //var dictFromLiteral = [1: "value 1", 2: "value 2"]
 var dictFromLiteral = ["1": 1, "2": 2]
 
 //var dictFromLiteral = [:]
+// 이미 앞에 타입에 대한 정보가 있다면 빈값으로 변경해도 상관 없다.
 dictFromLiteral = [:]
 
 /*:
  ### Dictionary Type
  */
 let words1: Dictionary<String, String> = ["A": "Apple", "B": "Banana", "C": "City"]
+// words2를 주요 사용하는 방식
 let words2: [String: String] = ["A": "Apple", "B": "Banana", "C": "City"]
 let words3 = ["A": "Apple", "B": "Banana", "C": "City"]
 
@@ -45,11 +47,11 @@ if !words.isEmpty {
  */
 print("\n---------- [ Retrieve ] ----------\n")
 
-//words["A"]
-//print(words["A"])
-//
-//words["Q"]
-//print(words["Q"])
+words["A"]
+print(words["A"])
+
+words["Q"]
+print(words["Q"])
 
 if let aValue = words["A"] {
   print(aValue)
@@ -123,6 +125,8 @@ words
  ### Change an Existing Element
  */
 print("\n---------- [ Change ] ----------\n")
+
+type(of: words) // Dictionary 타입
 
 words = [:]
 words["A"] = "Application"
@@ -253,6 +257,14 @@ dict2
    * C 강의
    * D 강의
  ***************************************************/
+
+let fastCampus = [
+    "패스트캠퍼스" : [
+        "스쿨" : ["iOS 스쿨", "백엔드 스쿨", "프론트엔드 스쿨"],
+        "캠프" : [],
+        "온라인" : []
+    ]
+]
 
 // 4번 문제
 // 자세한 내용은 Optional 시간에 배울 예정

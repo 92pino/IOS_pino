@@ -9,7 +9,7 @@
  ***************************************************/
  
  enum Temperature {
- 
+    case celcius, fahrenheit, kelvin
  }
 
 

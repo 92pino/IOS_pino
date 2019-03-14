@@ -13,5 +13,6 @@
 | **Week 2** | --------------- | -------------------------- | -------------------------- | ---- |
 | 2 - 1 | 190311 | [basicGrammer](https://github.com/92pino/IOS_pino/tree/master/Class/xcode%26swiftGrammer/Basics(1).playground/Pages) | [basicGrammer](https://github.com/92pino/IOS_pino/blob/master/Practice/20190311_function.playground/Contents.swift) | [xcode](https://github.com/92pino/IOS_pino/blob/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190311%20-%20Xcode/Xcode.pdf) |
 | 2 - 2 | 190312 | [조건문,반복문,튜플](https://github.com/92pino/IOS_pino/blob/master/Class/20190312-conditional/20190312.playground/Contents.swift) | [과제](https://github.com/92pino/IOS_pino/blob/master/Practice/20190312_practice.playground/Contents.swift) | [조건문,반복문,튜플](https://github.com/92pino/IOS_pino/tree/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190312%20-%20%EC%A1%B0%EA%B1%B4%EB%AC%B8%2C%20%EB%B0%98%EB%B3%B5%EB%AC%B8%2C%20%ED%8A%9C%ED%94%8C/Basics(2).playground/Pages) |
-<!--| 2 - 3 | 180118 | [반복문](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180118/180118.md) | [For / While](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Practice/180118%20While:For) | - |
-| 2 - 4 | 180119 | [Collection](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Class/180119/180119.md) | [Array / Set / Dic](https://github.com/starfg/ParkSungEun_iOS_School6/blob/master/Practice/180119%20Collection/180119.playground/Pages/) | - | -->
+| 2 - 3 | 190313 | [자습] | - | - |
+| 2 - 4 | 190314 | [Enum & Collection]() | [Enum & Collection]() | [Enum & Collection](https://github.com/92pino/IOS_pino/tree/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190314%20-%20enum%20%26%20collection) |
+

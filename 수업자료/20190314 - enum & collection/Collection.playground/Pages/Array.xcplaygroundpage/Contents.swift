@@ -42,6 +42,7 @@ let strArray2: [String] = ["apple", "orange", "melon"]
 let strArray3 = ["apple", "orange", "melon"]
 
 let strArray4 = Array<String>(repeating: "iOS", count: 5)
+Array<String>(repeating: "iOS", count: 5)
 
 //let strArray5 = ["apple", 3.14, 1]
 
@@ -51,6 +52,8 @@ let strArray4 = Array<String>(repeating: "iOS", count: 5)
  */
 let fruits = ["Apple", "Orange", "Banana"]
 let countOfFruits = fruits.count
+
+fruits.isEmpty
 
 if !fruits.isEmpty {
   print("\(countOfFruits) element(s)")
@@ -77,12 +80,12 @@ if !fruits.isEmpty {
 //fruits.endIndex
 
 
-fruits[fruits.startIndex]
-fruits[fruits.endIndex - 1]
+fruits[fruits.startIndex]   // Apple
+fruits[fruits.endIndex - 1] // Banana
 
 
-fruits.startIndex == 0    //
-fruits.endIndex - 1 == 2  //
+fruits.startIndex == 0    // true
+fruits.endIndex - 1 == 2  // true
 
 // "11".startIndex == 0
 
@@ -92,6 +95,8 @@ fruits.endIndex - 1 == 2  //
 print("\n---------- [ Searching ] ----------\n")
 
 let alphabet = ["A", "B", "C", "D", "E"]
+
+alphabet.contains("A")
 
 if alphabet.contains("A") {
   print("contains A")
@@ -132,6 +137,7 @@ alphabetArray + alphabetArray2
 
 //alphabetArray.append(5.0)
 //alphabetArray + 1
+//alphabetArray + "A"
 
 alphabetArray.insert("S", at: 0)
 alphabetArray.insert("F", at: 3)
@@ -161,7 +167,7 @@ alphabetArray[2...] = ["Q", "W", "E", "R"]
 alphabetArray
 
 alphabetArray[2...] = ["Q", "W"]
-//alphabetArray   // 결과?
+alphabetArray   // 결과?
 
 
 /*:
@@ -185,7 +191,12 @@ if let indexC = alphabetArray.firstIndex(of: "C") {
 }
 alphabetArray
 
+//["a", "b", "c"]
+//["a","b"]
 
+// 1) ["a", "b", "c"]   "c"가 있는지 찾아서 있으면 인덱스를 알려줘
+// 2) ["a", "b", "c"]   c의 위치는 인덱스 2야
+// 3) ["a", "b"]        remove(at: 2) 인덱스 2에 해당하는 데이터를 지워줘
 /*:
  ### Sorting
  */
@@ -203,13 +214,15 @@ alphabetArray
 
 
 // sorted vs sort
+// sorted
+// sort
 
 //public func sorted() -> [Element]
 //public mutating func sort()
 
 var sortedArray = alphabetArray.sorted()
-sortedArray
-alphabetArray
+sortedArray     // 원본은 그대로이고 정리된 정렬값만 반환
+alphabetArray   // 원본도 정렬이 됨
 
 alphabetArray.sort()
 alphabetArray
@@ -270,8 +283,32 @@ for value in array.reversed() {
  ---
  */
 
+var puppy = ["p", "u", "p", "p", "y"]
+if let lastIndexOfP = puppy.lastIndex(of: "p") {
+    puppy.remove(at: lastIndexOfP)
+}
+puppy
+
+
+var arrayChr = ["p", "u", "p", "p", "y"]
+if let lastIndexOfP = puppy.lastIndex(of: "p") {
+    puppy.remove(at: lastIndexOfP)
+}
+arrayChr
+
 // 2번 문제
 // ex) [1, 2, 4, 8, 9, 12, 13] , [2, 5, 6, 9, 13]  -->  [2, 9, 13]
+var firstArr = [1, 2, 4, 8, 9, 12, 13]
+var secondArr = [2, 5, 6, 9, 13]
+var result: [Int] = []
+for i in firstArr {
+    for j in secondArr {
+        if i == j {
+            result.append(j)
+        }
+    }
+}
+result
 
 // 3번 문제
 // ex) [50, 23, 29, 1, 45, 39, 59, 19, 15] -> 59
@@ -306,8 +343,6 @@ puppy
 
 let firstArray = [1, 2, 4, 8, 9, 12, 13]
 let secondArray = [2, 5, 6, 9, 13]
-
-var result: [Int] = []
 
 for i in firstArray {
   for j in secondArray {

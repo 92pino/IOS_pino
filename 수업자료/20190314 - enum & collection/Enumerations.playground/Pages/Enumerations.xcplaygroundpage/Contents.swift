@@ -104,7 +104,7 @@ var productBarcode = Barcode.upc(8, 85909, 51226, 3)
 productBarcode = .qrCode("ABCDEFGHIJKLMNOP")
 
 productBarcode
-type(of: productBarcode)
+type(of: productBarcode)    // Barcode type
 
 
 switch productBarcode {
@@ -137,13 +137,14 @@ enum Weekday: Int {
 Weekday.wednesday
 Weekday.wednesday.rawValue
 
-
 enum WeekdayName: String {
   case sunday, monday, tuesday, wednesday, thursday, friday, saturday
 }
 
 WeekdayName.monday
+type(of: WeekdayName.monday)
 WeekdayName.monday.rawValue
+type(of: WeekdayName.monday.rawValue)
 
 enum Gender: String {
   case male = "남자", female = "여자", other = "기타"
@@ -166,9 +167,12 @@ Gender.male.rawValue
  */
 
 enum WeekdayAgain: Int {
-  case sunday = 5, monday, tuesday, wednesday, thursday, friday, saturday
+//  case sunday = 5, monday, tuesday, wednesday, thursday, friday, saturday
 //  case sunday, monday = 100, tuesday = 101, wednesday, thursday, friday, saturday
-//  case sunday = 1, monday = 1, tuesday = 2, wednesday, thursday, friday, saturday
+    // case의 첫 rawValue는 무조건 0 부터 시작
+    // 중간에 Int를 넣게되면 첫 수가 0 이여도 Int를 적용한 다음 숫자는 지정한 숫자 이후로 이어 간다.
+  case sunday = -1, monday = 1, tuesday = 2, wednesday, thursday, friday, saturday
+    // rawValue에는 고유한 값이 들어가야한다.
 }
 
 WeekdayAgain.sunday
@@ -189,6 +193,7 @@ WeekdayNameAgain.sunday.rawValue
 WeekdayNameAgain.monday
 WeekdayNameAgain.monday.rawValue
 
+WeekdayNameAgain.wednesday.rawValue
 
 /*:
  ---
@@ -204,8 +209,8 @@ enum PlanetIntRaw: Int {
 PlanetIntRaw(rawValue: 5)
 PlanetIntRaw(rawValue: 7)
 
-//PlanetIntRaw(rawValue: 0)
-//PlanetIntRaw(rawValue: 15)
+PlanetIntRaw(rawValue: 0)   // nil (rawValue값이 없으므로 nil)
+PlanetIntRaw(rawValue: 15)  // nil (rawValue값이 없으므로 nil)
 
 
 let positionToFind = 7
@@ -244,12 +249,14 @@ enum Device: String {
   }
 }
 
-let iPhone = Device.iPhone
+let iPhone: Device = Device.iPhone
+iPhone.printType()
 iPhone.printType()
 
 
-
+// enum 중첩
 enum Wearable {
+//------------------ //
   enum Weight: Int {
     case light = 1
     case heavy = 2
@@ -258,10 +265,14 @@ enum Wearable {
     case light = 2
     case heavy = 4
   }
-  
+//------------------ //
+   
+//------------------ //
   case helmet(weight: Weight, armor: Armor)
   case boots
+//------------------ //
   
+//------------------ //
   func info() -> (weight: Int, armor: Int) {
     switch self {
     case .helmet(let weight, let armor):
@@ -270,9 +281,11 @@ enum Wearable {
       return (3, 3)
     }
   }
+//------------------ //
 }
 
-
+let boots = Wearable.boots
+boots.info().weight
 Wearable.boots
 
 var woodenHelmet = Wearable.helmet(weight: .light, armor: .heavy)
@@ -294,16 +307,16 @@ enum Location {
 //    self = .london
 //  }
   
-//  mutating func travelToTokyo() {
-//    self = .tokyo
-//  }
+  mutating func travelToTokyo() {
+    self = .tokyo
+  }
 }
 
 var location = Location.seoul
 location
 
-//location.travelToTokyo()
-//location
+location.travelToTokyo()
+location
 
 
 /*:
@@ -327,6 +340,7 @@ print("\n---------- [ Recursive Enumerations ] ----------\n")
 //  case multiplication(ArithmeticExpression, ArithmeticExpression)
 //}
 
+// 재귀적으로 자기 자신으로 사용하려 할때 indirect를 사용하여 자기 자신의 타입을 내부에서 사용
 //enum ArithmeticExpression {
 //  case number(Int)
 //  indirect case addition(ArithmeticExpression, ArithmeticExpression)
