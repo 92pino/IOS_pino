@@ -28,11 +28,31 @@ enum Planet {
 }
 
 var directionToHead1 = CompassPoint.west
+print(directionToHead1)
+directionToHead1 = CompassPoint.east
 directionToHead1 = .east
 
-var directionToHead2: CompassPoint = .north
+enum Animal {
+    case cow
+    case dog
+    case cat
+    case tiger
+}
 
-
+var animalList = Animal.cow
+animalList = .cow
+animalList = .tiger
+type(of: animalList)
+switch animalList {
+case .cow:
+    print("소입니다.")
+case .dog:
+    print("개입니다.")
+case .cat:
+    print("고양이입니다.")
+case .tiger:
+    print("호랑이입니다.")
+}
 
 /*:
  ## Matching Enumeration Values
