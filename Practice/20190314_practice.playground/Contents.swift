@@ -1,45 +1,91 @@
 import UIKit
 
 /*
+ [ 과제 ]
+    - 자연수를 입력받아 원래 숫자를 반대 순서로 뒤집은 숫자를 반환하는 함수
+ex) 123 -> 321 , 10293 -> 39201
+
+- 주어진 문자 배열에서 중복되지 않는 문자만을 뽑아내 배열로 반환해주는 함수
+ex) ["a", "b", "c", "a", "e", "d", "c"]  ->  ["b", "e" ,"d"]
+
+- 임의의 정수 배열을 입력받았을 때 홀수는 배열의 앞부분, 짝수는 배열의 뒷부분에 위치하도록 구성된 새로운 배열을 반환하는 함수
+ex) [2, 8, 7, 1, 4, 3] -> [7, 1, 3, 2, 8, 4]
+
+- 2개의 자연수와 사칙연산(+, -, *, /)을 가진 enum 타입 Arithmetic 을 입력 파라미터로 받아 해당 연산의 결과를 반환하는 함수 구현
+enum Arithmetic {
+    case addition, subtraction, multiplication, division
+}
+func calculator(operand1: Int, operand2: Int, op: Arithmetic) -> Int {
+    // 코드
+}
+
+- 별도로 전달한 식육목 모식도 라는 자료를 보고 Dictionary 자료형에 맞도록 중첩형태로 데이터를 저장하고
+    + 해당 변수에서 표범 하위 분류를 찾아 사자와 호랑이를 출력하기
  
-    열거형
- 
-    enum 열거형 이름 {
-        //열거형의 멤버 정의
-        case 멤버값 1
-        case 멤버값 2
-        case ...
-    }
 */
 
-enum Movement: Int {
-    case left = 0
-    case right = 1
-    case top = 2
-    case bottom = 3
+// 1.
+// optional
+func reverse(_ num: Int) -> Int {
+    let result = String(String(num).reversed())
+    return Int(result)!
+}
+reverse(242315)
+
+// 반복문 사용
+func reverseNum(num: Int) ->Int{
+    var result = 0
+    var throwNum = num
+    while throwNum > 0 {
+        result *= 10
+        print(result)
+        result += throwNum % 10
+        throwNum = throwNum / 10
+    }
+    return result
+}
+reverseNum(num: 123)
+
+// 2.
+var charArr = ["a", "b", "c", "a", "e", "d", "c"]
+
+func diffChar(_ arr: Array<String>){
+    var result = Set<String>()
+    result = Set(arr)
+    print(result)
 }
 
-let aMovement = Movement.left
+diffChar(charArr)
 
-switch aMovement {
-    case .left:
-        print("left")
-    default: ()
+// 3. 임의의 정수 배열을 입력받았을 때 홀수는 배열의 앞부분, 짝수는 배열의 뒷부분에 위치하도록 구성된 새로운 배열을 반환하는 함수
+
+//var randomArr = [2, 8, 7, 1, 4, 3]
+//
+//for i in 0..<randomArr.count {
+//    if randomArr[i] % 2 == 0 {
+//        randomArr.remove
+//    }
+//}
+
+// - 2개의 자연수와 사칙연산(+, -, *, /)을 가진 enum 타입 Arithmetic 을 입력 파라미터로 받아 해당 연산의 결과를 반환하는 함수 구현
+
+enum Arithmetic {
+    case addition, subtraction, multiplication, division
 }
 
-if case .left = aMovement {
-    print("left")
+func calculator(operand1: Int, operand2: Int, op: Arithmetic) -> Int {
+    switch op {
+    case .addition:
+        return operand1 + operand2
+    case .subtraction:
+        return operand1 - operand2
+    case .multiplication:
+        return operand1 * operand2
+    case .division:
+        return operand1 / operand2
+    }
 }
-
-if aMovement == .left {
-    print("left")
-}
-
-enum House: String {
-    case baratheon = "Our is the Fury"
-    case Greyjoy = "We Don't Sow"
-    case Martell = "Unbowed, Unbent, Unbroken"
-    case Stark = "Winter is Coming"
-    case Tully = "Family, Duty, Honor"
-    case Tyrell = "Growing Strong"
-}
+calculator(operand1: 10, operand2: 20, op: .addition)
+calculator(operand1: 10, operand2: 20, op: .subtraction)
+calculator(operand1: 10, operand2: 20, op: .multiplication)
+calculator(operand1: 10, operand2: 20, op: .division)
