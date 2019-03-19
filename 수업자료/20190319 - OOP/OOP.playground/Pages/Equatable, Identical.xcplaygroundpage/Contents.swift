@@ -17,8 +17,8 @@ class Person {
 let person1 = Person()
 let person2 = Person()
 
-//person1 == "이순신"    //
-//person1 == person2   //
+//person1 == "이순신"    // 타입이 다르다
+//person1 == person2   // 어떤 값을 비교해야되는지?
 
 
 /*:
@@ -33,13 +33,15 @@ let person2 = Person()
  ### Equatable Protocol
  ---
  */
+// 클래스끼리 비교할때는 Equatable
 
 class User: Equatable {
   var name = "이순신"
   let age = 30
   
-  static func ==(lhs: User, rhs: User) -> Bool {
+  static func == (lhs: User, rhs: User) -> Bool {
     return lhs.name == rhs.name
+    // name만 다루고 있으므로 age는 달라도 상관없다.
   }
 }
 
@@ -56,8 +58,11 @@ user1 == user2
 
 user1.name
 user2.name
-user1 == user2
-user1 === user2
+user1 == user2  // 단순 값이 같은지 비교
+user1 === user2 // 저장되는 위치가 다르므로 메모리 주소가 다르다 == false
+
+// ===는 refereceType에만 가능
+
 
 /***************************************************
  let x = 5
@@ -82,14 +87,14 @@ user1 == user2
 user1 === user2
 
 
-//user1.name
-//user2.name
+user1.name
+user2.name
 //
-//user2 = user1
-//user2.name
+user2 = user1
+user2.name
 //
-//user1 == user2    //
-//user1 === user2   //
+user1 == user2    //
+user1 === user2   // user1에 넣은 메모리값을 user2에 동일하게 넣는다
 //
 //user2.name = "세종대왕"
 //user1.name     //

@@ -15,6 +15,7 @@ class StoredProperty {
 }
 
 let stored = StoredProperty()
+type(of: stored)
 stored.width = 123
 stored.height = 456
 stored.width
@@ -65,6 +66,8 @@ class LazyStoredProperty {
 //      print(width)
 //    }
 //  }
+    
+    // 2, 3번의 상황같은 경우 메모리 , 퍼포먼스관련 부분을 최적화 하기 위해 lazy 사용
 }
 
 let lazyStored = LazyStoredProperty()
@@ -74,9 +77,9 @@ lazyStored.area
 
 // 순서 주의
 let lazyStored1 = LazyStoredProperty()
-lazyStored1.area
+lazyStored1.area    // 이미 한번 값 저장 10 * 20 = 200
 lazyStored1.width = 30
-lazyStored1.area
+lazyStored1.area    // 이미 값 저장되어서 200
 
 
 /*:
@@ -94,6 +97,8 @@ class ComputedProperty {
   var width = 5.0
   var height = 5.0
   
+    // lazy area는 직접적으로 값을 바꾸지 않는 이상 초기 결과값을 계속 반환
+    // computed는 작성 할 때마다 값을 다시 계산해서 결과값을 반환
   lazy var lazyArea = width * height
   var area: Double {
     return width * height
@@ -145,19 +150,30 @@ class PropertyObserver {
   var height = 0.0
   
   var width = 0.0 {
+    // willSet :
     willSet {
       print("willSet :", width, "->", newValue)
     }
+    
+    // -------willSet과 didSet 바뀌는 시점------
+    
+    // didSet :
     didSet {
+      height = width / 2
       print("didSet :", oldValue, "->", width)
     }
   }
 }
 
 var obs = PropertyObserver()
+obs.height
+obs.width
 obs.height = 456
+obs.height
+obs.width
 obs.width = 123
-
+obs.width
+obs.height
 
 /*:
  ---
@@ -190,6 +206,7 @@ let square1 = TypeProperty()
 square1.width = 10.0
 square1.width
 
+// TypeProperty는 전체가 공유하는 프로퍼티
 TypeProperty.unit
 print("\(square.width) \(TypeProperty.unit)")
 print("\(square1.width) \(TypeProperty.unit)")

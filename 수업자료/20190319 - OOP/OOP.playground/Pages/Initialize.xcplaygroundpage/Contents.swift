@@ -69,6 +69,7 @@ class Dog3 {
     self.name = name
     color = "Brown"
   }
+    // name과 color를 외부에서 값을 할당
   init(name: String, color: String) {
     self.name = name
     self.color = color
@@ -88,6 +89,7 @@ tory3.color
 tory4.name
 tory4.color
 
+tory3.bowwow()
 
 /*:
  ---
