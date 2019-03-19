@@ -46,30 +46,9 @@ func reverseNum(num: Int) ->Int{
 reverseNum(num: 123)
 
 // 2.
-var arrQ2 = ["a", "b", "c", "a", "e", "d", "c"]
 
-func checkArr(array: [String]) -> [String] {
-    var newArr = array
-    var resultArr: [String] = []
-    
-    for i in 0...newArr.count - 1 {
-        var count = 0
-        for j in 0...newArr.count - 1 {
-            if i == j { continue }
-            
-            if newArr[i] == newArr[j] {
-                count += 1
-            }
-        }
-        if count == 0 {
-            resultArr.append(newArr[i])
-        }
-    }
-    
-    return resultArr
-}
 
-checkArr(array: arrQ2)
+
 var arr = ["a", "b", "c", "a", "e", "d", "c"]
 
 func nonRepeatArr(_ arr: [String]) -> [String]{
@@ -95,6 +74,23 @@ func nonRepeatArr(_ arr: [String]) -> [String]{
 }
 
 nonRepeatArr(arr)
+
+// Dictionary 사용
+func printUniqueValue2(from arr: [String]) -> [String] {
+    var dict: [String : Int] = [:]
+    
+    for str in arr {
+        if let num = dict[str] {
+            dict[str] = num + 1
+        } else {
+            dict[str] = 1
+        }
+    }
+    print(dict)
+    var result: [String] = []
+}
+
+printUniqueValue2(from: arr)
 
 // 3. 임의의 정수 배열을 입력받았을 때 홀수는 배열의 앞부분, 짝수는 배열의 뒷부분에 위치하도록 구성된 새로운 배열을 반환하는 함수
 

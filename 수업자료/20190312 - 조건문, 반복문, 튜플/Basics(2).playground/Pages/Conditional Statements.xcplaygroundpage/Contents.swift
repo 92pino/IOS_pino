@@ -63,17 +63,20 @@ if temperatureInFahrenheit <= 32 {
 } else if temperatureInFahrenheit >= 86 {
   print("It's really warm. Don't forget to wear sunscreen.")
 }
-
+// 조건이 맞지 않아 실행이 되지 않고 넘어감
 
 // Logical And Operator
+
+true && true // true
 if (temperatureInFahrenheit > 0) && (temperatureInFahrenheit % 2 == 0) {
 }
 
-// Logical And Operator
-if temperatureInFahrenheit > 0, temperatureInFahrenheit % 2 == 0 {
-}
 
 // Logical And Operator
+if temperatureInFahrenheit > 0--------, temperatureInFahrenheit % 2 == 0 {
+}
+
+// Logical Or Operator
 if temperatureInFahrenheit > 0 || temperatureInFahrenheit % 2 == 0 {
 }
 /*:

@@ -329,11 +329,11 @@ print("\n---------- [ Answer ] ----------\n")
  ["p", "u", "p", "p", "y"] 라는 배열에서 마지막 "p" 문자 하나만 삭제하기
  ***************************************************/
 
-var puppy = ["p", "u", "p", "p", "y"]
-if let lastIndexOfP = puppy.lastIndex(of: "p") {
-  puppy.remove(at: lastIndexOfP)
-}
-puppy
+//var puppy = ["p", "u", "p", "p", "y"]
+//if let lastIndexOfP = puppy.lastIndex(of: "p") {
+//  puppy.remove(at: lastIndexOfP)
+//}
+//puppy
 
 
 /***************************************************
@@ -364,6 +364,9 @@ result
 // 1) Swift 에서 제공하는 기본 함수인 max() 를 이용하는 방법
 let arr = [50, 23, 29, 1, 45, 39, 59, 19, 15]
 arr.max()
+
+let arr2 = ["A", "B", "C"]
+arr2.max()
 
 
 // 2) 두 수 중 높은 값을 반환하는 max 를 이용하거나, 3항 연산자를 이용하는 방법

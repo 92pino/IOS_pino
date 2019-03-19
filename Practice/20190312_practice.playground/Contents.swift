@@ -85,6 +85,7 @@ chkNum(number: 15)
 chkNum(number: 5)
 
 // 자연수 하나를 입력받아 피보나치 수열 중에서 입력받은 수에 해당하는 자리의 숫자를 반환하는 함수
+// 재귀함수 꼬리재귀함수로 풀어보기
 func fib(_ n: Int) -> Int {
     guard n > 1 else {
         return n
