@@ -75,9 +75,28 @@ print(square02.rec())
  ***************************************************/
 
 class TV {
-    var channel: String?
+    var channel: Int?
     var volume: Int?
-    var power: Bool?
+    var power: String?
+    var off: Int = -1
     
-    init
+    init(channel: Int, volume: Int, power: String){
+        self.channel = channel
+        self.volume = volume
+        self.power = power
+    }
+    
+    func currentSetting() -> String {
+        if power == "off" {
+            tv.channel == channel
+            return "-1"
+        } else {
+            return "현재 채널 : \(channel!), 현재 볼륨 : \(volume!)"
+        }
+    }
 }
+
+let tv = TV(channel: 3, volume: 2, power: "off")
+tv.channel = 10
+print(tv.channel)
+print(tv.currentSetting())

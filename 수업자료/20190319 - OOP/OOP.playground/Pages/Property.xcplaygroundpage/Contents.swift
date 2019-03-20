@@ -30,6 +30,7 @@ stored.height
  - Class ⭕️   Structure ⭕️   Enumeration ❌
  ---
  */
+
 print("\n---------- [ Lazy Property ] ----------\n")
 
 class BasicStoredProperty {
@@ -93,6 +94,8 @@ lazyStored1.area    // 이미 값 저장되어서 200
  */
 print("\n---------- [ Computed Property ] ----------\n")
 
+//
+
 class ComputedProperty {
   var width = 5.0
   var height = 5.0
@@ -108,10 +111,12 @@ class ComputedProperty {
   private var _koreanWon = 0.0
   var wonToDollar: Double {
     get {
+        // wonToDollar 사용이 될떄 호출
       return _koreanWon / 1136.5
     }
-    set {
-      _koreanWon = newValue
+    set(newWon) {
+        // wonToDollar 값이 저장이 될때 호출
+      _koreanWon = newWon
     }
   }
 }
@@ -193,6 +198,8 @@ obs.height
  ***************************************************/
 
 print("\n---------- [ Type Property ] ----------\n")
+
+// 한번 만들어지면 메모리상에서 사라지지 않음.
 
 class TypeProperty {
   static var unit: String = "cm"
