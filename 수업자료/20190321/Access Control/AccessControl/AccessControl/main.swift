@@ -19,8 +19,8 @@ let internalClass = InternalClass()
 print(internalClass.publicProperty)
 print(internalClass.internalProperty)
 print(internalClass.defaultProperty)
-//print(internalClass.fileprivateProperty)
-//print(internalClass.privateProperty)
+//print(internalClass.fileprivateProperty)  // 해당 파일 내 범위
+//print(internalClass.privateProperty)      // 해당 스코프 내 범위
 
 
 /***************************************************
