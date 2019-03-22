@@ -18,9 +18,9 @@
 | **Week 3** | - | -------------------------- | -------------------------- | ---- | 
 | 3 - 1 | 190318 | [자습] | - | - |
 | 3 - 2 | 190319 | [객체지향(OOP)] | - | [과제](https://github.com/92pino/IOS_pino/blob/master/%EA%B3%BC%EC%A0%9C/20190319/20190319-class.playground/Contents.swift) |
-| 3 - 3 | 190321 | [AccessControl&객체지향] | - | [과제](https://github.com/92pino/IOS_pino/blob/master/%EA%B3%BC%EC%A0%9C/20190315/20190315_practice.playground/Contents.swift) |
-| 3 - 4 | 190322 | [AppLifeCycle] | [App Life Cycle](https://github.com/92pino/IOS_pino/blob/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190322%20-%20App%20Life%20Cycle/The%20App%20Life%20Cycle.pdf) | - |
-| 3 - 5 | 190323 | OT | - | - |
+| 3 - 3 | 190320 | [자습] | - | - |
+| 3 - 4 | 190321 | [AccessControl&객체지향] | - | [과제](https://github.com/92pino/IOS_pino/blob/master/%EA%B3%BC%EC%A0%9C/20190315/20190315_practice.playground/Contents.swift) |
+| 3 - 5 | 190322 | [AppLifeCycle] | [App Life Cycle](https://github.com/92pino/IOS_pino/blob/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190322%20-%20App%20Life%20Cycle/The%20App%20Life%20Cycle.pdf) | [과제](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190322/HomeWork_20190322/HomeWork_20190322) |
 | **Week 4** | --------------- | -------------------------- | -------------------------- | ---- |
 | 4 - 1 | 190325 | OT | - | - |
 | 4 - 2 | 190326 | OT | - | - |
