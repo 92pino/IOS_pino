@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var downLabel = UIButton(type: .system)
     var label = UILabel()
     var count = 0
+    var num: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +32,26 @@ class ViewController: UIViewController {
         label.backgroundColor = .black
         label.textAlignment = .center
         label.frame = CGRect(x: view.frame.width / 2 - 25, y: 100, width: 50, height: 50)
+        
+
         view.addSubview(label)
     }
     
     @objc func didTapButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "" , message: "증가 or 감소?", preferredStyle: .actionSheet)
+        
+        
+        let alertController = UIAlertController(title: nil , message: "숫자를 입력해주세요", preferredStyle: .alert)
+        
+//        let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
+//
+//
+//
+//            self.label.text = "\(Int(self.label.text!)! + self.count)"
+//            print(self.label.text)
+//        }
         
         let upAction = UIAlertAction(title: "증가", style: .default) { _ in
+            
             self.count += 1
             
             self.label.text = "\(self.count)"
@@ -54,7 +68,13 @@ class ViewController: UIViewController {
             
             self.label.text = "\(self.count)"
         }
-        
+//        alertController.addTextField { (addText) in
+//            addText.placeholder = "값을 입력해주세요"
+//        }
+//        alertController.addTextField { (tf) in
+//            var tf = alertController.textFields?[0].text
+//        }
+//        alertController.addAction(confirmAction)
         alertController.addAction(upAction)
         alertController.addAction(downAction)
         alertController.addAction(reset)
