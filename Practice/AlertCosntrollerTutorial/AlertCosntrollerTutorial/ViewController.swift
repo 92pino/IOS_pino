@@ -52,10 +52,6 @@ class ViewController: UIViewController {
     
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     
-    let upAction = UIAlertAction(title: "+1", style: .default) { _ in
-        count = 0
-    }
-    
     
     @objc func btnTest(_ sender: Any){
         let alertController = UIAlertController(title: "타이틀", message: "메시지", preferredStyle: .alert)
@@ -75,7 +71,7 @@ class ViewController: UIViewController {
             self.upLabel.text = "\(self.count)"
         }
         
-        let alertController = UIAlertController(title: "레이블 add1", message: "레이블 add2", preferredStyle: .alert)
+        
         
         alertController.addAction(upAction)
         alertController.addAction(cancelAction)
