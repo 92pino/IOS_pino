@@ -76,7 +76,7 @@ func nonRepeatArr(_ arr: [String]) -> [String]{
 nonRepeatArr(arr)
 
 // Dictionary 사용
-func printUniqueValue2(from arr: [String]) -> [String] {
+func printUniqueValue2(from arr: [String]){
     var dict: [String : Int] = [:]
     
     for str in arr {
@@ -94,7 +94,7 @@ printUniqueValue2(from: arr)
 
 // 3. 임의의 정수 배열을 입력받았을 때 홀수는 배열의 앞부분, 짝수는 배열의 뒷부분에 위치하도록 구성된 새로운 배열을 반환하는 함수
 
-let randomArr = [2, 8, 7, 1, 4, 3]
+let randomArr = [2, 8, 7, 1, 4, 3, 12]
 
 func oddEven(_ array: [Int]) -> [Int] {
     var arr: [Int] = []
@@ -156,3 +156,5 @@ if let chkAnimal = animalDic["식육목"] {
         }
     }
 }
+
+let stringValue: String = "L"
