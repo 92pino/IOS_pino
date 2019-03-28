@@ -156,14 +156,13 @@ func q08(_ num: Int) -> Int {
 }
 q08(64)
 
-func q09() -> Int {
+func q09() {
     var result = 0
     for i in 1...50 {
+        if 20...30 ~= i {continue}
         result += i
-        for j in 20...30 {
-            continue
-        }
+        
     }
-    return result
+    print(result)
 }
 q09()
