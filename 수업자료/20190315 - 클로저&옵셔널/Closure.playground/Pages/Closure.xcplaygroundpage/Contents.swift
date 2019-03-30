@@ -106,7 +106,7 @@ print(closureWithParamAndReturnType3("closure"))
 // 1번 문제 예.   "Swift" -> 5
 // 2번 문제 예.   5 -> 6
 
-
+()
 /*:
  ---
  ### Question

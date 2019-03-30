@@ -104,10 +104,30 @@ tory3.bowwow()
  ***************************************************/
 
 
+class Car {
+    
+    var model: String
+    var modelYear: Int
+    var modelColor: String
+    
+    init(model: String, modelYear: Int, modelColor: String) {
+        self.model = model
+        self.modelYear = modelYear
+        self.modelColor = modelColor
+    }
+    
+    func drive() {
+        print("drive")
+    }
+    
+    func reverse() {
+        print("후진하기")
+    }
+    
+}
 
-
-
-
+let car = Car(model: "람보르기니", modelYear: 2019, modelColor: "Black")
+print(car.model)
 
 /*:
  ---
