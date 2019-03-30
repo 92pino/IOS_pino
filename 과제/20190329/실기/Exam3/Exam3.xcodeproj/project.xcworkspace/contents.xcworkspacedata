@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Exam3/Menu.swift">
+   </FileRef>
+   <FileRef
       location = "self:Exam3.xcodeproj">
    </FileRef>
 </Workspace>

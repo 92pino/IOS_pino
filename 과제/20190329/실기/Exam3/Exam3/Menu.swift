@@ -1,30 +1,11 @@
-//
-//  Menu.swift
-//  Exam3
-//
-//  Created by JinBae Jeong on 29/03/2019.
-//  Copyright © 2019 pino. All rights reserved.
-//
+import Foundation
 
-import UIKit
-
-class Menu: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+class Menu {
+    let name: String
+    let price: Int
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    init(name: String, price: Int) {
+        self.name = name
+        self.price = price
     }
-    */
-
 }

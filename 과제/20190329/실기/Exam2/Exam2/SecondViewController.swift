@@ -38,10 +38,8 @@ class SecondViewController: UIViewController {
     
     @objc func dismissFirstVC(_ sender: Any) {
         let firstVC = ViewController()
-        dismiss(animated: true, completion:
-//            firstVC.passwordTextField.isFocused()
-            nil
-        )
+        dismiss(animated: true)
+        firstVC.passwordTextField.becomeFirstResponder()
     }
     
 
