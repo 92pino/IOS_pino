@@ -136,9 +136,11 @@ class ViewController: UIViewController {
         }
         
         if self.money - test < 0 {
-            
+            let alert = UIAlertController(title: "총금액", message: "총금액2", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            alert.addAction(cancel)
         } else {
-            
+            print(2222)
         }
     }
 }

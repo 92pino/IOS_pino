@@ -23,7 +23,8 @@ class ViewController: UIViewController {
         passwordTextField.textAlignment = .center
         passwordTextField.placeholder = "비밀번호를 입력해주세요"
         passwordTextField.isSecureTextEntry = true
-        passwordSwitch.frame = CGRect(x: view.frame.width / 2 - 50, y: 200, width: 100, height: 50)
+        // switch의 경우 기본 사이즈가 정해져있으므로 CGPoint만 작성해도 상관없다
+        passwordSwitch.center = CGPoint(x: view.center.x, y: 200)
         passwordSwitch.isEnabled = false
         
         passwordTextField.addTarget(self, action: #selector(checkPassword(_:)), for: .editingChanged)
@@ -37,9 +38,9 @@ class ViewController: UIViewController {
         var passwordChk = true
         
         if passwordTextField.text == myPassword {
-            passwordSwitch.isOn = true
+            passwordSwitch.setOn(true, animated: true)
         } else {
-            passwordSwitch.isOn = false
+            passwordSwitch.setOn(false, animated: true)
         }
     }
     
@@ -57,7 +58,7 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         passwordTextField.becomeFirstResponder()
     }
 
