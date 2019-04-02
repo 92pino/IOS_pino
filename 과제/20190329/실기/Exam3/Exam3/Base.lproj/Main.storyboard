@@ -79,7 +79,7 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="주문"/>
                                         <connections>
-                                            <action selector="viewTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yKI-tn-kV7"/>
+                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zqn-J0-Rhr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -118,7 +118,7 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="주문"/>
                                         <connections>
-                                            <action selector="viewTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B6v-PI-mm7"/>
+                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eWW-Lh-ZgF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -157,7 +157,7 @@
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="주문"/>
                                         <connections>
-                                            <action selector="viewTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6kM-Q7-U41"/>
+                                            <action selector="didTapOrderButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TqM-S1-CFl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -168,9 +168,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="짬뽕amountLabel" destination="Enk-Qj-0eA" id="Tv8-aH-9fN"/>
-                        <outlet property="짜장면amountLabel" destination="hlu-Kb-J63" id="P85-yS-uf9"/>
-                        <outlet property="탕수육amountLabel" destination="bSx-am-PdQ" id="5CZ-Ge-58M"/>
+                        <outlet property="menu01LabelCount" destination="hlu-Kb-J63" id="BW6-Hf-0G2"/>
+                        <outlet property="menu02LabelCount" destination="Enk-Qj-0eA" id="iYO-2C-b4G"/>
+                        <outlet property="menu03LabelCount" destination="bSx-am-PdQ" id="eEZ-vQ-NRf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

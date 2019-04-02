@@ -10,15 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var 짜장면amountLabel: UILabel!
-    @IBOutlet weak var 짬뽕amountLabel: UILabel!
-    @IBOutlet weak var 탕수육amountLabel: UILabel!
-    
-    struct UI {
-        static let 소지금containerHeight: CGFloat = 40
-        static let 결제금액containerHeight: CGFloat = 40
-    }
-    
     enum MenuItem: Int {
         case 짜장면, 짬뽕, 탕수육
     }
@@ -29,131 +20,122 @@ class ViewController: UIViewController {
     ]
     let menuItemCostArr = [5_000, 6_000, 12_000]
     
-    let 소지금displayLabel = UILabel()
-    var 소지금 = 70_000 {
+    let 소지금금액Label = UILabel()
+    var 소지금원본 = 70_000 {
         didSet {
-            소지금displayLabel.text = "\(소지금)원"
+            소지금금액Label.text = "\(소지금원본)원"
         }
     }
     
-    let 결제금액displayLabel = UILabel()
-    var 결제금액 = 0 {
+    let 결제금액토탈Label = UILabel()
+    var 결제금액원본 = 0 {
         didSet {
-            결제금액displayLabel.text = "\(결제금액)원"
+            결제금액토탈Label.text = "\(결제금액원본)원"
         }
     }
+    
+    @IBOutlet weak var menu01LabelCount: UILabel!
+    @IBOutlet weak var menu02LabelCount: UILabel!
+    @IBOutlet weak var menu03LabelCount: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupAdditionalViews()
+        
+        소지금()
+        결제금액()
         initializeData()
     }
     
-    func setupAdditionalViews() {
-        setup소지금views()
-        setup결제금액views()
+    
+    
+    // 소지금 영역 메서드
+    func 소지금() {
+        let bottomView = UIView()
+        
+        bottomView.frame = CGRect(x: 0, y: 350, width: view.frame.width, height: 40)
+        
+        
+        view.addSubview(bottomView)
+        
+        let 소지금Label = UILabel()
+        let 초기화Button = UIButton(type: .system)
+        
+        소지금Label.text = "소지금"
+        소지금Label.frame = CGRect(x: 20, y: 0, width: 80, height: 40)
+        소지금Label.backgroundColor = #colorLiteral(red: 0.4257215315, green: 1, blue: 0.274916365, alpha: 1)
+        소지금Label.textAlignment = .center
+        
+        소지금금액Label.frame = CGRect(x: 110, y: 0, width: 140, height: 40)
+        소지금금액Label.backgroundColor = #colorLiteral(red: 0.4257215315, green: 1, blue: 0.274916365, alpha: 1)
+        소지금금액Label.textAlignment = .right
+        
+        초기화Button.frame = CGRect(x: 270, y: 0, width: 80, height: 40)
+        초기화Button.backgroundColor = .black
+        초기화Button.setTitleColor(.white, for: .normal)
+        초기화Button.setTitle("초기화", for: .normal)
+        초기화Button.addTarget(self, action: #selector(initializeData), for: .touchUpInside)
+        
+        bottomView.addSubview(소지금Label)
+        bottomView.addSubview(초기화Button)
+        bottomView.addSubview(소지금금액Label)
+        
+        
     }
     
-    @IBAction func viewTapOrderButton(_ sender: UIButton) {
+    
+    // 결제금액 영역 메서드
+    func 결제금액() {
+        let bottomView = UIView()
+        
+        bottomView.frame = CGRect(x: 0, y: 400, width: view.frame.width, height: 40)
+        
+        
+        view.addSubview(bottomView)
+        
+        let 결제금액Label = UILabel()
+        let 결제Button = UIButton(type: .system)
+        
+        결제금액Label.text = "결제금액"
+        결제금액Label.frame = CGRect(x: 20, y: 0, width: 80, height: 40)
+        결제금액Label.backgroundColor = .orange
+        결제금액Label.textAlignment = .center
+        
+        결제금액토탈Label.frame = CGRect(x: 110, y: 0, width: 140, height: 40)
+        결제금액토탈Label.backgroundColor = .orange
+        결제금액토탈Label.textAlignment = .right
+        
+        결제Button.frame = CGRect(x: 270, y: 0, width: 80, height: 40)
+        결제Button.backgroundColor = .black
+        결제Button.setTitleColor(.white, for: .normal)
+        결제Button.setTitle("결제", for: .normal)
+        결제Button.addTarget(self, action: #selector(didTapPaymentButton(_:)), for: .touchUpInside)
+        
+        bottomView.addSubview(결제금액Label)
+        bottomView.addSubview(결제Button)
+        bottomView.addSubview(결제금액토탈Label)
+    }
+    
+    @IBAction func didTapOrderButton(_ sender: UIButton) {
         guard let item = MenuItem(rawValue: sender.tag), let amount = 주문수량dict[item] else { return }
         
+        결제금액원본 += menuItemCostArr[sender.tag]
         주문수량dict[item] = amount + 1
         
-        let labels = [짜장면amountLabel, 짬뽕amountLabel, 탕수육amountLabel]
+        let labels = [menu01LabelCount, menu02LabelCount, menu03LabelCount]
         labels[sender.tag]?.text = "\(amount + 1)"
-    }
-    
-    func setup결제금액views() {
-        let 결제금액maxYOffset = 소지금displayLabel.superview!.frame.maxY
-        
-        let 결제금액containerView = UIView()
-        결제금액containerView.frame = CGRect(
-            x: 20, y: 결제금액maxYOffset + 10,
-            width: view.frame.width - 40, height: UI.결제금액containerHeight
-        )
-        view.addSubview(결제금액containerView)
-        
-        let 결제금액label = UILabel()
-        결제금액label.frame = CGRect(
-            x: 0, y: 0, width: 80, height: UI.결제금액containerHeight
-        )
-        결제금액label.text = "결제금액"
-        결제금액label.textAlignment = .center
-        결제금액label.backgroundColor = .orange
-        결제금액label.font = UIFont.preferredFont(forTextStyle: .title3)
-        결제금액containerView.addSubview(결제금액label)
-        
-        결제금액displayLabel.frame = CGRect(
-            x: 결제금액label.frame.maxX + 10, y: 0,
-            width: 140, height: UI.결제금액containerHeight
-        )
-        결제금액displayLabel.textAlignment = .right
-        결제금액displayLabel.backgroundColor = .orange
-        결제금액displayLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        결제금액containerView.addSubview(결제금액displayLabel)
-        
-        let 결제button = UIButton()
-        결제button.frame = CGRect(
-            x: 결제금액displayLabel.frame.maxX + 20, y: 0,
-            width: 80, height: UI.결제금액containerHeight
-        )
-        결제button.backgroundColor = .black
-        결제button.setTitle("결제", for: .normal)
-        결제button.setTitleColor(.white, for: .normal)
-        결제button.addTarget(self, action: #selector(didTapPaymentButton(_:)), for: .touchUpInside)
-        결제금액containerView.addSubview(결제button)
-    }
-    
-    func setup소지금views() {
-        let 소지금containerView = UIView()
-        소지금containerView.frame = CGRect(
-            x: 20, y: 350, width: view.frame.width - 40, height: UI.소지금containerHeight
-        )
-        view.addSubview(소지금containerView)
-        
-        let 소지금label = UILabel()
-        소지금label.frame = CGRect(
-            x: 0, y: 0, width: 80, height: UI.소지금containerHeight
-        )
-        소지금label.text = "소지금"
-        소지금label.textAlignment = .center
-        소지금label.backgroundColor = .green
-        소지금label.font = UIFont.preferredFont(forTextStyle: .title3)
-        소지금containerView.addSubview(소지금label)
-        
-        소지금displayLabel.frame = CGRect(
-            x: 소지금label.frame.maxX + 10, y: 0,
-            width: 140, height: UI.소지금containerHeight
-        )
-        소지금displayLabel.backgroundColor = .red
-        소지금displayLabel.textAlignment = .right
-        소지금displayLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-        소지금containerView.addSubview(소지금displayLabel)
-        
-        let 초기화button = UIButton()
-        초기화button.frame = CGRect(
-            x: 소지금displayLabel.frame.maxX + 20, y: 0,
-            width: 80, height: UI.소지금containerHeight
-        )
-        초기화button.backgroundColor = .black
-        초기화button.setTitle("초기화", for: .normal)
-        초기화button.setTitleColor(.white, for: .normal)
-        초기화button.addTarget(self, action: #selector(initializeData), for: .touchUpInside)
-        소지금containerView.addSubview(초기화button)
     }
     
     @objc func didTapPaymentButton(_ sender: UIButton) {
         let alertController = UIAlertController(
             title: "결제하기",
-            message: "총 결제금액은 \(결제금액)원 입니다.",
+            message: "총 결제금액은 \(결제금액원본)원 입니다.",
             preferredStyle: .alert
         )
         let okAction = UIAlertAction(title: "확인", style: .default) { _ in
-            guard self.소지금 >= self.결제금액 else { return print("소지금액이 부족합니다.") }
-            let temp = self.소지금 - self.결제금액
+            guard self.소지금원본 >= self.결제금액원본 else { return print("소지금액이 부족합니다.") }
+            let temp = self.소지금원본 - self.결제금액원본
             self.initializeData()
-            self.소지금 = temp
+            self.소지금원본 = temp
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         alertController.addAction(okAction)
@@ -161,15 +143,17 @@ class ViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    
     @objc func initializeData() {
-        소지금 = 70_000
-        결제금액 = 0
-        짜장면amountLabel.text = "0"
-        짬뽕amountLabel.text = "0"
-        탕수육amountLabel.text = "0"
+        소지금원본 = 70_000
+        결제금액원본 = 0
+        menu01LabelCount.text = "0"
+        menu02LabelCount.text = "0"
+        menu03LabelCount.text = "0"
         for key in 주문수량dict.keys {
             주문수량dict[key] = 0
         }
     }
     
 }
+
