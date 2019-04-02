@@ -19,3 +19,16 @@ import UIKit
  
  
 */
+
+func addTwoValues(a: Int, b: Int) -> Int {
+    return a + b
+}
+let task1: Any = addTwoValues(a: 2, b: 3)
+var num: Int = task1 as! Int
+print(num + num)
+
+// 도전과제
+let task2: Any = addTwoValues
+let function = (task2 as! (Int, Int) -> Int)
+
+print(function(2, 3) + function(2, 3))
