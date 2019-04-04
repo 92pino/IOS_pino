@@ -29,6 +29,7 @@ print(num + num)
 
 // 도전과제
 let task2: Any = addTwoValues
+task2
 let function = (task2 as! (Int, Int) -> Int)
 
 print(function(2, 3) + function(2, 3))
