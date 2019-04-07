@@ -11,6 +11,9 @@ import UIKit
 // UITextFieldDelegate라는 델리게이트 프로토콜 선언
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    // 택스트필드를 활성화 시켰을 때 키보드창이 올라오면서 텍스트필드도 같이 위로 올라가게 변수 지정
+    var slidingUpTextfield = false
+    
     @IBOutlet weak var tf: UITextField!
     
     override func viewDidLoad() {
@@ -52,8 +55,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     // 텍스트필드의 편집을 시작할 때 호출
-    func textFieldShouldBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         print("텍스트 필드의 편집이 시작됩니다.")
+        
+        guard slidingUpTextfield == false else { return }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.tf.frame.origin.y -= 250
+            self.slidingUpTextfield = true
+        }
+        
+//        UIView.animate(withDuration: 0.3) {
+//            self.tf.frame.origin.y -= 250
+//            self.slidingUpTextfield = true
+//        }
     }
     
     // 텍스트 필드의 내용이 삭제될 때 호출
@@ -81,12 +96,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         print("텍스트 필드의 리턴키가 눌러졌습니다.")
+        UIView.animate(withDuration: 0.3) {
+            self.tf.frame.origin.y += 250
+            self.slidingUpTextfield = false
+        }
         return true
     }
     
     // 텍스트 필드 편집이 종료될 때 호출
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         print("텍스트 필드의 편집이 종료됩니다.")
+        
         return true
     }
     
