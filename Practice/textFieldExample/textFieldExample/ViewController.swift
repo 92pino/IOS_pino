@@ -16,6 +16,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // textfield를 최초 응답자 객체로 생성
+        // 키보드가 나타나고 포커싱된다.
+        textField.becomeFirstResponder()
+        
         /****************
          
          기본 속성 지정
@@ -61,6 +65,10 @@ class ViewController: UIViewController {
         
         // 수직방향 텍스트 배열 위치
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        
+        
+        // 입력이 완료가 되면 최초 응답자 객체 해제
+        textField.resignFirstResponder()
         
     }
 
