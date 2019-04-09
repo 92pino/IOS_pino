@@ -10,29 +10,52 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let alertButton = UIButton(type: .system)
+    var selectColor: UIColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    
     override func viewDidLoad() {
-        view.backgroundColor = .red
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        let alertButton = UIButton(type: .system)
-        alertButton.setTitle("Alert", for: .normal)
-        alertButton.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        alertButton.setTitleColor(.white, for: .normal)
-        alertButton.layer.cornerRadius = 20
-        alertButton.frame = CGRect(x: view.frame.width / 2 - (view.frame.width - 100) / 2, y: view.frame.height / 2 - 25, width: view.frame.width - 100, height: 50)
-        
-        alertButton.addTarget(self, action: #selector(presentNextPage(_sender:)), for: .touchUpInside)
-        view.addSubview(alertButton)
-        
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
-
-    @objc func presentNextPage(_sender : Any) {
-        print(1111)
-        let secondVC = SecondViewController()
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        createAlertButton()
+    }
+    
+    func createAlertButton() {
+        let safeX = view.safeAreaInsets.left + view.safeAreaInsets.right
+        let x = view.frame.width/2 - safeX
+        let safeY = view.safeAreaInsets.top + view.safeAreaInsets.bottom
+        let y = view.frame.height/2 - safeY
+    
+        alertButton.frame = CGRect(x: x - 100, y: y, width: 200, height: 80)
+        alertButton.setTitle("Alert", for: .normal)
+        alertButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        alertButton.setTitleColor(.white, for: .normal)
+        
+        alertButton.addTarget(self, action: #selector(goToSecondVC(_:)), for: .touchUpInside)
+        
+        view.addSubview(alertButton)
+    }
+    
+    @objc func goToSecondVC(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let secondVC = storyboard.instantiateViewController(withIdentifier: "SecondVC") as? SecondViewController else {
+            return
+        }
+        secondVC.delegate = self
         secondVC.modalPresentationStyle = .overCurrentContext
         present(secondVC, animated: true)
     }
-    
 }
 
+extension ViewController: changeBackgroundColor {
+    func sendColor(_ color: UIColor) {
+        selectColor = color
+        print(selectColor)
+        view.backgroundColor = selectColor
+    }
+    
+    
+}

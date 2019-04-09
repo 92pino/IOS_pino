@@ -23,30 +23,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-209" y="-49"/>
         </scene>
         <!--Second View Controller-->
-        <scene sceneID="AtP-Qb-9tu">
+        <scene sceneID="U4R-Ub-oo9">
             <objects>
-                <viewController id="5bQ-bF-MYd" customClass="SecondViewController" customModule="BogusAlertController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EQe-tS-TM5">
+                <viewController storyboardIdentifier="SecondVC" id="Duv-Qy-McR" customClass="SecondViewController" customModule="BogusAlertController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hf1-em-Rb6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="두번째" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xcn-py-MKR">
-                                <rect key="frame" x="186" y="180" width="45" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-a4-WTk">
+                                <rect key="frame" x="30" y="203" width="354" height="500"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="색을 변경하시겠습니까?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKf-2W-fFH">
+                                        <rect key="frame" x="0.0" y="50" width="354" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="iuL-Gf-RBp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLD-Je-G4h">
+                                        <rect key="frame" x="20" y="250" width="80" height="80"/>
+                                        <color key="backgroundColor" red="1" green="0.6809419805262642" blue="0.89211241063159041" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="E6x-u1-8uC"/>
+                                            <constraint firstAttribute="width" constant="80" id="LJI-gY-7Cu"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="Duv-Qy-McR" eventType="touchUpInside" id="zzj-y7-P9i"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-lo-cic">
+                                        <rect key="frame" x="254" y="250" width="80" height="80"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="2ct-L7-Z1b"/>
+                                            <constraint firstAttribute="height" constant="80" id="IFa-u4-40h"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="changeColor:" destination="Duv-Qy-McR" eventType="touchUpInside" id="abZ-56-0Cd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DbJ-4s-Ji8">
+                                        <rect key="frame" x="154" y="402" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <segue destination="fRE-hu-QG8" kind="unwind" unwindAction="unwindToViewController:" id="sI5-PR-hDc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zbf-lo-cic" secondAttribute="trailing" constant="20" id="3oR-su-r2E"/>
+                                    <constraint firstItem="ZLD-Je-G4h" firstAttribute="leading" secondItem="j1K-a4-WTk" secondAttribute="leading" constant="20" id="Cha-8a-VPD"/>
+                                    <constraint firstAttribute="height" constant="500" id="EEI-ZI-adU"/>
+                                    <constraint firstItem="MKf-2W-fFH" firstAttribute="top" secondItem="j1K-a4-WTk" secondAttribute="top" constant="50" id="JIf-Nw-cbM"/>
+                                    <constraint firstItem="zbf-lo-cic" firstAttribute="top" secondItem="MKf-2W-fFH" secondAttribute="bottom" constant="150" id="jnH-J8-hs1"/>
+                                    <constraint firstItem="MKf-2W-fFH" firstAttribute="leading" secondItem="j1K-a4-WTk" secondAttribute="leading" id="ln1-Fi-dpX"/>
+                                    <constraint firstItem="ZLD-Je-G4h" firstAttribute="top" secondItem="MKf-2W-fFH" secondAttribute="bottom" constant="150" id="oG9-RO-nXd"/>
+                                    <constraint firstAttribute="trailing" secondItem="MKf-2W-fFH" secondAttribute="trailing" id="r0q-Iz-pvf"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="PvT-dU-oYI"/>
+                        <constraints>
+                            <constraint firstItem="5St-2V-ptG" firstAttribute="trailing" secondItem="j1K-a4-WTk" secondAttribute="trailing" constant="30" id="GCF-7o-dgA"/>
+                            <constraint firstItem="5St-2V-ptG" firstAttribute="trailing" secondItem="j1K-a4-WTk" secondAttribute="trailing" constant="30" id="Maz-QQ-R6v"/>
+                            <constraint firstItem="j1K-a4-WTk" firstAttribute="leading" secondItem="5St-2V-ptG" secondAttribute="leading" constant="30" id="ePR-Eb-4bn"/>
+                            <constraint firstItem="j1K-a4-WTk" firstAttribute="centerY" secondItem="5St-2V-ptG" secondAttribute="centerY" id="t0u-j2-SlC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5St-2V-ptG"/>
                     </view>
+                    <connections>
+                        <outlet property="btn01" destination="ZLD-Je-G4h" id="WGw-Wq-vTV"/>
+                        <outlet property="btn02" destination="zbf-lo-cic" id="Tzs-Uj-smg"/>
+                        <outlet property="goToFirst" destination="DbJ-4s-Ji8" id="ckJ-1m-6GP"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8fe-n3-7Fs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B6W-Yv-EVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fRE-hu-QG8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="881" y="138"/>
+            <point key="canvasLocation" x="700" y="-50"/>
         </scene>
     </scenes>
 </document>
