@@ -153,6 +153,10 @@
     - AViewController 와 BViewController 를 만들고 각각 하나의 Label 생성.
     - AViewController 와 BViewController 를 전환할 때마다 각 Label 에 화면을 전환한 숫자 1씩 증가
 
-#### [20190409 - AutoLayout](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/AutoLayoutPractice)
+#### [20190409 - AutoLayout 과제1](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/AutoLayoutPractice)
 
-- StroyBoard를 이용한 autoLayout
+- StroyBoard를 이용한 autoLayouta
+
+#### [20190409 - BogusAlertController 과제2](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/BogusAlertController)
+- 1. present, dismiss를 이용한 배경색 변경 --> v0.1
+- 2. delegate를 이용한 배경색 변경 --> v0.2
