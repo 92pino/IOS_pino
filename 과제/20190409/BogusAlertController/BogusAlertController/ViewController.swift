@@ -51,10 +51,11 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: changeBackgroundColor {
+    // MARK: - sendColor
     func sendColor(_ color: UIColor) {
         selectColor = color
-        print(selectColor)
         view.backgroundColor = selectColor
+        print(view.backgroundColor)
     }
     
     
