@@ -34,4 +34,4 @@
 | 6 - 1 | 190408 | [자습] | [자습] | - |
 | 6 - 2 | 190409 | [AutoLayout] | [AutoLayout](https://github.com/92pino/IOS_pino/tree/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190409) | [AutoLayout](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/AutoLayoutPractice), [BogusAlertController](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/BogusAlertController) |
 | 6 - 3 | 190410 | [특강] | [Delegate&Singleton](https://github.com/92pino/IOS_pino/tree/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190410%20-%20%ED%8A%B9%EA%B0%95) | - |
-| 6 - 4 | 190411 | [ScrollView](https://github.com/92pino/IOS_pino/tree/master/Class/20190411) | [ScrollView](https://github.com/92pino/IOS_pino/tree/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190411%20-%20%EC%83%9D%EC%84%B1%EC%9E%90) | [ScrollView]() |
+| 6 - 4 | 190411 | [ScrollView](https://github.com/92pino/IOS_pino/tree/master/Class/20190411) | [ScrollView](https://github.com/92pino/IOS_pino/tree/master/%EC%88%98%EC%97%85%EC%9E%90%EB%A3%8C/20190411%20-%20%EC%83%9D%EC%84%B1%EC%9E%90) | [생성자](), [ScrollView]() |
