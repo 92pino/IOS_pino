@@ -155,8 +155,16 @@
 
 #### [20190409 - AutoLayout 과제1](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/AutoLayoutPractice)
 
-- StroyBoard를 이용한 autoLayouta
+    - StroyBoard를 이용한 autoLayouta
 
 #### [20190409 - BogusAlertController 과제2](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/BogusAlertController)
-- 1. present, dismiss를 이용한 배경색 변경 --> v0.1
-- 2. delegate를 이용한 배경색 변경 --> v0.2
+        - present, dismiss를 이용한 배경색 변경 --> v0.1
+        - delegate를 이용한 배경색 변경 --> v0.2
+
+#### [20190411 - 생성자 과제1](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190411/Initializer.playground)
+- Initializer, Designated, Convenience 생성자 과제
+
+#### [20190411 - UIScrollView 과제2](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190411/ScrollViewPractice)
+    - AutoLayout
+    - UIScrollView
+    - Delegate
