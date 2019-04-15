@@ -22,21 +22,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         addSelectNum()
         setupTableView()
-        setButton()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         refreshControl.tintColor = .blue
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
         tableView.refreshControl = refreshControl
-    }
-    
-    func setButton() {
-        button.setTitle("Reload", for: .normal)
-        button.frame = CGRect(x: view.frame.width/2 - 40, y: 50, width: 80, height: 30)
-        button.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
-        button.backgroundColor = .lightGray
-        view.addSubview(button)
     }
     
     @objc func reloadData() {
@@ -108,7 +99,9 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        guard numbers[indexPath.row] > 7 else { return nil }
         if (numbers[indexPath.row] < 7) {
+            // 선택을 했어도 선택이 되지 않음
             return nil
         }
         return indexPath
