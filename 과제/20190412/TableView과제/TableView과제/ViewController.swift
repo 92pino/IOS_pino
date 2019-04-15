@@ -9,55 +9,89 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     var count = 20
     var numbers: [Int] = []
-    var selected: [IndexPath] = []
-    var selectedArr: [Int] = []
-    var selectedNumArr: [Int] = []
+    var selecteds: [IndexPath] = []
+    var seledcedArray: [Int] = []
+    var seledtedNumArray: [Int] = []
     
-    let tableView = UITableView()
+    var tableView = UITableView()
+    var button = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        addSelectNum()
+        setupTableView()
+        setButton()
         
-        createTableView()
-        refreshControl()
-    }
-    
-    // tableView 생성
-    func createTableView() {
-        tableView.frame = view.frame
-        tableView.dataSource = self
-//        tableView.delegate = self
-        tableView.allowsMultipleSelection = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
-        
-        view.addSubview(tableView)
-    }
-    
-    func refreshControl() {
         let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        refreshControl.tintColor = .blue
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
         tableView.refreshControl = refreshControl
-        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
-        refreshControl.addTarget(self, action: #selector(randomRefresh), for: .valueChanged)
     }
     
-    @objc func randomRefresh() {
-        numbers.removeAll()
-        
+    func setButton() {
+        button.setTitle("Reload", for: .normal)
+        button.frame = CGRect(x: view.frame.width/2 - 40, y: 50, width: 80, height: 30)
+        button.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
+        button.backgroundColor = .lightGray
+        view.addSubview(button)
+    }
+    
+    @objc func reloadData() {
         tableView.refreshControl?.endRefreshing()
+        selected()
+        numbers = []
+        addSelectNum()
+        seledcedArray = []
+        tableView.reloadData()
     }
     
-    func random(){
-        let numberValue = (1...(count + 50)).randomElement()
-        guard !numbers.contains(numberValue!) else { return random() }
-        numbers.append(numberValue!)
-        guard numbers.count >= 20 else { return random() }
+    func setupTableView() {
+        tableView.allowsMultipleSelection = true
+        tableView.isMultipleTouchEnabled = true
+        tableView.frame = CGRect(x: 0, y: 100, width: view.frame.width, height: view.frame.height - 100)
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     }
-
-
+    
+    func addSelectNum(){
+        guard seledcedArray != [] else {
+            makeRand()
+            return
+        }
+        for i in seledcedArray {
+            numbers.append(i)
+        }
+        makeRand()
+    }
+    
+    func makeRand() {
+        if numbers.count < count {
+            #if swift(>=4.2)
+            let num = (1...count).randomElement()!
+            #else
+            let num = Int(arc4random_uniform(UInt32(count+50))) // swift 4.2ver 아래는 이렇게 랜덤값 호출
+            #endif
+            if !numbers.contains(num) {
+                numbers.append(num)
+            }
+            return makeRand()
+        }
+    }
+    
+    func selected() {
+        guard let index = tableView.indexPathsForSelectedRows else {
+            return
+        }
+        self.selecteds = index
+        for i in selecteds {
+            seledcedArray.append(numbers[i.row])
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -70,17 +104,13 @@ extension ViewController: UITableViewDataSource {
         cell.textLabel?.text = "\(numbers[indexPath.row])"
         return cell
     }
-    
-    
 }
-
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if (numbers[indexPath.row] < 7) {
             return nil
         }
-        
         return indexPath
     }
 }
