@@ -12,8 +12,14 @@ final class ViewController: UIViewController {
   
   @IBOutlet private weak var tableView: UITableView!
   
+  var data = Array(1...50)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+//    tableView.dataSource = self
+//    tableView.rowHeight = 60
+//    view.addSubview(tableView)
+//    tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
     
   }
 }

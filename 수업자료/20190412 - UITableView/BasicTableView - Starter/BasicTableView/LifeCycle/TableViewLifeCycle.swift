@@ -28,6 +28,7 @@ final class TableViewLifeCycle: UIViewController {
 
 extension TableViewLifeCycle: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print(self)
     return data.count
   }
   

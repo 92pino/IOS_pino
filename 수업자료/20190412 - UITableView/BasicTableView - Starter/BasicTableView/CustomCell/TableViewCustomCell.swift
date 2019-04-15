@@ -37,6 +37,7 @@ final class TableViewCustomCell: UIViewController {
 
 extension TableViewCustomCell: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print(self)
     return 20
   }
   

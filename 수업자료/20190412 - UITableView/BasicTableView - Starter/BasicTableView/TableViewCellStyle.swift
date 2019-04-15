@@ -41,6 +41,7 @@ final class TableViewCellStyle: UIViewController {
 
 extension TableViewCellStyle: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print(self)
     return 8
   }
   
