@@ -19,7 +19,7 @@ final class TableViewEditing: UIViewController {
   }
   
   let tableView = UITableView()
-  var data = Array(1...5)
+  var data = Array(1...50)
   
   override func viewDidLoad() {
     super.viewDidLoad()
