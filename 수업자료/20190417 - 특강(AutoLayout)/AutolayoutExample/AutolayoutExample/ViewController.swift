@@ -43,7 +43,8 @@ class ViewController: UIViewController {
         bView.leadingAnchor.constraint(equalTo: aView.trailingAnchor, constant: 10).isActive = true
         bView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -10).isActive = true
         
-        bView.widthAnchor.constraint(equalTo: aView.widthAnchor, multiplier: 2.0).isActive = true
+//        bView.widthAnchor.constraint(equalTo: aView.widthAnchor, multiplier: 2.0).isActive = true
+      bView.widthAnchor.constraint(equalTo: aView.widthAnchor, multiplier: 2.0).isActive = true
     }
     
     
