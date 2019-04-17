@@ -158,8 +158,8 @@
     - StroyBoard를 이용한 autoLayouta
 
 #### [20190409 - BogusAlertController 과제2](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190409/BogusAlertController)
-        - present, dismiss를 이용한 배경색 변경 --> v0.1
-        - delegate를 이용한 배경색 변경 --> v0.2
+    - present, dismiss를 이용한 배경색 변경 --> v0.1
+    - delegate를 이용한 배경색 변경 --> v0.2
 
 #### [20190411 - 생성자 과제1](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190411/Initializer.playground)
 - Initializer, Designated, Convenience 생성자 과제
@@ -168,3 +168,23 @@
     - AutoLayout
     - UIScrollView
     - Delegate
+
+#### [20190412 - UITableView 과제1](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190412/TableViewPractice)
+    - 다중선택
+    - 테이블의 셀 선택이 아닌 데이터 index의 값을 select
+
+#### [20190412 - UITableView 과제2](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190412/TableView%EA%B3%BC%EC%A0%9C)
+
+#### [20190415 - UITableView 과제1 - Shopping](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190415/ShoppingItems%20-%20Starter)
+    - Shopping Item테이블뷰와커스텀셀을이용해서사고자하는아이템을추가하는기능구현
+    - 스크롤이가능하도록아이템최소 15개이상생성(프로젝트에 5개이미지만포함되어있으므로중복사용하거나다른모델을추가원한다면직접이미지추가하여사용)
+    - 각아이템은한정된재고수량을가지도록설정
+    - 버튼을통해해당아이템의주문수량을늘리려고할때, 재고수량을초과하면셀배경색을일시적으로빨갛게만들고추가로주문불가메시지출력 (print 또는 alert)
+
+#### [20190415 - UITableView 과제2 - Shopping](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190415/TableViewPractice%20-%20Starter)
+    - 미리 정해진 동물의 이미지와 텍스트를 테이블뷰에 표현
+    - 각 셀의 크기는 80
+    - 셀을 선택하면 체크박스가 나타나고 다시 선택하면 체크표시가 해제되도록 구현
+   
+        - 도전 과제)
+        - 테이블뷰의 각 셀을 위아래로 스크롤 했다가 다시 나타낼 때, 체크 표시가 기존에 했던 곳에 정확히 다시 나타나도록 구현
