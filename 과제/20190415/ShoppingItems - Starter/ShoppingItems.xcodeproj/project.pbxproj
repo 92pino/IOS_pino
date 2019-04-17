@@ -12,7 +12,8 @@
 		52886AC120DA3868006004D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52886ABF20DA3868006004D5 /* Main.storyboard */; };
 		52886AC320DA3869006004D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52886AC220DA3869006004D5 /* Assets.xcassets */; };
 		52886AC620DA3869006004D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52886AC420DA3869006004D5 /* LaunchScreen.storyboard */; };
-		52886ACE20DA38B7006004D5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52886ACD20DA38B7006004D5 /* ItemCell.swift */; };
+		61CA69832265F34D0077279C /* device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA69822265F34D0077279C /* device.swift */; };
+		61CA69852265F37F0077279C /* Iphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA69842265F37F0077279C /* Iphone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +24,8 @@
 		52886AC220DA3869006004D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52886AC520DA3869006004D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52886AC720DA3869006004D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52886ACD20DA38B7006004D5 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		61CA69822265F34D0077279C /* device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = device.swift; sourceTree = "<group>"; };
+		61CA69842265F37F0077279C /* Iphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iphone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +58,10 @@
 		52886ABA20DA3868006004D5 /* ShoppingItems */ = {
 			isa = PBXGroup;
 			children = (
+				61CA69822265F34D0077279C /* device.swift */,
+				61CA69842265F37F0077279C /* Iphone.swift */,
 				52886ABB20DA3868006004D5 /* AppDelegate.swift */,
 				52886ABD20DA3868006004D5 /* ViewController.swift */,
-				52886ACD20DA38B7006004D5 /* ItemCell.swift */,
 				52886ABF20DA3868006004D5 /* Main.storyboard */,
 				52886AC220DA3869006004D5 /* Assets.xcassets */,
 				52886AC420DA3869006004D5 /* LaunchScreen.storyboard */,
@@ -139,8 +142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				52886ABE20DA3868006004D5 /* ViewController.swift in Sources */,
+				61CA69832265F34D0077279C /* device.swift in Sources */,
+				61CA69852265F37F0077279C /* Iphone.swift in Sources */,
 				52886ABC20DA3868006004D5 /* AppDelegate.swift in Sources */,
-				52886ACE20DA38B7006004D5 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

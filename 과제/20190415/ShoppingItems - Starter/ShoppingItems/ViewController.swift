@@ -10,17 +10,23 @@ import UIKit
 
 final class ViewController: UIViewController {
   
-  @IBOutlet private weak var tableView: UITableView!
-  
-  var data = Array(1...50)
+  var tableView = UITableView()
+  private var orderItems: [String: Int] = [:]
+  let identifier = "cell"
+  private let itemManager = Device()
+  private lazy var items: [ShoppingItem] = itemManager.items
   
   override func viewDidLoad() {
     super.viewDidLoad()
-//    tableView.dataSource = self
-//    tableView.rowHeight = 60
-//    view.addSubview(tableView)
-//    tableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
-    
+    addTableView()
+  }
+  
+  func addTableView() {
+    tableView.frame = view.frame
+    tableView.dataSource = self
+    tableView.rowHeight = 60
+    view.addSubview(tableView)
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
   }
 }
 
@@ -28,11 +34,17 @@ final class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    print(items.count)
+    return items.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+//    var cellImage = UIImage(named: items[indexPath.row].imageName)
+    cell.imageView?.image = UIImage(named: items[indexPath.row].imageName)
+    cell.textLabel?.text = items[indexPath.row].title
+    
+    
     return cell
   }
 }

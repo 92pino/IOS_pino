@@ -49,25 +49,17 @@ extension TableViewCellStyle: UITableViewDataSource {
     
     // 재사용
     let cell: UITableViewCell
-    if let defaultCell = tableView.dequeueReusableCell(withIdentifier: "Default"){
-      cell = defaultCell
-    } else if let subtitleCell = tableView.dequeueReusableCell(withIdentifier: "Subtitle") {
-      cell = subtitleCell
-    } else if let value1Cell = tableView.dequeueReusableCell(withIdentifier: "Value1") {
-      cell = value1Cell
-    } else if let value2Cell = tableView.dequeueReusableCell(withIdentifier: "Value2") {
-      cell = value2Cell
-    }
       
     // 셀 최초 생성
-    else if indexPath.row.isMultiple(of: 4) {
-      cell = UITableViewCell(style: .default, reuseIdentifier: "Default")
+    if indexPath.row.isMultiple(of: 4) {
+      // 셀 재사용 시도 후 없으면 생성
+      cell = UITableViewCell(style: .default, reuseIdentifier: "Default") ?? UITableViewCell(style: .default, reuseIdentifier: "Default")
     } else if indexPath.row % 4 == 1 {
-      cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Subtitle")
+      cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Subtitle") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "Subtitle")
     } else if indexPath.row % 4 == 2 {
-      cell = UITableViewCell(style: .value1, reuseIdentifier: "Value1")
+      cell = UITableViewCell(style: .value1, reuseIdentifier: "Value1") ?? UITableViewCell(style: .value1, reuseIdentifier: "Value1")
     } else {
-      cell = UITableViewCell(style: .value2, reuseIdentifier: "Value2")
+      cell = UITableViewCell(style: .value2, reuseIdentifier: "Value2") ?? UITableViewCell(style: .value2, reuseIdentifier: "Value2")
     }
     
     // 공통 속성 세팅
