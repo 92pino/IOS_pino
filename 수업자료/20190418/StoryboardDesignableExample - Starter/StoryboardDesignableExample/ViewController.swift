@@ -10,4 +10,11 @@ import UIKit
 
 final class ViewController: UIViewController {
     
+    @IBOutlet private weak var customButton: CustomButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(customButton.someValue)
+        updateViewConstraints()
+    }
 }

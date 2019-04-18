@@ -21,22 +21,32 @@ import UIKit
  - Inspector에서 설정한 값은 User Defined Runtime Attributes에 반영됨
  ***************************************************/
 
-
-
+@IBDesignable
 final class CustomButton: UIButton {
 
-//  var someValue: Int = 0
+  @IBInspectable var someValue: Int = 0
   
-//  var cornerRadius: CGFloat {
-//  }
+  @IBInspectable var cornerRadius: CGFloat {
+    get { return layer.cornerRadius}
+    set { layer.cornerRadius = newValue }
+  }
   
-//  var borderWidth: CGFloat {
-//  }
-//  var borderColor: UIColor? {
-//  }
+  @IBInspectable var borderWidth: CGFloat {
+    get { return layer.borderWidth }
+    set { layer.borderWidth = newValue}
+  }
+  @IBInspectable var borderColor: UIColor? {
+    didSet { layer.borderColor = borderColor?.cgColor}
+  }
   
-//  var shadowColor: UIColor?
-//  var shadowOpacity: Float = 0
-//  var shadowOffset: CGSize = CGSize(width: 0, height: -3)
+    @IBInspectable var shadowColor: UIColor? {
+        didSet { layer.shadowColor = shadowColor?.cgColor}
+    }
+    @IBInspectable var shadowOpacity: Float = 0 {
+        didSet { layer.shadowOpacity = shadowOpacity }
+    }
+    @IBInspectable var shadowOffset: CGSize = CGSize(width: 0, height: -3) {
+        didSet { layer.shadowOffset = shadowOffset }
+    }
   
 }

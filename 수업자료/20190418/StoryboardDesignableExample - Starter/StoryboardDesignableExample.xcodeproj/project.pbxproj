@@ -14,6 +14,7 @@
 		52B525D3225FD19000E3CDD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B525D2225FD19000E3CDD4 /* Assets.xcassets */; };
 		52B525D6225FD19000E3CDD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B525D4225FD19000E3CDD4 /* LaunchScreen.storyboard */; };
 		52B52602226340B700E3CDD4 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B52601226340B700E3CDD4 /* CustomButton.swift */; };
+		6129E06022685AEE00646A96 /* MyRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6129E05F22685AEE00646A96 /* MyRootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		52B525D5225FD19000E3CDD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52B525D7225FD19000E3CDD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B52601226340B700E3CDD4 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		6129E05F22685AEE00646A96 /* MyRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				52B52601226340B700E3CDD4 /* CustomButton.swift */,
 				52A817E22263432D00DD6FC7 /* EmojiSelectorView.swift */,
 				52B525CF225FD19000E3CDD4 /* Main.storyboard */,
+				6129E05F22685AEE00646A96 /* MyRootView.swift */,
 				52B525D2225FD19000E3CDD4 /* Assets.xcassets */,
 				52B525D4225FD19000E3CDD4 /* LaunchScreen.storyboard */,
 				52B525D7225FD19000E3CDD4 /* Info.plist */,
@@ -144,6 +147,7 @@
 				52B525CE225FD19000E3CDD4 /* ViewController.swift in Sources */,
 				52B525CC225FD19000E3CDD4 /* AppDelegate.swift in Sources */,
 				52B52602226340B700E3CDD4 /* CustomButton.swift in Sources */,
+				6129E06022685AEE00646A96 /* MyRootView.swift in Sources */,
 				52A817E32263432D00DD6FC7 /* EmojiSelectorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
