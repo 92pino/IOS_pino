@@ -12,7 +12,7 @@ class Teacher {
 
 class Student {
   // strong, unowned, weak
-  let teacher: Teacher
+  unowned let teacher: Teacher
 //  unowned let teacher: Teacher
 //  weak var teacher: Teacher?
   
@@ -28,9 +28,9 @@ var teacher: Teacher? = Teacher()
 var student: Student? = Student(teacher: teacher!)
 teacher?.student = student
 
-
 print("\n---------- [ teacher release ] ----------\n")
 teacher = nil
+
 
 print("\n---------- [ student release ] ----------\n")
 student = nil

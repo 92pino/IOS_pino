@@ -43,8 +43,9 @@ final class MemoryViewController: UIViewController {
 
 
 var memoryVC: MemoryViewController? = MemoryViewController()
-memoryVC?.loadClass()
+memoryVC?.apartment = nil
 memoryVC = nil
+memoryVC?.loadClass()
 
 
 /***************************************************

@@ -24,6 +24,7 @@ class ClassProperty {
 class Application {
   var prop = ClassProperty()
   
+    // 로컬 스코프는 해당 func가 끝나는데까지
   func allocateInstance() {
     let local = LocalScope()
     local.doSomething()
@@ -46,6 +47,7 @@ app?.allocateInstance()
 // Q. ClassProperty 객체의 deinit 메서드가 호출되려면 어떻게 할까요?
 
 
-
+// 클래스 프로퍼티가 해제되는 지점은 앱이 종료되는 지점
+app = nil
 
 //: [Next](@next)
