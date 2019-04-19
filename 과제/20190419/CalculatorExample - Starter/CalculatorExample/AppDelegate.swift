@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SimpleCalculator
+//  CalculatorExample
 //
-//  Created by giftbot on 15/04/2019.
+//  Created by giftbot on 17/04/2019.
 //  Copyright © 2019 giftbot. All rights reserved.
 //
 
@@ -12,6 +12,4 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
 }
-
