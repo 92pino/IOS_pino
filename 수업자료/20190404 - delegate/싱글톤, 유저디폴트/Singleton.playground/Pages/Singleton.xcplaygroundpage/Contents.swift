@@ -58,16 +58,16 @@ class SingletonClass {
   var x = 0
 }
 
-
 let singleton1 = SingletonClass.shared  // SingletonClass()
 singleton1.x = 10
-
 let singleton2 = SingletonClass.shared
 singleton2.x = 20
 
-singleton1.x   //
-singleton2.x   //
+//
+singleton1.x   //   20
+singleton2.x   //   20
 
+// SingletonClass.shared는 전부 공유
 SingletonClass.shared.x = 30
 
 SingletonClass.shared.x  //
@@ -79,11 +79,11 @@ singleton2.x  //
 // 새로 만든 SingletonClass 새로 생성된 객체x에 99할당
 SingletonClass().x = 99
 // 새로 만든 SingletonClass x의 기본 값
-SingletonClass().x   //
+SingletonClass().x   // 0
 // 싱글톤
-singleton1.x  //
+singleton1.x  // 30
 // 싱글톤
-singleton2.x  //
+singleton2.x  // 30
 
 
 
@@ -100,6 +100,7 @@ class Singleton {
 }
 
 let object1 = Singleton.shared
+object1.x
 
 
 

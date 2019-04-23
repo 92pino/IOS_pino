@@ -24,17 +24,20 @@ final class ViewController: UIViewController {
     let userDefaults = UserDefaults.standard
     userDefaults.set(datePicker.date, forKey: Key.today)
     userDefaults.set(alertSwitch.isOn, forKey: Key.alarmOn)
+    
+    print(userDefaults)
   }
   
   @IBAction func loadData(_ button: UIButton) {
     let userDefaults = UserDefaults.standard
-    
     let today = (userDefaults.object(forKey: Key.today) as? Date) ?? Date()
-    let isAlarmOn = userDefaults.bool(forKey: Key.alarmOn)
+    let alarmOn = userDefaults.bool(forKey: Key.alarmOn)
     
-    datePicker.setDate(today, animated: true)
-    alertSwitch.setOn(isAlarmOn, animated: true)
+    print(today)
+    print(alarmOn)
     
+    datePicker.setDate(today as! Date, animated: true)
+    alertSwitch.setOn(alarmOn, animated: true)
   }
 }
 

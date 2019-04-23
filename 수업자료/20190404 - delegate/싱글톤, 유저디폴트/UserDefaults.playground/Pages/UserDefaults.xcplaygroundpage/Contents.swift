@@ -14,7 +14,8 @@ inMemory
  ---
  ### Question
  - 메모리와 파일로 저장하는 형태의 차이점은?
- > ㅁ
+    - 메모리에 저장할 경우 ==> 실행이 끝나면 메모리에서 사라짐
+    - 파일로 저장할 경우  ==> 프로그램을 종료했다가 다시 실행시켜도 데이터를 파일로부터 읽어올수 있다.
  ---
  */
 
@@ -23,16 +24,21 @@ inMemory
 let newUserDefaults = UserDefaults()
 let singletonUserDefaults = UserDefaults.standard
 
+// 파일에 10을 Ten이라는 키값으로 저장
 UserDefaults.standard.set(10, forKey: "Ten")
 UserDefaults.standard.integer(forKey: "Ten")
 
+// 파일에 3.14를 Double Pi이라는 키값으로 저장
 UserDefaults.standard.set(3.14, forKey: "Double Pi")
 UserDefaults.standard.double(forKey: "Double Pi")
 
+// 파일에 true를 True라는 키값으로 저장
 UserDefaults.standard.set(true, forKey: "True")
 UserDefaults.standard.bool(forKey: "True")
 
 let date = Date()
+
+// 모든 타입을 할당해줄수 없으므로 date같은 경우 Any? 타입 형태로
 UserDefaults.standard.set(date, forKey: "Date")
 UserDefaults.standard.object(forKey: "Date")
 
