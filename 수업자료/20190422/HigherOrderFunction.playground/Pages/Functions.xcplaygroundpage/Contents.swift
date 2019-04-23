@@ -41,9 +41,19 @@ print()
  - 1~10 까지의 숫자 중 짝수만 출력하다가 9가 되면 종료되도록 forEach를 이용해 구현해본 뒤 for 와 비교하여 설명
  ---
  */
+var num = [1,2,3,4,5,6,7,8,9,10]
 
+for i in 1...num.count {
+    guard i != 9 else { break }
+    guard i % 2 == 0 else { continue }
+    print(i, terminator: " ")
+}
 
-
+num.forEach{
+    guard $0 < 9 else { return }
+    guard $0 % 2 == 0 else { return }
+    print($0, terminator: " ")
+}
 /*:
  ---
  ## map
@@ -58,12 +68,20 @@ names
   .map { $0 + "'s name" }
   .forEach { print($0) }
 
+let newNames = names.map { $0 + "'s name"}
+print(newNames)
+
 let intArr = Array<Int>(repeating: 2, count: 10)
 let indexPlusElement = intArr.enumerated().map {
-  return $0 + $1
+  $0 + $1
 }
 print(indexPlusElement)
 
+var myArr = [Int]()
+for (idx, value) in intArr.enumerated() {
+    myArr.append(idx + value)
+}
+print(myArr)
 /*:
  ---
  ## filter
@@ -127,9 +145,11 @@ print(sum1to100)
 // 아래 둘 모두 reduce를 이용해 "123" 이라는 문자열이 되도록 만들기
 ["1", "2", "3"]
 
+let reduce01 = ["1", "2", "3"].reduce("") { $0 + $1 }
+
 [1, 2, 3]
-
-
+let reduce02 = [1, 2, 3].reduce("") {String($0) + String($1)}
+print(reduce02)
 
 /*:
  ---
@@ -141,12 +161,16 @@ print("\n---------- [ compactMap ] ----------\n")
 
 let optionalStringArr = ["A", nil, "B", nil, "C"]
 print(optionalStringArr.compactMap { $0 })
+print(optionalStringArr)
+optionalStringArr
+    .compactMap{ $0 }
 
 
 let numbers = [-2, -1, 0, 1, 2]
 let positiveNumbers = numbers.compactMap { $0 >= 0 ? $0 : nil }
 print(positiveNumbers)
 
+print(numbers.map { $0 >= 0 ? $0 : nil })
 
 
 /*:
@@ -168,7 +192,12 @@ print(flattenNumbers1)
 let flattenNumbers2 = flattenNumbers1.flatMap { $0 }
 print(flattenNumbers2)
 
-
+print(
+    nestedArr2
+        .flatMap { $0 }
+        .flatMap { $0 }
+    
+)
 
 /*:
  ---
@@ -178,15 +207,33 @@ print(flattenNumbers2)
  */
 // compactMap
 numbers
+let removeNil = numbers
+    .map { $0 >= 0 ? $0 : nil }
+    .filter { $0 != nil }
+    .map { $0! }
+print(removeNil)
+
+print(numbers.compactMap{ $0 >= 0 ? $0 : nil })
+
+var newArr: [Int] = []
+for i in 0...numbers.count - 1 {
+    if numbers[i] >= 0 {
+        newArr.append(numbers[i])
+    }
+}
+print(newArr)
 
 // flatMap
 nestedArr
+    .reduce([], +)
 
+print(nestedArr.reduce([]) { $0 + $1 })
 
+let flattenArr = nestedArr
+    .map { $0 }
+    .joined()
 
-
-
-
+print(Array(flattenArr))
 
 /*:
  ---

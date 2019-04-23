@@ -26,4 +26,17 @@ let returnValue = function(firstClassCitizen)
 returnValue
 returnValue()
 
+let someFunction = firstClassCitizen
+someFunction()
+
+var _myProperty: Int = 123
+var myProperty: Int {
+    get {
+        return _myProperty
+    }
+    set(newVal) {
+        _myProperty = newVal
+    }
+}
+print(_myProperty)
 //: [Next](@next)
