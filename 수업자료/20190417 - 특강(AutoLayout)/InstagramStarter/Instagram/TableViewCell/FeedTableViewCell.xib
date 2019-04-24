@@ -15,7 +15,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="501" id="KGk-i7-Jjw" customClass="FeedTableViewCell" customModule="Instagram" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="462" height="501"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="462" height="500.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -63,7 +63,10 @@
                             <constraint firstAttribute="width" constant="40" id="TFU-Tv-pYN"/>
                             <constraint firstAttribute="height" constant="40" id="kmX-nr-9LC"/>
                         </constraints>
-                        <state key="normal" image="comment"/>
+                        <state key="normal" title="댓글" image="comment"/>
+                        <connections>
+                            <action selector="commentButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ljQ-oT-TEb"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oab-GC-Cac" userLabel="Icon03">
                         <rect key="frame" x="90" y="360.5" width="40" height="40"/>
@@ -98,6 +101,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="commetViewController" destination="Day-V5-cIL" id="Kw5-YI-P42"/>
                 <outlet property="feedImageView" destination="MeF-ng-DG3" id="UT8-s6-Q6z"/>
                 <outlet property="nickNameLabel" destination="6f0-r8-5QE" id="GM4-GK-8lg"/>
                 <outlet property="profileImageView" destination="YW6-38-dsK" id="LN1-Tc-zsy"/>

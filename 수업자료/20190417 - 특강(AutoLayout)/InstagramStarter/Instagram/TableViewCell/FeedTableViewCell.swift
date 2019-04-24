@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol FeedTableViewCellDelegate: class {
+    func feedCell(_ comment: FeedTableViewCell, didTapAddButton: UIButton)
+}
+
 class FeedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var feedImageView: UIImageView!
+    @IBOutlet weak var commetViewController: UIButton!
+    weak var delegate: FeedTableViewCellDelegate?
     
     var model: FeedData! {
         didSet {
@@ -39,6 +45,9 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBAction func likeButton(_ sender: UIButton) {
         sender.isSelected.toggle()
+    }
+    @IBAction func commentButton(_ sender: UIButton) {
+        delegate?.feedCell(self, didTapAddButton: sender)
     }
     
 }

@@ -99,9 +99,21 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feed", for: indexPath) as! FeedTableViewCell
-        
+        cell.delegate = self
         cell.model = feedDataArr[indexPath.row]
         return cell
+    }
+    
+    
+}
+
+extension HomeViewController: FeedTableViewCellDelegate {
+    func feedCell(_ itemCell: FeedTableViewCell, didTapAddButton: UIButton) {
+       
+        guard let idxPath = tableView.indexPath(for: itemCell) else { return }
+        let commentVC = CommentViewController()
+        navigationController?.pushViewController(commentVC, animated: true)
+        commentVC.title = didTapAddButton.titleLabel!.text!
     }
     
     

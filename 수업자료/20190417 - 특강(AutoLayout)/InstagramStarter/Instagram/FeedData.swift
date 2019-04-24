@@ -12,6 +12,7 @@ class FeedData {
     let profileImage: String?
     let nickName: String?
     let feedImage: String?
+    var comment: String?
     
     init(profileImage: String?, nickName: String?, feedImage: String?) {
         self.profileImage = profileImage ?? AppImageData.profile + "\(1)"
