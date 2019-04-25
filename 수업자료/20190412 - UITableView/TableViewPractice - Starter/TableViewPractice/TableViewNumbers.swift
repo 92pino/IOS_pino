@@ -13,7 +13,8 @@ final class TableViewNumbers: UIViewController {
   /***************************************************
    1부터 50까지의 숫자 출력하기
    ***************************************************/
-  
+  var num = Array(1...50)
+    
   override var description: String {
     return "Practice 1 - Numbers"
   }
@@ -22,9 +23,23 @@ final class TableViewNumbers: UIViewController {
     super.viewDidLoad()
     
     let tableView = UITableView(frame: view.frame)
+    
+    tableView.dataSource = self
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     view.addSubview(tableView)
   }
 }
 
-extension TableViewNumbers {
+extension TableViewNumbers: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return num.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellId", for: indexPath)
+        cell.textLabel?.text = "\(num[indexPath.row])"
+        return cell
+    }
+    
+    
 }
