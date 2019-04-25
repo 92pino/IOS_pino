@@ -26,26 +26,90 @@ final class TableViewMultipleSelection: UIViewController {
    키워드 - willSelectRow, selectedRow, multipleSelection
    ***************************************************/
   
-  override var description: String {
-    return "Task 1 - MultipleSelection"
-  }
-  
-  let tableView = UITableView()
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
+    override var description: String {
+        return "TableView - MultipleSelection"
+    }
+    
+    let tableView = UITableView()
+    let maxCount = 20
+    let maxRange = 50
+    lazy var data = Array(1...maxCount)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        tableView.frame = view.frame
+        tableView.dataSource = self
+        tableView.delegate = self
+        // 다중선택
+        tableView.allowsMultipleSelection = true
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
+        view.addSubview(tableView)
+        
+        tableView.rowHeight = 60
+        
+        // pull to Refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadData)
+            , for: .valueChanged)
+        // refreshControl 색상 변경
+        refreshControl.tintColor = .blue
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc func reloadData() {
+        var selectedNumbers: [Int] = []
+        for indexPath in tableView.indexPathsForSelectedRows ?? [] {
+            selectedNumbers.append(data[indexPath.row])
+        }
+        data = selectedNumbers
+        
+        for _ in (1...maxCount - selectedNumbers.count) {
+            data.append(generateRandomNumber())
+        }
+        
+        tableView.refreshControl?.endRefreshing()
+        tableView.reloadData()
+    }
+    
+    func generateRandomNumber() -> Int {
+        #if swift(>=4.2)
+            let randomNumber = (0..<maxCount + maxRange).randomElement()
+        #else
+            let randomNumber = Int(arc4random_uniform(UInt32(maxCount + maxRange)))
+        #endif
+        
+        guard !data.contains(randomNumber!) else { return generateRandomNumber() }
+        return randomNumber!
+    }
 }
 
 // MARK: - UITableViewDataSource
 
 extension TableViewMultipleSelection: UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "CellId", for: indexPath)
-    return cell
-  }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellId", for: indexPath)
+        cell.textLabel?.text = "\(data[indexPath.row])"
+        return cell
+    }
+}
+
+extension TableViewMultipleSelection: UITableViewDelegate {
+    // willSelectRowAt == 선택할 때 row를 선택할지 말지 여부를 결정하는 메서드
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        guard data[indexPath.row] > 7 else {
+            return nil
+        }
+        
+        return indexPath
+    }
 }
