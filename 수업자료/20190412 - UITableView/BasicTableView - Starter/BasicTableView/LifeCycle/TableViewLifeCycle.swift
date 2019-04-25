@@ -19,7 +19,8 @@ final class TableViewLifeCycle: UIViewController {
     super.viewDidLoad()
     let tableView = UITableView(frame: view.frame)
     tableView.dataSource = self
-    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
+    tableView.delegate = self
+    tableView.register(MyTableViewCell.self, forCellReuseIdentifier: "CellId")
     view.addSubview(tableView)
   }
 }
@@ -40,3 +41,13 @@ extension TableViewLifeCycle: UITableViewDataSource {
   }
 }
 
+extension TableViewLifeCycle: UITableViewDelegate {
+    //
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("Will Display Cell : \(indexPath.row)")
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("Did End Display Cell : \(indexPath.row)")
+    }
+}
