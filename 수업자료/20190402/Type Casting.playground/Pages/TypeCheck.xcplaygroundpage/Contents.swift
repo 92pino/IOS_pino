@@ -74,6 +74,9 @@ for data in someAnyArr {
   }
 }
 
+let a = 1
+a == 1      // 값 비교
+a is Int    // 타입 비교
 
 
 
@@ -122,7 +125,7 @@ type(of: babyArr)   // [Baby] 타입,   strArr = ["1", "2"] 와 마찬가지
 // Q. 그럼 다음 someArr 의 Type 은?
 
 let someArr = [Human(), Student(), Baby(), UniversityStudent()]
-type(of: someArr)
+type(of: someArr)   // Human type
 
 
 // someArr[0] == Human

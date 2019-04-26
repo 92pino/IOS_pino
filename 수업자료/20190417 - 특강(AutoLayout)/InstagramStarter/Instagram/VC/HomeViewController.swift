@@ -100,6 +100,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "feed", for: indexPath) as! FeedTableViewCell
         cell.delegate = self
+        print(cell.model)
         cell.model = feedDataArr[indexPath.row]
         return cell
     }

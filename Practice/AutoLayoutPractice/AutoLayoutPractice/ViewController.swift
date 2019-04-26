@@ -40,8 +40,6 @@ class ViewController: UIViewController {
         view01.heightAnchor.constraint(equalToConstant: 150).isActive = true
         view01.topAnchor.constraint(equalTo: guide.topAnchor, constant: 100).isActive = true
         view01.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
-        button.setTitle("버튼", for: .normal)
-        button.topAnchor.constraint(equalTo: view01.topAnchor, constant: 50).isActive = true
        
         
         

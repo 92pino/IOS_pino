@@ -23,6 +23,7 @@ class Dog {
 
 
 
+//var giftbots: Person = Person()
 var giftbot: Person! = Person()
 var tori: Dog! = Dog()
 
