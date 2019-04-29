@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         
         navyText.centerYAnchor.constraint(equalTo: navyView.centerYAnchor).isActive = true
         navyText.centerXAnchor.constraint(equalTo: navyView.centerXAnchor, constant: 20).isActive = true
+        navyText.widthAnchor.constraint(greaterThanOrEqualTo: skyView.widthAnchor, multiplier: 0.7)
         
         
     }

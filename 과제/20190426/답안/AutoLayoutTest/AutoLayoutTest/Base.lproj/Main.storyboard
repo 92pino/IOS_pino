@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="lNa-M7-sD4">
             <objects>
-                <viewController id="M6E-a8-kLm" customClass="ViewController" customModule="BasicAutoLayoutPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="M6E-a8-kLm" customClass="ViewController" customModule="AutoLayoutTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hWX-da-dQE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
