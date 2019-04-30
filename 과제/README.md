@@ -188,3 +188,12 @@
    
         - 도전 과제)
         - 테이블뷰의 각 셀을 위아래로 스크롤 했다가 다시 나타낼 때, 체크 표시가 기존에 했던 곳에 정확히 다시 나타나도록 구현
+
+#### [20190430 - Notification 과제1 - RGV](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190430/Notification_Homework)
+    - RGBA 값을 지닌 UISlider와 NotificationCenter를 이용해 배경색상 변경하기
+    - 탭바컨트롤러의 FirstVC에서 슬라이더값을 조절하고 버튼을 누르면 Notification 이벤트를 발생시키는 코드 작성
+    - SecondVC에서 Notification을 전달받아 RGBA를 조합하여 배경색 변경
+
+#### [20190430 - Notification 과제2 - TextField](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190430/Notification_Homework2)
+    - FirstVC의 TextField에 입력한 내용을 NotificationCenter를 이용해 SecondVC의 Label로 전달하기
+    - NavigationController 이용
