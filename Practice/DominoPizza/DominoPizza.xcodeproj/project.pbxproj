@@ -17,6 +17,7 @@
 		61E01B792276A4CD00045833 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01B782276A4CD00045833 /* ProductViewController.swift */; };
 		61E01B7E2276AAD500045833 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01B7C2276AAD500045833 /* CategoryTableViewCell.swift */; };
 		61E01B7F2276AAD500045833 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61E01B7D2276AAD500045833 /* CategoryTableViewCell.xib */; };
+		61E01C19227833F900045833 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01C18227833F900045833 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		61E01B782276A4CD00045833 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		61E01B7C2276AAD500045833 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		61E01B7D2276AAD500045833 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		61E01C18227833F900045833 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				61E01B782276A4CD00045833 /* ProductViewController.swift */,
 				61E01B7C2276AAD500045833 /* CategoryTableViewCell.swift */,
 				61E01B7D2276AAD500045833 /* CategoryTableViewCell.xib */,
+				61E01C18227833F900045833 /* DetailViewController.swift */,
 			);
 			path = CategoryView;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				61E01B7022768CF000045833 /* WishListViewController.swift in Sources */,
 				61E01B5C22768C5E00045833 /* AppDelegate.swift in Sources */,
 				61E01B7E2276AAD500045833 /* CategoryTableViewCell.swift in Sources */,
+				61E01C19227833F900045833 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

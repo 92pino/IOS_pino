@@ -25,16 +25,24 @@ final class CategoryViewController: UIViewController {
     }
     
     func makeTableView(){
-        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        tableView.register(UINib(nibName: "CategoryTableViewCell", bundle: nil), forCellReuseIdentifier: "CellId")
-        tableView.rowHeight = 100
         headerVIew.image = UIImage(named: "logo")
         headerVIew.contentMode = .scaleAspectFit
         headerVIew.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         headerVIew.backgroundColor = .white
         tableView.tableHeaderView = headerVIew
         
+        autoLayout()
+    }
+    
+    func autoLayout(){
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(tableView)
+        
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
 }
