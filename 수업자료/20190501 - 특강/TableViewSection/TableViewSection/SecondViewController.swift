@@ -11,12 +11,7 @@ import UIKit
 class SecondViewController: UIViewController {
   
   let scrollView = UIScrollView()
-  var sectionTitle: [String] = []
-  var tableCell: [String] = []
   let products: [Product] = []
-  
-  let sectionView = UIView()
-  let sectionTitleView = UILabel()
   
 
   override func viewDidLoad() {
@@ -65,13 +60,13 @@ class SecondViewController: UIViewController {
       }
     }
     
-    for i in labels {
-      scrollView.addSubview(i)
-      i.translatesAutoresizingMaskIntoConstraints = false
+    labels.forEach {
+      scrollView.addSubview($0)
+      $0.translatesAutoresizingMaskIntoConstraints = false
       
-      i.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-      i.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-      i.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+      $0.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+      $0.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+      $0.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
     }
     
     for i in 0..<labels.count {

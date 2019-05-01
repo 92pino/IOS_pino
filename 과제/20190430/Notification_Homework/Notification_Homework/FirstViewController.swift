@@ -39,13 +39,20 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         configure()
+      
         btn.addTarget(self, action: #selector(sendData)
             , for: .touchUpInside)
     }
-    
+  override func viewWillDisappear(_ animated: Bool) {
+
+    sendData()
+
+  }
+  
     @objc func sendData(){
+      print(1111)
         let name = Notification.Name("SliderNotification")
-        //let noti = Notification(name: name)
+        let noti = Notification(name: name)
         notiCenter.post(name: name, object: nil, userInfo: ["red":redValue,"green":greenValue,"blue":blueValue,"alpha":alphaValue])
     }
     
