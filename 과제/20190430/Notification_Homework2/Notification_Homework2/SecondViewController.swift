@@ -24,7 +24,9 @@ class SecondViewController: UIViewController {
         
         view.addSubview(resultLabel)
     }
-    
+  
+  
+    // MARK: - addObserver
     func set(){
         notiCenter.addObserver(self, selector: #selector(changeLabel), name: Notification.Name("sendTextField"), object: nil)
     }
@@ -35,7 +37,15 @@ class SecondViewController: UIViewController {
         
         resultLabel.text = lb
     }
-    
+    // TODO: - 할일
+    func todo(){
+      
+    }
+  
+    // FIXME: - 고쳐야 할 것
+    func fixme(){
+      
+    }
 
     /*
     // MARK: - Navigation
@@ -46,5 +56,16 @@ class SecondViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func removeNotificationObserver() {
+        
+        notiCenter.removeObserver(self)
+        
+    }
+    
+    
+    deinit {
+        removeNotificationObserver()
+    }
 
 }
