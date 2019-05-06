@@ -25,6 +25,9 @@ final class TableViewRefresh: UIViewController {
     return "Practice 3 - Refresh"
   }
   let tableView = UITableView()
+  let maxCount = 20
+  let maxRange = 50
+  lazy var data = Array(1...maxCount)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,7 +36,37 @@ final class TableViewRefresh: UIViewController {
   
   func setupTableView() {
     tableView.frame = view.frame
+    tableView.dataSource = self
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     view.addSubview(tableView)
+    
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+    refreshControl.tintColor = .blue
+    refreshControl.attributedTitle = NSAttributedString(string: "Now Loading...")
+    tableView.refreshControl = refreshControl
+  }
+  
+  @objc func reloadData() {
+    data.removeAll()
+    
+    for _ in 1...maxCount {
+      data.append(generateRandomNumber())
+    }
+    //        (0...10).randomElement()
+    tableView.refreshControl?.endRefreshing()
+    tableView.reloadData()
+  }
+  
+  func generateRandomNumber() -> Int {
+    #if swift(>=4.2)
+    let randomNumber = (0..<maxCount + maxRange).randomElement()!
+    #else
+    let randomNumber = Int(arc4random_uniform(UInt32(maxCount + maxRange)))
+    #endif
+    
+    guard !data.contains(randomNumber) else { return generateRandomNumber() }
+    return randomNumber
   }
 }
 
@@ -41,11 +74,12 @@ final class TableViewRefresh: UIViewController {
 
 extension TableViewRefresh: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return data.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CellId", for: indexPath)
+    cell.textLabel?.text = "\(data[indexPath.row])"
     return cell
   }
 }

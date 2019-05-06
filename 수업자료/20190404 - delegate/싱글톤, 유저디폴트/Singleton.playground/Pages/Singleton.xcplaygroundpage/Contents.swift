@@ -54,9 +54,14 @@ someObject3.x
 
 class SingletonClass {
     // 타입 프로퍼티
+  //자기 자신의 클래스를 내부에서 변수로 할당
   static let shared = SingletonClass()
   var x = 0
 }
+
+SingletonClass.shared.x = 100
+SingletonClass.shared.x
+SingletonClass.shared
 
 let singleton1 = SingletonClass.shared  // SingletonClass()
 singleton1.x = 10
@@ -84,8 +89,6 @@ SingletonClass().x   // 0
 singleton1.x  // 30
 // 싱글톤
 singleton2.x  // 30
-
-
 
 /***************************************************
  Q.
