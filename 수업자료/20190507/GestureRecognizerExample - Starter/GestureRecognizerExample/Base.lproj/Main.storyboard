@@ -51,6 +51,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="mCH-Rq-fyk"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="hKp-bm-N7x" appends="YES" id="eOg-52-zfY"/>
+                            <outletCollection property="gestureRecognizers" destination="fPU-RK-BgV" appends="YES" id="Gch-P9-Idr"/>
+                            <outletCollection property="gestureRecognizers" destination="A1w-iy-JmZ" appends="YES" id="nsH-fB-r6f"/>
+                            <outletCollection property="gestureRecognizers" destination="DtH-jE-cII" appends="YES" id="JsC-7y-477"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Gesture" id="nai-nK-b8Q"/>
                     <connections>
@@ -58,6 +64,26 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4h-Mc-e2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="hKp-bm-N7x">
+                    <connections>
+                        <action selector="handleTapGesture:" destination="nvL-LU-keQ" id="FlD-fb-Lzf"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <rotationGestureRecognizer id="fPU-RK-BgV">
+                    <connections>
+                        <action selector="handleRotationsGesture:" destination="nvL-LU-keQ" id="0Ix-MX-AAG"/>
+                    </connections>
+                </rotationGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="A1w-iy-JmZ">
+                    <connections>
+                        <action selector="handleSwipeGesture:" destination="nvL-LU-keQ" id="zHR-JW-93R"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="DtH-jE-cII">
+                    <connections>
+                        <action selector="handleSwipeGesture:" destination="nvL-LU-keQ" id="ynl-go-GMs"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="908" y="569.86506746626696"/>
         </scene>
