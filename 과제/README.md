@@ -197,3 +197,11 @@
 #### [20190430 - Notification 과제2 - TextField](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190430/Notification_Homework2)
     - FirstVC의 TextField에 입력한 내용을 NotificationCenter를 이용해 SecondVC의 Label로 전달하기
     - NavigationController 이용
+
+#### [20190507 - Gesture 과제1](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190507/GestureRecognizerExample%20-%20Starter)
+    - GestureRecognizerExample 프로젝트의 TouchViewController 에서 터치 후 최초 이동 시 부자연스럽게 움직이는 부분을 자연스럽게 움직이도록 구현하기
+
+#### [20190507 - Gesture 도전과제](https://github.com/92pino/IOS_pino/tree/master/%EA%B3%BC%EC%A0%9C/20190507/GestureHomework_190507)
+    - 샘플 영상을 보고 동일하게 동작하도록 구현
+    - touchesBegan 메서드 이용
+    - UITapGestureRecognizer 이용(이전에 탭한 위치에서 거리가 10 이상이면 새로운 탭인 것으로 계산)
