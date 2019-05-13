@@ -24,8 +24,9 @@ class ViewController: UIViewController {
   let searchView = UIView()
   let searchTextField = UITextField()
   let mapView = MKMapView()
-  var saveTxt: [Double:Double] = [:]
+  var saveTxt: [CLLocationCoordinate2D] = []
   let notiCenter = NotificationCenter.default
+  let temp: CLLocationCoordinate2D! = nil
   private let locationManager = CLLocationManager()
 
   override func viewDidLoad() {
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
     searchTextField.backgroundColor = .white
     view.addSubview(mapView)
     searchTextField.delegate = self
+    mapView.delegate = self
     
     guard CLLocationManager.headingAvailable() else { return }
     locationManager.startUpdatingHeading()
@@ -103,6 +105,7 @@ extension ViewController: UITextFieldDelegate {
     goToLocation()
     
     searchTextField.text = ""
+    
     return true
   }
   
@@ -116,7 +119,7 @@ extension ViewController: UITextFieldDelegate {
       var lati = placeMark.location!.coordinate.latitude
       var longi = placeMark.location!.coordinate.longitude
       
-      self.saveTxt.updateValue(lati, forKey: longi)
+      self.saveTxt.append(placeMark.location!.coordinate)
       
       let mark = MKPointAnnotation()
       mark.title = "\(self.saveTxt.count)번째 행선지"
@@ -125,14 +128,37 @@ extension ViewController: UITextFieldDelegate {
       
       let center = CLLocationCoordinate2DMake(lati, longi)
       self.setRegion(coordinate: center)
+      
+      print(self.saveTxt)
+      
+      /*
+        if self.saveTxt.count > 1 {
+          self.addLine(self.temp, placeMark.location!.coordinate)
+        }
+      */
+      
+      let line = MKPolyline(coordinates: self.saveTxt, count: self.saveTxt.count)
+      self.mapView.addOverlay(line)
     })
     
   }
   
   func setRegion(coordinate: CLLocationCoordinate2D) {
-    let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+    let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
     let region = MKCoordinateRegion(center: coordinate, span: span)
     mapView.setRegion(region, animated: true)
   }
   
+}
+
+extension ViewController: MKMapViewDelegate {
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    if let polyline = overlay as? MKPolyline {
+      let renderer = MKPolylineRenderer(polyline: polyline)
+      renderer.strokeColor = .red
+      renderer.lineWidth = 2
+      return renderer
+    }
+    return MKOverlayRenderer(overlay: overlay)
+  }
 }
