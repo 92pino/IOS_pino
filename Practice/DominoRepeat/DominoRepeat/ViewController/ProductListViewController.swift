@@ -1,32 +1,45 @@
 //
-//  ProductListViewController.swift
-//  DominoRepeat
+//  ProdcutListViewController.swift
+//  DominoPizzaExam
 //
-//  Created by JinBae Jeong on 13/05/2019.
-//  Copyright © 2019 pino. All rights reserved.
+//  Created by Kira on 19/04/2019.
+//  Copyright © 2019 Kira. All rights reserved.
 //
 
 import UIKit
 
 class ProductListViewController: UIViewController {
-
+  
   var products: [Product] = []
   let tableView = UITableView()
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = .white
+    
+    configure()
+    autoLayout()
+  }
   
   private func configure() {
+    tableView.dataSource = self
+    tableView.delegate = self
     
+    tableView.rowHeight = 120
+    
+    view.addSubview(tableView)
   }
-
+  
+  private func autoLayout() {
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+    tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+    tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+    tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+  }
 }
 
 extension ProductListViewController: UITableViewDataSource {
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return products.count
   }
@@ -39,18 +52,25 @@ extension ProductListViewController: UITableViewDataSource {
       cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
     }
     
+    cell.imageView?.translatesAutoresizingMaskIntoConstraints = false
+    cell.imageView?.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor).isActive = true
+    cell.imageView?.widthAnchor.constraint(equalToConstant: 120).isActive = true
+    cell.imageView?.heightAnchor.constraint(equalToConstant: 120).isActive = true
+    
     cell.imageView?.image = UIImage(named: products[indexPath.row].name)
+    cell.imageView?.frame.origin.x = 0
     cell.textLabel?.text = products[indexPath.row].name
-    cell.detailTextLabel?.text = String(products[indexPath.row].price)
+    cell.detailTextLabel?.text = String(products[indexPath.row].price) + "원"
     
     return cell
   }
-  
 }
 
 extension ProductListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let detailVC = DetailViewController()
+    detailVC.imageView.image = UIImage(named: products[indexPath.row].name)
+    detailVC.productName = products[indexPath.row].name
     show(detailVC, sender: nil)
   }
 }

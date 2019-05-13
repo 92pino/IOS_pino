@@ -17,6 +17,7 @@
 		61E01E452289260D00045833 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01E442289260D00045833 /* CategoryTableViewCell.swift */; };
 		61E01E4722892FC900045833 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01E4622892FC900045833 /* ProductListViewController.swift */; };
 		61E01E492289322600045833 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01E482289322600045833 /* DetailViewController.swift */; };
+		61E01E4B2289442300045833 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01E4A2289442300045833 /* Singleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		61E01E442289260D00045833 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		61E01E4622892FC900045833 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		61E01E482289322600045833 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		61E01E4A2289442300045833 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				61E01E41228924A500045833 /* MenuData.swift */,
+				61E01E4A2289442300045833 /* Singleton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				61E01E2E228909DC00045833 /* CategoryViewController.swift in Sources */,
 				61E01E2C228909DC00045833 /* AppDelegate.swift in Sources */,
 				61E01E4722892FC900045833 /* ProductListViewController.swift in Sources */,
+				61E01E4B2289442300045833 /* Singleton.swift in Sources */,
 				61E01E3F22890A8B00045833 /* WishViewController.swift in Sources */,
 				61E01E492289322600045833 /* DetailViewController.swift in Sources */,
 			);

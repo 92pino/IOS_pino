@@ -22,16 +22,18 @@ class CategoryViewController: UIViewController {
   }
   
   private func configure() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    view.addSubview(tableView)
+    tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "categoryCell")
     headerView.image = UIImage(named: "logo")
     headerView.contentMode = .scaleAspectFit
     headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
     headerView.backgroundColor = .white
+    
     tableView.tableHeaderView = headerView
     tableView.rowHeight = 100
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "categoryCell")
-    view.addSubview(tableView)
+    
   }
   
   private func autoLayout() {
@@ -51,7 +53,7 @@ extension CategoryViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") as? CategoryTableViewCell else {return UITableViewCell()}
+    let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
     
     cell.categoryImageView.image = UIImage(named: menuDatas[indexPath.row].category)
     cell.selectionStyle = .none
