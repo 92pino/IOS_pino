@@ -137,8 +137,17 @@ extension ViewController: UITextFieldDelegate {
         }
       */
       
+      var point1 = center; point1.longitude += 0.0015;   point1.latitude -= 0.0015
+      var point2 = center; point2.longitude += 0.0015;   point2.latitude += 0.0015
+      var point3 = center; point3.longitude -= 0.0015;   point3.latitude += 0.0015
+      var point4 = center; point4.longitude -= 0.0015;   point4.latitude -= 0.0015
+      let points: [CLLocationCoordinate2D] = [point1, point2, point3, point4, point1]
+    
+      let rectangle = MKPolyline(coordinates: points, count: points.count)
+      
       let line = MKPolyline(coordinates: self.saveTxt, count: self.saveTxt.count)
       self.mapView.addOverlay(line)
+      self.mapView.addOverlay(rectangle)
     })
     
   }
