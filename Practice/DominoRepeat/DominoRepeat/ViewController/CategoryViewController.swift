@@ -10,8 +10,20 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
-  let headerView = UIImageView()
-  let tableView = UITableView()
+  let headerView: UIImageView = {
+    let headerView = UIImageView()
+    headerView.image = UIImage(named: "logo")
+    headerView.contentMode = .scaleAspectFit
+    headerView.backgroundColor = .white
+    
+    return headerView
+  }()
+  
+  let tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    return tableView
+  }()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,13 +38,11 @@ class CategoryViewController: UIViewController {
     tableView.dataSource = self
     view.addSubview(tableView)
     tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "categoryCell")
-    headerView.image = UIImage(named: "logo")
-    headerView.contentMode = .scaleAspectFit
-    headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
-    headerView.backgroundColor = .white
     
     tableView.tableHeaderView = headerView
     tableView.rowHeight = 100
+    
+    headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
     
   }
   

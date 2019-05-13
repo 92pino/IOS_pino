@@ -9,112 +9,60 @@
 import UIKit
 import MapKit
 
-final class Annotation: NSObject, MKAnnotation {
-  var title: String?
-  var coordinate: CLLocationCoordinate2D
-  
-  init(title: String, coordinate: CLLocationCoordinate2D) {
-    self.title = title
-    self.coordinate = coordinate
-  }
-}
-
 class ViewController: UIViewController {
-  
-  let searchView = UIView()
-  let searchTextField = UITextField()
-  let mapView = MKMapView()
+  var destinations = [CLLocationCoordinate2D]()
   var saveTxt: [CLLocationCoordinate2D] = []
-  let notiCenter = NotificationCenter.default
-  let temp: CLLocationCoordinate2D! = nil
-  private let locationManager = CLLocationManager()
-
+  
+  let backgroundView: UIView = {
+    let v = UIView()
+    v.backgroundColor = #colorLiteral(red: 0.9803583026, green: 0.9803673625, blue: 0.9845872521, alpha: 1)
+    v.layer.borderWidth = 1
+    v.layer.borderColor = #colorLiteral(red: 0.7714042866, green: 0.7741157294, blue: 0.7822500576, alpha: 1)
+    v.translatesAutoresizingMaskIntoConstraints = false
+    
+    return v
+  }()
+  
+  let addTextField: UITextField = {
+    let textField = UITextField()
+    textField.translatesAutoresizingMaskIntoConstraints = false
+    textField.backgroundColor = .white
+    textField.font = textField.font?.withSize(25)
+    textField.layer.borderWidth = 1
+    textField.layer.cornerRadius = 5
+    textField.layer.borderColor = #colorLiteral(red: 0.9145414233, green: 0.9096133709, blue: 0.9139304757, alpha: 1)
+    
+    return textField
+  }()
+  
+  var mapView: MKMapView = {
+    var m = MKMapView()
+    m.translatesAutoresizingMaskIntoConstraints = false
+    return m
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
-    
-    searchTextField.resignFirstResponder()
-    configure()
-    checkAuthorizationStatus()
-  }
-  
-  func configure() {
-    view.addSubview(searchView)
-    searchView.addSubview(searchTextField)
-    searchView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-    searchTextField.placeholder = "주소를 입력하세요"
-    searchTextField.backgroundColor = .white
-    view.addSubview(mapView)
-    searchTextField.delegate = self
-    mapView.delegate = self
-    
-    guard CLLocationManager.headingAvailable() else { return }
-    locationManager.startUpdatingHeading()
-    checkAuthorizationStatus()
-    
     autoLayout()
-  }
-
-  // coreLocation을 시작할 때 권한 요청
-  func checkAuthorizationStatus(){
-    switch CLLocationManager.authorizationStatus() {
-      // 사용자가 아직 허용할지 안할지 결정 안한 상태
-    // ex) 메시지를 봤어도 홈키를 누르거나 앱을 종요했을 경우
-    case .notDetermined:
-      locationManager.requestWhenInUseAuthorization()
-    // locationManager.requestAlwaysAuthorization()
-    case .restricted, .denied:
-      // Disabled location features
-      break
-    case .authorizedWhenInUse:
-      fallthrough
-    @unknown default:
-      break
-    }
+    configure()
   }
   
-  func autoLayout() {
-    let guide = view.safeAreaLayoutGuide
-    searchView.translatesAutoresizingMaskIntoConstraints = false
-    searchView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-    searchView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-    searchView.heightAnchor.constraint(equalToConstant: 70).isActive = true
-    searchView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-    
-    searchTextField.translatesAutoresizingMaskIntoConstraints = false
-    searchTextField.topAnchor.constraint(equalTo: searchView.topAnchor, constant: 10).isActive = true
-    searchTextField.leadingAnchor.constraint(equalTo: searchView.leadingAnchor, constant: 10).isActive = true
-    searchTextField.bottomAnchor.constraint(equalTo: searchView.bottomAnchor, constant: -10).isActive = true
-    searchTextField.trailingAnchor.constraint(equalTo: searchView.trailingAnchor, constant: -10).isActive = true
-    
-    mapView.translatesAutoresizingMaskIntoConstraints = false
-    mapView.topAnchor.constraint(equalTo: searchView.bottomAnchor).isActive = true
-    mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-  }
-
-}
-
-extension ViewController: UITextFieldDelegate {
-  
-  
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    
-    goToLocation()
-    
-    searchTextField.text = ""
-    
-    return true
+  private func configure() {
+    addTextField.delegate = self
   }
   
-  func goToLocation(){
+  private func checkLocation() {
     let geocoder = CLGeocoder()
     
-    var location = searchTextField.text!
-    
-    geocoder.geocodeAddressString(location, completionHandler: { (placeMark, error) in
+    geocoder.geocodeAddressString(addTextField.text ?? "", completionHandler: { (placeMark, error) in
       guard let placeMark = placeMark?.first else { return }
+      self.destinations.append(placeMark.location!.coordinate)
+      //            self.addAnnotation(placeMark.location?.coordinate) // 기본과제
+      self.mapView.removeOverlays(self.mapView.overlays)
+      self.mapView.removeAnnotations(self.mapView.annotations)
+      self.addAnnotations(self.destinations)
+      self.addTextField.text = ""
+      
       var lati = placeMark.location!.coordinate.latitude
       var longi = placeMark.location!.coordinate.longitude
       
@@ -126,47 +74,180 @@ extension ViewController: UITextFieldDelegate {
       self.mapView.addAnnotation(mark)
       
       let center = CLLocationCoordinate2DMake(lati, longi)
-      self.setRegion(coordinate: center)
-      
-      print(self.saveTxt)
-      
-      /*
-        if self.saveTxt.count > 1 {
-          self.addLine(self.temp, placeMark.location!.coordinate)
-        }
-      */
-      
-      var point1 = center; point1.longitude += 0.0015;   point1.latitude -= 0.0015
-      var point2 = center; point2.longitude += 0.0015;   point2.latitude += 0.0015
-      var point3 = center; point3.longitude -= 0.0015;   point3.latitude += 0.0015
-      var point4 = center; point4.longitude -= 0.0015;   point4.latitude -= 0.0015
-      let points: [CLLocationCoordinate2D] = [point1, point2, point3, point4, point1]
-    
-      let rectangle = MKPolyline(coordinates: points, count: points.count)
-      
-      let line = MKPolyline(coordinates: self.saveTxt, count: self.saveTxt.count)
-      self.mapView.addOverlay(line)
-      self.mapView.addOverlay(rectangle)
+      setRegion(coordinate: center)
+
     })
     
+    func setRegion(coordinate: CLLocationCoordinate2D) {
+      let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+      let region = MKCoordinateRegion(center: coordinate, span: span)
+      mapView.setRegion(region, animated: true)
+    }
   }
   
-  func setRegion(coordinate: CLLocationCoordinate2D) {
+  func addAnnotations(_ center: [CLLocationCoordinate2D]) {
+    guard !center.isEmpty else { return }
+    
+    mapView.delegate = self
+    
     let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-    let region = MKCoordinateRegion(center: coordinate, span: span)
+    let region = MKCoordinateRegion(center: center.last!, span: span)
+    let destinationLine = MKPolyline(coordinates: self.destinations, count: self.destinations.count)
+    
+    for (idx, value) in destinations.enumerated() {
+      let annotation: MKPointAnnotation = {
+        let a = MKPointAnnotation()
+        a.title = "\(idx+1)번째 행선지"
+        a.coordinate = value
+        return a
+      }()
+      
+      var p1 = value; p1.latitude += 0.003; p1.longitude -= 0.003
+      var p2 = value; p2.latitude += 0.003; p2.longitude += 0.003
+      var p3 = value; p3.latitude -= 0.003; p3.longitude += 0.003
+      var p4 = value; p4.latitude -= 0.003; p4.longitude -= 0.003
+      
+      let points: [CLLocationCoordinate2D] = [p1, p2, p3, p4, p1]
+      let polyLine = MKPolyline(coordinates: points, count: points.count)
+      
+      mapView.addAnnotation(annotation)
+      mapView.addOverlay(polyLine)
+    }
+    
+    mapView.addOverlay(destinationLine)
+    mapView.setRegion(region, animated: true)
+  }
+  // 기본 과제
+  func addAnnotation(_ center: CLLocationCoordinate2D) {
+    
+    let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+    let region = MKCoordinateRegion(center: center, span: span)
+    var p1 = center; p1.latitude += 0.002; p1.longitude -= 0.002
+    var p2 = center; p2.latitude += 0.002; p2.longitude += 0.002
+    var p3 = center; p3.latitude -= 0.002; p3.longitude += 0.002
+    var p4 = center; p4.latitude -= 0.002; p4.longitude -= 0.002
+    
+    let points: [CLLocationCoordinate2D] = [p1, p2, p3, p4, p1]
+    let polyLine = MKPolyline(coordinates: points, count: points.count)
+    let destinationLine = MKPolyline(coordinates: self.destinations, count: self.destinations.count)
+    
+    let annotation: MKPointAnnotation = {
+      let a = MKPointAnnotation()
+      a.title = "\(mapView.annotations.count+1)번째 행선지"
+      a.subtitle = "\(mapView.annotations.count+1)"
+      a.coordinate = center
+      return a
+    }()
+    mapView.delegate = self
+    mapView.addOverlay(polyLine)
+    mapView.addOverlay(destinationLine)
+    mapView.addAnnotation(annotation)
     mapView.setRegion(region, animated: true)
   }
   
+  
+  func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+    let textColor = UIColor.red
+    let textFont = UIFont(name: "Helvetica Bold", size: 12)!
+    
+    let scale = UIScreen.main.scale
+    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+    
+    let textFontAttributes = [
+      NSAttributedString.Key.font: textFont,
+      NSAttributedString.Key.foregroundColor: textColor,
+      ] as [NSAttributedString.Key : Any]
+    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+    
+    let rect = CGRect(origin: point, size: image.size)
+    text.draw(in: rect, withAttributes: textFontAttributes)
+    
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return newImage!
+  }
+  
+  private func autoLayout() {
+    let guide = view.safeAreaLayoutGuide
+    
+    view.backgroundColor = .white
+    
+    view.addSubview(backgroundView)
+    view.addSubview(mapView)
+    backgroundView.addSubview(addTextField)
+    
+    addTextField.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 7).isActive = true
+    addTextField.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 15).isActive = true
+    addTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -15).isActive = true
+    addTextField.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -7).isActive = true
+    
+    backgroundView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    backgroundView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    backgroundView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    backgroundView.bottomAnchor.constraint(equalTo: mapView.topAnchor).isActive = true
+    
+    mapView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    mapView.topAnchor.constraint(equalTo: backgroundView.bottomAnchor).isActive = true
+    mapView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    mapView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+  }
+}
+
+extension ViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    checkLocation()
+    addTextField.resignFirstResponder()
+    return true
+  }
 }
 
 extension ViewController: MKMapViewDelegate {
   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if let polyline = overlay as? MKPolyline {
-      let renderer = MKPolylineRenderer(polyline: polyline)
+    if let polyLine = overlay as? MKPolyline {
+      let renderer = MKPolylineRenderer(polyline: polyLine)
       renderer.strokeColor = .red
-      renderer.lineWidth = 2
+      renderer.lineWidth = 1
       return renderer
     }
     return MKOverlayRenderer(overlay: overlay)
+  }
+  
+  func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    var annotationView: MKAnnotationView
+    
+    if let reusableView = mapView.dequeueReusableAnnotationView(withIdentifier: "Annotation") {
+      reusableView.annotation = annotation
+      annotationView = reusableView
+    } else {
+      annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Annotation")
+      annotationView.canShowCallout = true
+      
+      let addButton: UIButton = {
+        let addButton = UIButton(type: .custom)
+        addButton.tag = 0
+        addButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        addButton.setTitle("X", for: .normal)
+        addButton.setTitleColor(.red, for: .normal)
+        addButton.layer.borderWidth = 1
+        addButton.layer.borderColor = UIColor.red.cgColor
+        addButton.layer.cornerRadius = 10
+        addButton.titleLabel?.font = addButton.titleLabel?.font.withSize(16)
+        addButton.addTarget(self, action: #selector(deleteAnnotation), for: .touchUpInside)
+        return addButton
+      }()
+      annotationView.rightCalloutAccessoryView = addButton
+    }
+    return annotationView
+  }
+  
+  @objc func deleteAnnotation() {
+    let idx = Int(mapView.selectedAnnotations[0].title!!.dropLast("번째 행선지".count))
+    
+    mapView.removeOverlays(mapView.overlays)
+    mapView.removeAnnotations(mapView.annotations)
+    mapView.removeAnnotations(mapView.selectedAnnotations)
+    destinations.remove(at: idx! - 1)
+    addAnnotations(destinations)
   }
 }

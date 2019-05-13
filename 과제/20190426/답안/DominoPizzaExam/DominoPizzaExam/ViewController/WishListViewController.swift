@@ -10,7 +10,12 @@ import UIKit
 
 class WishListViewController: UIViewController {
     
+  let tableView: UITableView = {
     let tableView = UITableView()
+    tableView.rowHeight = 100
+    
+    return tableView
+  }()
     var shared = Singleton.shared
     
     override func viewDidLoad() {
@@ -79,7 +84,6 @@ class WishListViewController: UIViewController {
     
     private func configure() {
         tableView.dataSource = self
-        tableView.rowHeight = 100
         view.addSubview(tableView)
     }
     
