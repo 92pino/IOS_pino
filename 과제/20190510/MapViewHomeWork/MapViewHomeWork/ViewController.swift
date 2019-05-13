@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
     
+    searchTextField.resignFirstResponder()
     configure()
     checkAuthorizationStatus()
   }
@@ -99,8 +100,6 @@ extension ViewController: UITextFieldDelegate {
   
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    
-    searchTextField.resignFirstResponder()
     
     goToLocation()
     
