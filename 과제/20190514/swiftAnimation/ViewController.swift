@@ -138,7 +138,7 @@ class ViewController: UIViewController {
                             relativeDuration: 0.2 + (0.2 * Double(idx)),
                             animations: {
                                 menu.transform = .identity
-                                menu.frame.origin.y += UI.distance * CGFloat(idx)
+                                menu.frame.origin.y += UI.distance * CGFloat(idx)4
                         })
                     }
                 }
