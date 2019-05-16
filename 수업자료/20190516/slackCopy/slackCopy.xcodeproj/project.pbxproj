@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		61E01EB5228CFEF800045833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EB4228CFEF800045833 /* AppDelegate.swift */; };
-		61E01EB7228CFEF800045833 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EB6228CFEF800045833 /* ViewController.swift */; };
+		61E01EB7228CFEF800045833 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EB6228CFEF800045833 /* FirstViewController.swift */; };
 		61E01EBA228CFEF800045833 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61E01EB8228CFEF800045833 /* Main.storyboard */; };
 		61E01EBC228CFEFA00045833 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61E01EBB228CFEFA00045833 /* Assets.xcassets */; };
 		61E01EBF228CFEFA00045833 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61E01EBD228CFEFA00045833 /* LaunchScreen.storyboard */; };
+		61E01EC8228D00D000045833 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EC7228D00D000045833 /* Extensions.swift */; };
+		61E01ECA228D048600045833 /* CreateWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EC9228D048600045833 /* CreateWorkspaceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		61E01EB1228CFEF800045833 /* slackCopy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slackCopy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E01EB4228CFEF800045833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		61E01EB6228CFEF800045833 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		61E01EB6228CFEF800045833 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		61E01EB9228CFEF800045833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61E01EBB228CFEFA00045833 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61E01EBE228CFEFA00045833 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61E01EC0228CFEFA00045833 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61E01EC7228D00D000045833 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		61E01EC9228D048600045833 /* CreateWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,24 @@
 		61E01EB3228CFEF800045833 /* slackCopy */ = {
 			isa = PBXGroup;
 			children = (
+				61E01EC6228D008D00045833 /* Utils */,
 				61E01EB4228CFEF800045833 /* AppDelegate.swift */,
-				61E01EB6228CFEF800045833 /* ViewController.swift */,
+				61E01EB6228CFEF800045833 /* FirstViewController.swift */,
+				61E01EC9228D048600045833 /* CreateWorkspaceViewController.swift */,
 				61E01EB8228CFEF800045833 /* Main.storyboard */,
 				61E01EBB228CFEFA00045833 /* Assets.xcassets */,
 				61E01EBD228CFEFA00045833 /* LaunchScreen.storyboard */,
 				61E01EC0228CFEFA00045833 /* Info.plist */,
 			);
 			path = slackCopy;
+			sourceTree = "<group>";
+		};
+		61E01EC6228D008D00045833 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				61E01EC7228D00D000045833 /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61E01EB7228CFEF800045833 /* ViewController.swift in Sources */,
+				61E01ECA228D048600045833 /* CreateWorkspaceViewController.swift in Sources */,
+				61E01EB7228CFEF800045833 /* FirstViewController.swift in Sources */,
+				61E01EC8228D00D000045833 /* Extensions.swift in Sources */,
 				61E01EB5228CFEF800045833 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +305,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.92pino.slackCopy;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.92pino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,7 +323,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.92pino.slackCopy;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.92pino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
