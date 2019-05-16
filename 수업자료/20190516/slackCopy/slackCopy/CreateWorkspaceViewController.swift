@@ -16,7 +16,8 @@ class CreateWorkspaceViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Next", for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
-        button.setTitleColor(.init(red: 18/255, green: 90/255, blue: 153/255, alpha: 1.0), for: .selected)
+//        button.setTitleColor(.init(red: 18/255, green: 90/255, blue: 153/255, alpha: 1.0), for: .selected)
+        button.setTitleColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .selected)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         button.addTarget(self, action: #selector(didTapNextButton(_:)), for: .touchUpInside)
         return button
@@ -105,7 +106,7 @@ class CreateWorkspaceViewController: UIViewController {
         
         floatingLabel.layout.leading(equalTo: wsNameTextField.leadingAnchor)
         let defaultCenterYConst = floatingLabel.centerYAnchor.constraint(equalTo: wsNameTextField.centerYAnchor)
-        defaultCenterYConst.priority = .defaultHigh
+        defaultCenterYConst.priority = UILayoutPriority(500)
         defaultCenterYConst.isActive = true
         
         floatingCenterYConst = floatingLabel.centerYAnchor.constraint(equalTo: wsNameTextField.centerYAnchor, constant:  -30)
@@ -135,9 +136,13 @@ class CreateWorkspaceViewController: UIViewController {
             self.activityIndicatorView.stopAnimating()
             // 1. 다음 뷰컨트롤러 띄우는 코드
             // 2. text를 다음 뷰 컨트롤러한테 넘기기
+            let vc = ThirdViewController()
+            let naviController = UINavigationController(rootViewController: vc)
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.saveText = self.wsNameTextField.text
         }
         
-        print(text)
+        
     }
     
     @objc private func didTapCloseButton(_ sender: UIButton) {

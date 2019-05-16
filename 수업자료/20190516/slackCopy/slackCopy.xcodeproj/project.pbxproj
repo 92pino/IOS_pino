@@ -14,6 +14,7 @@
 		61E01EBF228CFEFA00045833 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61E01EBD228CFEFA00045833 /* LaunchScreen.storyboard */; };
 		61E01EC8228D00D000045833 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EC7228D00D000045833 /* Extensions.swift */; };
 		61E01ECA228D048600045833 /* CreateWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01EC9228D048600045833 /* CreateWorkspaceViewController.swift */; };
+		61E01ECC228D446700045833 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E01ECB228D446700045833 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		61E01EC0228CFEFA00045833 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61E01EC7228D00D000045833 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		61E01EC9228D048600045833 /* CreateWorkspaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkspaceViewController.swift; sourceTree = "<group>"; };
+		61E01ECB228D446700045833 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				61E01EB4228CFEF800045833 /* AppDelegate.swift */,
 				61E01EB6228CFEF800045833 /* FirstViewController.swift */,
 				61E01EC9228D048600045833 /* CreateWorkspaceViewController.swift */,
+				61E01ECB228D446700045833 /* ThirdViewController.swift */,
 				61E01EB8228CFEF800045833 /* Main.storyboard */,
 				61E01EBB228CFEFA00045833 /* Assets.xcassets */,
 				61E01EBD228CFEFA00045833 /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 			files = (
 				61E01ECA228D048600045833 /* CreateWorkspaceViewController.swift in Sources */,
 				61E01EB7228CFEF800045833 /* FirstViewController.swift in Sources */,
+				61E01ECC228D446700045833 /* ThirdViewController.swift in Sources */,
 				61E01EC8228D00D000045833 /* Extensions.swift in Sources */,
 				61E01EB5228CFEF800045833 /* AppDelegate.swift in Sources */,
 			);
