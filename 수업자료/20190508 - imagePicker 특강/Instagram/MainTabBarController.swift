@@ -38,6 +38,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
   
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
       if viewController == plusVC {
+        print(1111)
         picker.sourceType = .photoLibrary
         present(picker, animated: true)
         return false

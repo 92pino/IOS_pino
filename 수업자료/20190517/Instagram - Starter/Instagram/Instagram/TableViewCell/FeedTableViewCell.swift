@@ -31,7 +31,7 @@ class FeedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
- 
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

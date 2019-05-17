@@ -14,9 +14,36 @@ import UIKit
 
 class AddFeedViewController: UITableViewController {
     
+    var image: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
     }
-
+    
+    private func configure(){
+        self.title = "새 게시물"
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "공유", style: .done, target: self, action: #selector(sharedItemDidTap))
+        
+        tableView.register(UINib(nibName: "AddFeedTableViewCell", bundle: nil), forCellReuseIdentifier: "addFeed")
+    }
+    
+    @objc func sharedItemDidTap(_ sender: UIBarButtonItem){
+        navigationController?.popViewController(animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addFeed", for: indexPath) as! AddFeedTableViewCell
+        cell.feedImageView.image = self.image
+        cell.selectionStyle = .none
+        
+        return cell
+    }
+    
 }

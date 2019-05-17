@@ -31,22 +31,53 @@ import Foundation
 
 print("\n---------- [ 1번 문제 ] ----------\n")
 class Customer {
-    let name: String = ""
+    let name: String
+    init(name: String) {
+        self.name = name
+    }
+    
+    func order(menu: CoffeeMenu, to barista: Barista) {
+        let coffee = barista.makeCoffee(menu: menu)
+        print("\(name)이(가) \(barista.name)에게 \(coffee.price)원짜리 \(coffee.name)을(를) 주문하였습니다.")
+    }
 }
 
 class Barista {
-    let name: String = ""
+    let name: String
+    init(name: String) {
+        self.name = name
+    }
+    
+    func makeCoffee(menu: CoffeeMenu) -> Coffee {
+        let price: Int
+        switch menu {
+            case .americano: price = 2000
+            case .latte: price = 2500
+            case .cappuccino: price = 3000
+        }
+        return Coffee(name: menu.rawValue, price: price)
+    }
 }
 
-enum CoffeeMenu {
-    let americano
-    let latte
-    let cappuccino
+
+enum CoffeeMenu: String {
+    case americano = "Americano"
+    case latte = "Latte"
+    case cappuccino = "Cappuccino"
 }
 
-//let customer = Customer(name: "손님A")
-//let barista = Barista(name: "바리스타A")
-//customer.order(menu: .americano, to: barista)
+class Coffee {
+    let name: String
+    let price: Int
+    init(name: String, price: Int) {
+        self.name = name
+        self.price = price
+    }
+}
+
+let customer = Customer(name: "손님A")
+let barista = Barista(name: "바리스타A")
+customer.order(menu: .americano, to: barista)
 
 // 손님A이(가) 바리스타A에게 2000원짜리 Americano을(를) 주문하였습니다.
 
@@ -89,7 +120,12 @@ let data2 = [0, 3, 9, 15, 27, 33, 41, 49, 90, 98]
 
 print("\n---------- [ 2번 문제 ] ----------\n")
 
-
+var emptyDic: [Int: [Int]] = [0:[]]
+var dicKey = data1.filter { $0 % 10 == 0 }
+var dicVal = data1.map { $0 % 10 }
+print(dicKey)
+print(dicVal)
+emptyDic.updateValue(dicKey, forKey: dicVal)
 
 
 /***************************************************
@@ -129,6 +165,3 @@ print(func02Result)
 /***************************************************
  수고하셨습니다!
  ***************************************************/
-
-
-
