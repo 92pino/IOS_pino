@@ -23,13 +23,24 @@ class ViewController: UIViewController {
         static let minScale: CGFloat = 0.3
     }
     
+    let rightButton = ["버튼1", "버튼2", "버튼3", "버튼4", "버튼5", "버튼6"].compactMap { (title) -> UIButton in
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        
+        return button
+    }
+    
+    var openRight = true
+    lazy var rightButtonPositionX = view.frame.width - 100
+    var count = 0
+    
     private var firstMenuContainer: [UIButton] = []
     private var rightMenuContainer: [UIButton] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFirstMenu()
-        rightFistMenu()
+        rightButtonEvent()
     }
     
     private func randomColorGenerator() -> UIColor {
@@ -67,19 +78,11 @@ class ViewController: UIViewController {
         }
     }
     
-    private func rightFistMenu() {
-        for i in (0..<UI.menuCount) {
-            let menuFrame = CGRect(x: view.bounds.width - 100, y: view.bounds.height - 120, width: UI.menuSize, height: UI.menuSize)
-            let button = makeMenuButtonWith(frame: menuFrame, title: "버튼 \(i)")
-            rightMenuContainer.append(button)
-            
-            if i == 0 {
-                button.transform = .identity
-                button.addTarget(self, action: #selector(secondMenuDidTap(_:))
-                    , for: .touchUpInside)
-            }
-            
-            view.bringSubviewToFront(rightMenuContainer.first!)
+    private func rightButtonEvent() {
+        rightButton.forEach {
+            $0.tag = count
+            $0.frame = CGRect(x: 50, y: view.frame.height - 120, width: 80, height: 80)
+            $0.addTarget(self, action: #selector(clickRightButton(_:)), for: .touchUpInside)
         }
     }
     
@@ -106,42 +109,30 @@ class ViewController: UIViewController {
         })
     }
     
-    @objc func secondMenuDidTap(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        UIView.animateKeyframes(
-            withDuration: 0.8,
-            delay: 0.0,
-            options: [],
-            animations: {
-                if sender.isSelected {
-                    for (idx, menu) in self.rightMenuContainer.enumerated() {
-                        for i in (0..<self.rightMenuContainer.count).reversed() {
-                            UIView.addKeyframe(
-                                withRelativeStartTime: 0.0 + (0.1 * Double(idx)),
-                                relativeDuration: 0.2,
-                                animations: {
-                                    menu.transform = .identity
-                                    var index = idx - i
-                                    
-                                    if (idx - i) >= 0 {
-                                        print(index)
-                                        // self.rightMenuContainer[i].frame.origin.y -= UI.distance// * CGFloat(idx)
-                                        menu.frame.origin.y -= UI.distance * CGFloat(i)
-                                    }
-                            })
-                        }
-                    }
-                } else {
-                    for (idx, menu) in self.rightMenuContainer.enumerated() {
+    @objc func clickRightButton(_ sender: UIButton) {
+        count = 0
+        if openRight {
+            UIView.animateKeyframes(
+                withDuration: 2,
+                delay: 0,
+                options: [.beginFromCurrentState],
+                animations: {
+                    self.rightButton.forEach({ (button) -> () in
                         UIView.addKeyframe(
-                            withRelativeStartTime: 0.0 + (0.1 * Double(idx)),
-                            relativeDuration: 0.2 + (0.2 * Double(idx)),
+                            withRelativeStartTime: 0.25 * Double(button.tag),
+                            relativeDuration: 0.25,
                             animations: {
-                                menu.transform = .identity
-                                menu.frame.origin.y += UI.distance * CGFloat(idx)4
+                                for num in (self.count+1)..<self.rightButton.count {
+                                    self.rightButton[num].center = CGPoint(x: self.view.frame.width - 100, y: button.center.y - 100)
+                                }
+                                button.transform = CGAffineTransform(scaleX: 1, y: 1)
                         })
-                    }
-                }
-        })
+                        self.count += 1
+                    })
+            })
+        } else {
+            
+        }
     }
+    
 }
