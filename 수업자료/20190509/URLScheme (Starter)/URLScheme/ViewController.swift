@@ -71,7 +71,13 @@ final class ViewController: UIViewController {
   @IBAction private func openFacebook(_ sender: Any) {
     print("\n---------- [ openFacebook ] ----------\n")
     // iOS 9.0 이상부터 화이트 리스트 등록 (info.plist에서 LSApplicationQueriesSchemes 등록)
-    let instagram = URL(string: "instagram://")!
+    
+    // url 한글 보낼 경우 인코딩 변경
+    var str = "어니언"
+    var urlStr = "instagram://tag?name=\(str)"
+    let encoded = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    let instagram = URL(string: encoded)!
+    print(instagram)
     
     guard UIApplication.shared.canOpenURL(instagram) else { return }
     UIApplication.shared.open(instagram)
