@@ -15,6 +15,7 @@ import UIKit
 class AddFeedViewController: UITableViewController {
     
     var image: UIImage?
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,13 @@ class AddFeedViewController: UITableViewController {
     }
     
     @objc func sharedItemDidTap(_ sender: UIBarButtonItem){
-        navigationController?.popViewController(animated: true)
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AddFeedTableViewCell else { return }
+        var str = cell.textView.text
+        if cell.textView.text == "문구입력..." {
+            str = ""
+        }
+        FeedManager.shared.addFeedData(FeedData(profileImage: user?.profileImage, nickName: user?.name, feedImage: image, explanation: str))
+       navigationController?.popViewController(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

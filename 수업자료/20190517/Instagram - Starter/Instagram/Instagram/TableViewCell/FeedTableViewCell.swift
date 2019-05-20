@@ -24,6 +24,10 @@ class FeedTableViewCell: UITableViewCell {
     // 이 구현 방식은 선택사항입니다. 다르게 구현해도 괜찮습니다.
     var feedData: FeedData! {
         didSet {
+            profileImageView.image = self.feedData.profileImage
+            nickNameLabel.text = self.feedData.nickName
+            feedImageView.image = self.feedData.feedImage
+            feedLabel.text = self.feedData.explanation
         }
     }
     // 초기함수 입니다.
@@ -42,13 +46,13 @@ class FeedTableViewCell: UITableViewCell {
     // 좋아요 버튼이 눌렸을때 호출될 함수 입니다.
     @IBAction func likeButtonDidTap(_ sender: UIButton) {
         print("like")
+        sender.isSelected.toggle()
     }
     // 댓글 버튼이 눌렸을때 호출될 함수 입니다.
     // 힌트: HomeVC 에게 댓글 버튼이 눌렸다는걸 알려주세요
     @IBAction func commentButtonDidTap(_ sender: Any) {
         print("comment")
-
-        
+        NotificationCenter.default.post(name: NSNotification.Name("CommentTap"), object: nil , userInfo: [ "cell" : self])
     }
     
     

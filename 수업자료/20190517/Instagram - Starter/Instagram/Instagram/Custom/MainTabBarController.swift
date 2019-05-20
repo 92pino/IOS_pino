@@ -23,7 +23,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        plusVC.delegate = homeVC
+        picker.delegate = self
         settingTabBar()
+        self.delegate = self
     }
     
     func settingTabBar() {
