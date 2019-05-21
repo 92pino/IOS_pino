@@ -46,6 +46,12 @@ func anotherFunction(_ str: String, _ closure: @autoclosure () -> ()) {
  ***************************************************/
 anotherFunction("arg1", print("Autoclosure"))
 
+// somefunction의 경우 error 발생
+//someFunc("arg1") {
+//    print("autoClosure")
+//}
+//someFunc("arg1", print("autoClosure"))
+
 anotherFunction("arg1", value2 += 10)
 
 

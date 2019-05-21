@@ -78,9 +78,12 @@ class Caller {
   func weakBinding() {
     callee.escapingFunc { [weak self] in
       DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        guard let `self` = self else { return print("Nil 처리 되었음") }
+        
         print("\n-- after 2seconds with weak self --")
-        self?.name = "Tom"
-        print(self?.name ?? "nil")
+        self.name = "Tom"
+        // caller에서 self를 nil로 변경
+        print(self.name)
         // self가 해제되는 순간 nil
       }
     }
@@ -109,9 +112,9 @@ var caller: Caller? = Caller()
 print("\n[ Deinit ]")
 caller?.selfKeyword()
 caller?.asyncTask()
-//caller?.captureAsStrong()
-//caller?.weakBinding()
-//caller?.unownedBinding()
+caller?.captureAsStrong()
+caller?.weakBinding()
+caller?.unownedBinding()
 
 print("caller = nil")
 caller = nil

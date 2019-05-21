@@ -28,7 +28,7 @@ func withoutBinding() {
   person = Person(name: "Doppelganger")
 }
 
-withoutBinding()
+//withoutBinding()
 
 
 
@@ -37,7 +37,7 @@ func binding() {
   print("\n---------- [ Binding ] ----------\n")
   var person = Person(name: "James")
   
-  DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [doppelganger = person] in
+  DispatchQueue.main.asyncAfter(deadline: .now() + 2) {[doppelganger = person] in
     print("- After 2 seconds -")
     print("\(doppelganger) is still in a chat room")
   }
@@ -61,7 +61,7 @@ func equivalentToBinding() {
   person = Person(name: "Doppelganger")
 }
 
-//equivalentToBinding()
+equivalentToBinding()
 
 
 
