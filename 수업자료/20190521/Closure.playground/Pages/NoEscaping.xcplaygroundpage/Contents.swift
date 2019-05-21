@@ -2,9 +2,9 @@
 import Foundation
 /*:
  ---
- # NoEscaping
+ # NoEscaping :
  - 기본값 (Swift 3.0 버전 이전까지는 @escaping이 기본)
- - 함수에서 사용된 파라미터는 함수 종료와 함께 소멸
+ - ## 함수에서 사용된 파라미터는 함수 종료와 함께 소멸
  - self 키워드 불필요
  ---
  */
@@ -64,7 +64,7 @@ class Test {
 //    self.storedProperty = param
     
     // (O) NoEscaping -> NoEscaping
-//    noEscapingClosure(param)
+    noEscapingClosure(param)
     
     // (X) NoEscaping -> Escaping
 //    escapingClosure(param)
@@ -84,6 +84,5 @@ class Test {
 }
 
 let _ = Test()
-
 
 //: [Next](@next)

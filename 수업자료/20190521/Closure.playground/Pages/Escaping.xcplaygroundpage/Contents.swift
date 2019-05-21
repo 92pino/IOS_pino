@@ -6,10 +6,21 @@ import Foundation
  - 함수나 메서드의 파라미터 중 클로져 타입에 @escaping 키워드 적용
  - 해당 파라미터가 함수 종료(return) 이후 시점에도 어딘가에 남아 실행될 수 있음을 나타냄
    - outlives the lifetime of the function
- - 해당 파라미터가 함수 외부에 저장(stored)되거나 async(비동기)로 동작할 때 사용
+ - ## 해당 파라미터가 함수 외부에 저장(stored)되거나 async(비동기)로 동작할 때 사용
  - self 키워드 명시 필요
  ---
  */
+//import UIKit
+//class A {
+//    let view = UIView()
+//
+//    func a() {
+//        UIView.animate(withDuration: 0.5) {
+//            self.view.frame.origin.y += 5
+//        }
+//    }
+//}
+
 
 class Callee {
   func noEscapingFunc(closure: () -> Void) {
@@ -97,7 +108,7 @@ var caller: Caller? = Caller()
 
 print("\n[ Deinit ]")
 caller?.selfKeyword()
-//caller?.asyncTask()
+caller?.asyncTask()
 //caller?.captureAsStrong()
 //caller?.weakBinding()
 //caller?.unownedBinding()

@@ -83,9 +83,11 @@ func makeIncrementer(forIncrement amount: Int) -> () -> Int {
   return incrementer
 }
 
-let incrementer = makeIncrementer(forIncrement: 7)
-print(incrementer())
-print(incrementer())
-print(incrementer())
-
+// 캡쳐 종료하고 싶을 경우 옵셔널바인딩 nil처리
+var incrementer: (() -> Int)? = makeIncrementer(forIncrement: 7)
+//let incrementer = makeIncrementer(forIncrement: 7)
+print(incrementer!())
+print(incrementer!())
+print(incrementer!())
+incrementer = nil
 //: [Next](@next)
