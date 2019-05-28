@@ -19,7 +19,7 @@ class FeedTableViewCell: UITableViewCell {
     
     var feedData: FeedData! {
         didSet {
-            profileImageView.image = self.feedDat self.feedData.profileImage
+            profileImageView.image = self.feedData.profileImage
             nickNameLabel.text = self.feedData.nickName
             feedImageView.image = self.feedData.feedImage
             feedLabel.text = self.feedData.explanation

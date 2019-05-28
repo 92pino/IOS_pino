@@ -23,7 +23,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         // 탭바 위에 뷰컨트롤러 올리기
       
         homeVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: AppImageData.homeNomal), selectedImage: UIImage(named: AppImageData.homeSelected))
-        plusVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: AppImageData.plus), selectedImage: UIImage(named: AppImageData.plus))
+        plusVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: AppImageData.heart), selectedImage: UIImage(named: AppImageData.heartColor))
       
         // homeVC에 네비게이션 적용시키기
         viewControllers = [UINavigationController.init(rootViewController: homeVC), plusVC, UINavigationController(rootViewController: myVC)]
