@@ -13,6 +13,7 @@
 		52DB3F092137330C00A1D70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52DB3F082137330C00A1D70E /* Assets.xcassets */; };
 		52DB3F0C2137330C00A1D70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52DB3F0A2137330C00A1D70E /* LaunchScreen.storyboard */; };
 		52DB3F16213733ED00A1D70E /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB3F15213733ED00A1D70E /* ContentViewController.swift */; };
+		617567D9229CE6D600834B1C /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617567D8229CE6D600834B1C /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		52DB3F0B2137330C00A1D70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52DB3F0D2137330C00A1D70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52DB3F15213733ED00A1D70E /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		617567D8229CE6D600834B1C /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				52DB3F012137330B00A1D70E /* AppDelegate.swift */,
 				52DB3F032137330B00A1D70E /* InitialViewController.swift */,
 				52DB3F15213733ED00A1D70E /* ContentViewController.swift */,
+				617567D8229CE6D600834B1C /* ContainerViewController.swift */,
 				52DB3F052137330C00A1D70E /* Main.storyboard */,
 				52DB3F082137330C00A1D70E /* Assets.xcassets */,
 				52DB3F0A2137330C00A1D70E /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			files = (
 				52DB3F16213733ED00A1D70E /* ContentViewController.swift in Sources */,
 				52DB3F042137330B00A1D70E /* InitialViewController.swift in Sources */,
+				617567D9229CE6D600834B1C /* ContainerViewController.swift in Sources */,
 				52DB3F022137330B00A1D70E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
