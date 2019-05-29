@@ -19,6 +19,13 @@ final class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    notiManger.getNotificationSetting { isGranted in
+        if isGranted {
+            // noti 발생 코드
+        } else {
+            // do nothing || noti 권한 허용 요청 Alert
+        }
+    }
   }
   
   
@@ -36,11 +43,30 @@ final class ViewController: UIViewController {
     timeIntervalLabel.text = String(Int(sender.value))
   }
 
+    // add 버튼을 클릭할 경우 숫자에 해당하는 인터벌 길이만큼 실행
   @IBAction private func triggerTimeIntervalNotification(_ sender: Any) {
+    let title = titleTextField.text ?? ""
+    let notificationTitle = title.isEmpty ? "Reminder" : title
+    let timeInterval = TimeInterval(timeIntervalLabel.text!) ?? 3.0
+    notiManger.triggerTimeIntervalNotification(
+        with: notificationTitle, timeInterval: timeInterval
+    )
   }
   
   
   @IBAction private func triggerCalendarNotification(_ sender: Any) {
+    let title = titleTextField.text ?? ""
+    let notificationTitle = title.isEmpty ? "Reminder" : title
+    
+    var dateComponents = DateComponents()
+    dateComponents.calendar = Calendar.current
+    dateComponents.minute = Int(minuteTextField.text ?? "0") ?? 0
+    dateComponents.second = Int(secondTextField.text ?? "0") ?? 0
+    
+    notiManger.triggerCalendarNotification(
+        with: notificationTitle,
+        dateComponents: dateComponents
+    )
   }
 }
 

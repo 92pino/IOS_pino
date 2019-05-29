@@ -17,6 +17,7 @@
 		5253AFAF21237B7A009E302B /* sweetalertsound4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5253AFAE21237B7A009E302B /* sweetalertsound4.wav */; };
 		5253AFB121237BCC009E302B /* pup-alert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5253AFB021237BCC009E302B /* pup-alert.mp3 */; };
 		529E00CE229C6970001F2676 /* earth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 529E00CD229C6970001F2676 /* earth.jpg */; };
+		617567F9229D0B9400834B1C /* Jenny.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 617567F8229D0B9400834B1C /* Jenny.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		5253AFAE21237B7A009E302B /* sweetalertsound4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sweetalertsound4.wav; sourceTree = "<group>"; };
 		5253AFB021237BCC009E302B /* pup-alert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "pup-alert.mp3"; sourceTree = "<group>"; };
 		529E00CD229C6970001F2676 /* earth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = earth.jpg; sourceTree = "<group>"; };
+		617567F8229D0B9400834B1C /* Jenny.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jenny.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		525504E0219CACAD002AD7E7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				617567F8229D0B9400834B1C /* Jenny.jpeg */,
 				529E00CD229C6970001F2676 /* earth.jpg */,
 				5253AFAC21236E8B009E302B /* movieImage.jpg */,
 				5253AFAE21237B7A009E302B /* sweetalertsound4.wav */,
@@ -153,6 +156,7 @@
 			files = (
 				5253AFAD21236E8B009E302B /* movieImage.jpg in Resources */,
 				5253AFB121237BCC009E302B /* pup-alert.mp3 in Resources */,
+				617567F9229D0B9400834B1C /* Jenny.jpeg in Resources */,
 				5253AFAF21237B7A009E302B /* sweetalertsound4.wav in Resources */,
 				529E00CE229C6970001F2676 /* earth.jpg in Resources */,
 				5253AFA321230C1B009E302B /* LaunchScreen.storyboard in Resources */,
@@ -321,7 +325,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.example;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.92pino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,7 +343,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.giftbot.example;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.92pino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

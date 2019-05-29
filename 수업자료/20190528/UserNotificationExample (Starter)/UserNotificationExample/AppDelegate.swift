@@ -12,8 +12,12 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+    
+    let notiManager = UNNotificationManager()
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+    notiManager.register()
     
     return true
   }

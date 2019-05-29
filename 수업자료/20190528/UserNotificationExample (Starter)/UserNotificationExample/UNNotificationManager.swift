@@ -7,6 +7,8 @@
 //
 
 import UIKit
+// ios 10.0 이상부터 사용 가능
+import UserNotifications
 
 
 final class UNNotificationManager: NSObject {
@@ -21,17 +23,89 @@ final class UNNotificationManager: NSObject {
     static let removeAction = "RemoveAction"
     static let textInputAction = "TextInputAction"
   }
+    
+    private let center = UNUserNotificationCenter.current()
   
   func register() {
+    
+    // aler : 핸드폰 알림창
+    // badge : 핸드폰 알림 빨간 딱지
+    // sound : 소리
+    let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+    center.delegate = self
+    center.requestAuthorization(options: options) { (isGranted, error) in
+        guard isGranted else {
+            print("No Granted")
+            return self.requestAlertNotification()
+        }
+        print("Granted")
+        self.setupNotificationCategories()
+    }
   }
+    
+    func getNotificationSetting(with completionHandler: @escaping (Bool) -> Void) {
+        center.getNotificationSettings {
+            completionHandler($0.authorizationStatus == .authorized)
+        }
+    }
+    
+    // Noti 권한을 허용하지 않았을 경우 설정창 열기
+    private func requestAlertNotification() {
+        guard let settingUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+        DispatchQueue.main.async {
+            UIApplication.shared.open(settingUrl)
+        }
+    }
 
   
   /***************************************************
    SetupNotificationCategories
    ***************************************************/
   
-  func setupNotificationCategories() {
-  }
+    func setupNotificationCategories() {
+        let repeatAction = UNNotificationAction(
+            identifier: Identifier.repeatAction,
+            title: "Repeat",
+            options: []
+        )
+        let basicCategory = UNNotificationCategory(
+            identifier: Identifier.basicCategory,
+            actions: [repeatAction],
+            intentIdentifiers: []
+        )
+        //    center.setNotificationCategories([basicCategory])
+        
+        /***************************************************
+         - UNNotificationActionOptions
+         .foreground : 버튼 눌렀을 때 앱을 실행하도록 함
+         .destructive : delete, remove 등 주의해야 하는 작업에 적용
+         .authenticationRequired : 디바이스 락이 걸린 상태로 사용 못 하도록 함
+         ***************************************************/
+        
+        let removeAction = UNNotificationAction(
+            identifier: Identifier.removeAction,
+            title: "Remove",
+            options: [.destructive, .foreground]
+        )
+        
+        let textInputAction = UNTextInputNotificationAction(
+            identifier: Identifier.textInputAction,
+            title: "Change Title",
+            options: [.authenticationRequired],
+            textInputButtonTitle: "Save",
+            textInputPlaceholder: "Repeat with input message"
+        )
+        
+        let anotherCategory = UNNotificationCategory(
+            identifier: Identifier.anotherCategory,
+            actions: [repeatAction, removeAction, textInputAction],
+            intentIdentifiers: [],
+            options: []
+        )
+        center.setNotificationCategories(
+            [basicCategory, anotherCategory]
+        )
+    }
   
   
   
@@ -40,6 +114,49 @@ final class UNNotificationManager: NSObject {
    ***************************************************/
   
   func triggerTimeIntervalNotification(with title: String, timeInterval: TimeInterval = 3.0) {
+    let content = UNMutableNotificationContent()
+    // 주석처리 할 경우 repeat 기능 사라짐
+    content.categoryIdentifier = Identifier.anotherCategory
+    content.title = NSString.localizedUserNotificationString(
+        forKey: title,
+        arguments: nil
+    )
+    content.body = NSString.localizedUserNotificationString(
+        forKey: "Alarm fired",
+        arguments: nil
+    )
+    
+    // 미설정 시 사운드 X
+//    content.sound = UNNotificationSound.default
+    
+    let soundName = UNNotificationSoundName(rawValue: "sweetalertsound4.wav")
+    content.sound = UNNotificationSound(named: soundName)
+    
+    // Badge
+    content.badge = 10000
+    
+    // Image
+    if let imageURL = Bundle.main.url(forResource: "Jenny", withExtension: "jpeg") {
+        let attachment = try! UNNotificationAttachment(identifier: "attachmentImage", url: imageURL)
+        content.attachments = [attachment]
+    }
+    
+    /***********************************************************************
+     Attachment Maximum Size
+     Audio - 5 MB
+     Image - 10 MB
+     Movie - 50 MB
+     ***********************************************************************/
+    
+    // repeats : true는 최소 60초 이상일 경우만
+    let trigger = UNTimeIntervalNotificationTrigger(
+        timeInterval: timeInterval,
+        repeats: false
+    )
+    let request = UNNotificationRequest(
+        identifier: Identifier.timeIntervalRequest, content: content, trigger: trigger
+    )
+    center.add(request)
   }
   
   
@@ -49,9 +166,81 @@ final class UNNotificationManager: NSObject {
    ***************************************************/
   
   func triggerCalendarNotification(with title: String, dateComponents: DateComponents) {
+    let content = UNMutableNotificationContent()
+    content.categoryIdentifier = Identifier.basicCategory
+    content.title = NSString.localizedUserNotificationString(forKey: title, arguments: nil)
+    content.sound = .default
+    content.userInfo = ["Name": "Giftbot"]
     
+    if let soundURL = Bundle.main.url(forResource: "pup-alert", withExtension: "mp3") {
+        let soundAttachment = try! UNNotificationAttachment(
+            identifier: "SoundAttachment", url: soundURL
+        )
+        content.attachments = [soundAttachment]
+    }
+    
+    let trigger = UNCalendarNotificationTrigger(
+        dateMatching: dateComponents,
+        repeats: false
+    )
+    let request = UNNotificationRequest(
+        identifier: Identifier.calendarRequest,
+        content: content,
+        trigger: trigger
+    )
+    center.add(request)
   }
   
 }
 
 
+extension UNNotificationManager: UNUserNotificationCenterDelegate {
+    /***********************************************************************
+     Foreground 상태에서 Noti 받았을 때 동작
+     ***********************************************************************/
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("\n---------- [ willPresent Notification ] ----------\n")
+        print(notification)
+        completionHandler([.alert, .sound])
+    }
+    
+    /***********************************************************************
+     Foreground 아닌 상태에서 Noti 받았을 때 동작
+     ***********************************************************************/
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("\n---------- [ didReceive notification response ] ----------\n")
+        
+        let content = response.notification.request.content
+        let categoryID = content.categoryIdentifier
+        
+        if categoryID == Identifier.basicCategory {
+            switch response.actionIdentifier {
+            case UNNotificationDefaultActionIdentifier:
+                print("Tap Notification")
+            case Identifier.repeatAction:
+                print("Repeat Action")
+                triggerTimeIntervalNotification(with: "Reminder")
+            default:
+                print("Unknown action")
+            }
+        } else if categoryID == Identifier.anotherCategory {
+            switch response.actionIdentifier {
+                // X 버튼 눌렀을 때의 액션ID
+            case UNNotificationDismissActionIdentifier:
+                print("Dismiss Notification")
+            case Identifier.removeAction:
+                print("Remove Action")
+                // remove some data
+            case Identifier.textInputAction:
+                print("textInputAction")
+                if let inputResponse = response as? UNTextInputNotificationResponse {
+                    triggerTimeIntervalNotification(with: inputResponse.userText)
+                }
+            default:
+                print("Unknown Action")
+            }
+        }
+        
+        completionHandler()
+    }
+}
