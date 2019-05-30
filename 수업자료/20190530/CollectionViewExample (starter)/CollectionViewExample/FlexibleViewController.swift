@@ -67,16 +67,22 @@ final class FlexibleViewController: UIViewController {
         
         if layout.scrollDirection == .vertical {
             let horizontalSpacing = itemSpacing + horizontalInset
+            let verticalSpacing = itemSpacing + verticalInset
             let width =
                 (collectionView.frame.width - horizontalSpacing) / UI.itemsInLine
-            
+            let height = (collectionView.frame.height - verticalSpacing) / UI.linesOnScreen
             let rounded = width.rounded(.down)
-            layout.itemSize = CGSize(width: rounded, height: rounded)
+            let roundedH = height.rounded(.down) - (UI.nextOffset / UI.linesOnScreen) + ((UI.edgeInsets.top + UI.edgeInsets.bottom) / 4) + 1
+            layout.itemSize = CGSize(width: rounded, height: roundedH)
         } else {
+            let horizontalSpacing = itemSpacing + horizontalInset
             let verticalSpacing = itemSpacing + verticalInset
+            let width =
+                (collectionView.frame.width - horizontalSpacing) / UI.linesOnScreen
             let height = (collectionView.frame.height - verticalSpacing) / UI.itemsInLine
+            let roundedW = width.rounded(.down) - (UI.nextOffset / UI.itemsInLine)
             let rounded = height.rounded(.down)
-            layout.itemSize = CGSize(width: rounded, height: rounded)
+            layout.itemSize = CGSize(width: roundedW, height: rounded)
         }
         
     }
