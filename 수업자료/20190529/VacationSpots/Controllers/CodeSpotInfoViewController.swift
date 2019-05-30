@@ -159,9 +159,9 @@ class CodeSpotInfoViewController: UIViewController {
         autoLayout()
         totalSV.translatesAutoresizingMaskIntoConstraints = false
         totalSV.topAnchor.constraint(equalTo: scrollVC.topAnchor).isActive = true
-        totalSV.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        totalSV.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
         totalSV.bottomAnchor.constraint(equalTo: scrollVC.bottomAnchor).isActive = true
-        totalSV.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+        totalSV.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
     
     }
     
