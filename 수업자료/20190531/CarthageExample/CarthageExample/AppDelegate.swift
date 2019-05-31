@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  CocoapodExample
+//  CarthageExample
 //
 //  Created by JinBae Jeong on 31/05/2019.
 //  Copyright © 2019 pino. All rights reserved.
