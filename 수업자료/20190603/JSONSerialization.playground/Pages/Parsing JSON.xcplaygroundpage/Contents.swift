@@ -11,9 +11,11 @@ import Foundation
 let astronauts = "http://api.open-notify.org/astros.json"  // 우주비행사 정보
 let apiURL = URL(string: astronauts)!
 
+// response : 헤더 정보
 let dataTask = URLSession.shared.dataTask(with: apiURL) { (data, response, error) in
   guard error == nil else { return print(error!) }
   guard let response = response as? HTTPURLResponse,
+    // (200..<400).contains(response.statusCode)
     200..<400 ~= response.statusCode
     else { return print("StatusCode is not valid") }
   guard let data = data,
@@ -31,6 +33,7 @@ let dataTask = URLSession.shared.dataTask(with: apiURL) { (data, response, error
   
   print("= 우주비행사 명단 =")
   people
+    // 옵셔널 제거 하기 위한 고차클로저
     .compactMap { $0["name"] }
     .forEach { print($0) }
 }

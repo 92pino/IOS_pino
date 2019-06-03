@@ -12,16 +12,20 @@ import Foundation
 //: ---
 func writeJSONObjectToOutputStream() {
   let jsonObject = ["hello": "world", "foo": "bar", "iOS": "Swift"]
+    // jsonObject로 변환이 가능한지 체크 => isValidJSONObject
+    // 변환 가능할 경우 true
   guard JSONSerialization.isValidJSONObject(jsonObject) else { return }
   
   let jsonFilePath = "myJsonFile.json"
   let outputJSON = OutputStream(toFileAtPath: jsonFilePath, append: false)!
+    // 파일이 없는 상태에서 myJsonFile.json을 생성 또는 해당 파일을 open
   outputJSON.open()
   
   let writtenBytes = JSONSerialization.writeJSONObject(
     jsonObject,
     to: outputJSON,
     options: [],
+    // 데이터 정렬 옵션
 //    options: [.prettyPrinted, .sortedKeys],
     error: nil
   )
@@ -55,7 +59,9 @@ private func dataWithJSONObject() {
   guard JSONSerialization.isValidJSONObject(jsonObject) else { return }
   do {
     let encoded = try JSONSerialization.data(withJSONObject: jsonObject)
+    print(encoded)
     let decoded = try JSONSerialization.jsonObject(with: encoded)
+//    print(decoded)
     if let jsonDict = decoded as? [String: Any] {
       print(jsonDict)
     }
@@ -64,8 +70,8 @@ private func dataWithJSONObject() {
   }
 }
 
-//print("\n---------- [ dataWithJSONObject ] ----------\n")
-//dataWithJSONObject()
+print("\n---------- [ dataWithJSONObject ] ----------\n")
+dataWithJSONObject()
 
 
 
@@ -111,6 +117,7 @@ private func jsonObjectWithData() {
 //: ---
 //: ## JSON Object with InputStream
 //: ---
+// json파일 읽어오는 방식
 private func jsonObjectWithInputStream() {
   let jsonFilePath = "myJsonFile.json"
   let inputStream = InputStream(fileAtPath: jsonFilePath)!
@@ -128,7 +135,7 @@ private func jsonObjectWithInputStream() {
 }
 
 //print("\n---------- [ jsonObjectWithInputStream ] ----------\n")
-//jsonObjectWithInputStream()
+jsonObjectWithInputStream()
 
 
 //: [Next](@next)
