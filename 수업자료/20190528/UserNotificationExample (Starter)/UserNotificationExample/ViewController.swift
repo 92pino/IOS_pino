@@ -15,7 +15,7 @@ final class ViewController: UIViewController {
   @IBOutlet private weak var minuteTextField: UITextField!
   @IBOutlet private weak var secondTextField: UITextField!
   
-  let notiManger = UNNotificationManager()
+let notiManger = UNNotificationManager()
   
   override func viewDidLoad() {
     super.viewDidLoad()
