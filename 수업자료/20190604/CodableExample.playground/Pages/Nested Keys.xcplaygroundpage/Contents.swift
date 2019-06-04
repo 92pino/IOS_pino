@@ -5,20 +5,20 @@ import Foundation
 
 let jsonData = """
 [
-  {
-    "latitude": 30.0,
-    "longitude": 40.0,
-    "additionalInfo": {
-      "elevation": 50.0
-    }
-  },
-  {
-    "latitude": 60.0,
-    "longitude": 120.0,
-    "additionalInfo": {
-      "elevation": 20.0
-    }
-  }
+{
+"latitude": 30.0,
+"longitude": 40.0,
+"additionalInfo": {
+"elevation": 50.0
+}
+},
+{
+"latitude": 60.0,
+"longitude": 120.0,
+"additionalInfo": {
+"elevation": 20.0
+}
+}
 ]
 """.data(using: .utf8)!
 

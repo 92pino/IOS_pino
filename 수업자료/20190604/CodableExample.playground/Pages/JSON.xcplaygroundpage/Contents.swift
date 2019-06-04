@@ -14,6 +14,10 @@ let macBook = MacBook(
   model: "MacBook Pro", modelYear: 2018, display: 15
 )
 
+// 인코딩을 안하고 커스텁 타입을 저장할 경우 오류 발생
+// NSCodingdl나 NSSecureCoding을 사용하여 먼저 인코딩을 한 후 Userdefaults에 저장해야함
+// UserDefaults.standard.set(macBook, forKey: "MacBook")
+
 // Codable 이전 - JSONSerialization
 // Codable 이후 - JSONEncoder / JSONDecoder
 
@@ -27,16 +31,29 @@ let jsonEncoder = JSONEncoder()
 let encodedMacBook = try! jsonEncoder.encode(macBook)
 print(encodedMacBook)
 
+// userdefaults
+
+UserDefaults.standard.set(encodedMacBook, forKey: "myMacbook")
+
 // JSON파일로 저장
 let appSupportDir = FileManager.default.urls(
-  for: .applicationSupportDirectory, in: .userDomainMask
+  for: .documentDirectory, in: .userDomainMask
   ).first!
 let archiveURL = appSupportDir
   .appendingPathComponent("macBookData")
   .appendingPathExtension("json")
 
+//print(archiveURL)
+// 결과값 : file:///var/folders/6t/6plszrp17h1f0mdzf1v3nxgw0000gn/T/com.apple.dt.Xcode.pg/containers/com.apple.dt.playground.stub.iOS_Simulator.CodableExample-79FFF27F-9350-42E5-AAF8-1415CC1880E8/Library/Application%20Support/macBookData.json
+
 try? encodedMacBook.write(to: archiveURL)
 
+do {
+    try encodedMacBook.write(to: archiveURL, options: .noFileProtection)
+//    try encodedMacBook.write(to: archiveURL)
+} catch {
+    print(error.localizedDescription)
+}
 /*:
  ---
  ## Decoder
@@ -54,7 +71,6 @@ if let retrievedData = try? Data(contentsOf: archiveURL),
   print(retrievedData)
   print(decodedMacBook)
 }
-
 
 
 /***************************************************
@@ -87,13 +103,13 @@ let encodedDict = try! jsonEncoder.encode(dict)
 try? encodedDict.write(to: archiveURL)
 
 if let decodedDict = try? jsonDecoder.decode([String: MacBook].self, from: encodedDict) {
-  print(decodedDict)
+    print(decodedDict)
 }
 
 if let retrievedData = try? Data(contentsOf: archiveURL),
-  let decodedDict = try? jsonDecoder.decode([String: MacBook].self, from: retrievedData) {
-  print(retrievedData)
-  print(decodedDict)
+    let decodedDict = try? jsonDecoder.decode([String: MacBook].self, from: retrievedData) {
+    print(retrievedData)
+    print(decodedDict)
 }
 
 

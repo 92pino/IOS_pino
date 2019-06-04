@@ -28,8 +28,16 @@ let jsonData = """
 
 // JSONSerialization
 
-// JSONDecoder
+if let jsonObject = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any],
+let name = jsonObject["name"] as? String,
+let age = jsonObject["age"] as? Int {
+    let dog = Dog(name: name, age: age)
+    print(dog)
+}
 
+// JSONDecoder
+let dog1 = try JSONDecoder().decode(Dog.self, from: jsonData)
+print(dog1)
 
 /***************************************************
  Array
@@ -38,15 +46,27 @@ print("\n---------- [ Array ] ----------\n")
 let jsonArrData = """
   [
     { "name": "Tory", "age": 3 },
-    { "name": "Tory", "age": 3 },
+    { "name": "Tory", "age": 5 },
   ]
   """.data(using: .utf8)!
 
 
 // JSONSerialization
+if let jsonObjects = try? JSONSerialization.jsonObject(with: jsonArrData) as? [[String: Any]] {
+    for object in jsonObjects {
+        if let name = object["name"] as? String,
+            let age = object["age"] as? Int {
+            let dog = Dog(name: name, age: age)
+            print(dog)
+        }
+    }
+}
+
+
 
 // JSONDecoder
-
+let decodedArr = try JSONDecoder().decode([Dog].self, from: jsonArrData)
+decodedArr.forEach { print($0) }
 
 /***************************************************
  Dictionary
@@ -56,15 +76,26 @@ let jsonDictData = """
 {
   "data": [
     { "name": "Tory", "age": 3 },
-    { "name": "Tory", "age": 3 },
+    { "name": "Tory", "age": 5 },
   ]
 }
 """.data(using: .utf8)!
 
 // JSONSerialization
+//if let jsonObject2 = try? JSONSerialization.jsonObject(with: jsonArrData) as? [String: [[String: Any]]] {
+//    for object in jsonObject2 {
+//        if let name = object["name"] as? String,
+//            let age = object["age"] as? Int {
+//            let dog = Dog(name: name, age: age)
+//            print(dog)
+//        }
+//    }
+//}
 
 // JSONDecoder
-
+if let DogArr = try? JSONDecoder().decode([String:[Dog]].self, from: jsonDictData) {
+    DogArr.forEach { print($0) }
+}
 
 
 

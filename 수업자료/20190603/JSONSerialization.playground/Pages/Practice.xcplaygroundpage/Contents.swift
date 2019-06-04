@@ -30,7 +30,7 @@ func practice1() {
         print(position)
     }.resume()
 }
-//practice1()
+practice1()
 
 /***************************************************
  [ 실습2 ]
