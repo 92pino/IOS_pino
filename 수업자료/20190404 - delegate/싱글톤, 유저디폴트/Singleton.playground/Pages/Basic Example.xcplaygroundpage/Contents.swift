@@ -28,6 +28,7 @@ struct FriendList {
     let user = User.shared
     let friend = Friends(name: name)
     user.friends.append(friend)
+    User.shared.friends
   }
 }
 
@@ -57,10 +58,12 @@ blockList.blockFriend(name: "원빈")
 User.shared.friends
 User.shared.blocks
 
+// 새로 만든 객체
 let userInit = User()
 userInit.friends
 userInit.blocks
 
+// 싱글톤
 let userShared = User.shared
 userShared.friends
 userShared.blocks

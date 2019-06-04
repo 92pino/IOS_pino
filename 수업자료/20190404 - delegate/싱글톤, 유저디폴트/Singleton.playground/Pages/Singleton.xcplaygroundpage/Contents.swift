@@ -58,10 +58,12 @@ class SingletonClass {
   static let shared = SingletonClass()
   var x = 0
 }
+print(SingletonClass.shared.x)
 
 SingletonClass.shared.x = 100
 SingletonClass.shared.x
 SingletonClass.shared
+print(SingletonClass.shared.x)
 
 let singleton1 = SingletonClass.shared  // SingletonClass()
 singleton1.x = 10
@@ -75,9 +77,9 @@ singleton2.x   //   20
 // SingletonClass.shared는 전부 공유
 SingletonClass.shared.x = 30
 
-SingletonClass.shared.x  //
-singleton1.x  //
-singleton2.x  //
+SingletonClass.shared.x  // 30
+singleton1.x  // 30
+singleton2.x  // 30
 
 
 

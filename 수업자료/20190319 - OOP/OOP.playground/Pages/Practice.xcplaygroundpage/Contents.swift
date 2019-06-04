@@ -12,9 +12,20 @@
  ***************************************************/
 
 class Quadrangle {
-  
+    let width: Int
+    let height: Int
+    
+    init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+    }
+    
+    func rect(width: Int, height: Int) {
+        print(width * height)
+    }
 }
 
+Quadrangle.init(width: 10, height: 5).rect(width: 10, height: 5)
 
 /***************************************************
  1. 채널 정보, Volume 값, 전원 설정여부를 속성으로 가지는 클래스 정의
