@@ -76,7 +76,7 @@ class SearchViewController: UIViewController {
                 let count = musicData.resultCount as? Int,
                 array = musicData.results
                 
-                var result = self.songs?.results
+                var result = Array<Result>()
                 
                 for info in array {
                     if let artistName = info.artistName as? String,
@@ -85,13 +85,12 @@ class SearchViewController: UIViewController {
                         let imageUrl = URL(string: artworkUrl100),
                         let imageData = try? Data(contentsOf: imageUrl),
                         let image = UIImage(data: imageData) {
-                        result?.append(Result(artistName: artistName, trackName: trackName, artworkUrl100: artworkUrl100))
+                        result.append(Result(artistName: artistName, trackName: trackName, artworkUrl100: artworkUrl100))
                     }
 
                 }
                 
-                
-                self.songs = itunesSongs(resultCount: count!, results: result ?? [])
+                self.songs = itunesSongs(resultCount: count ?? 0, results: result ?? [])
             }
             
             
@@ -111,11 +110,9 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itunes", for: indexPath) ?? UITableViewCell(style: .subtitle, reuseIdentifier: "itunes")
-//        cell.imageView?.image = songs?.results[indexPath.row].artworkUrl100
-//        cell.textLabel?.text =
-//            songs?.results[i]
-//            songs?.results[indexPath.row].artistName
-//        cell.detailTextLabel?.text = songs?.results[indexPath.row].trackName
+        cell.imageView?.image = UIImage(named: songs?.results[indexPath.row].artworkUrl100 ?? "")
+        cell.textLabel?.text = songs?.results[indexPath.row].artistName
+        cell.detailTextLabel?.text = songs?.results[indexPath.row].trackName!
         
         return cell
     }
