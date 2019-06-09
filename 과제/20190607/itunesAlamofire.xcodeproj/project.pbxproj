@@ -13,6 +13,8 @@
 		612FBA8B22AA71970076AD1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612FBA8922AA71970076AD1A /* Main.storyboard */; };
 		612FBA8D22AA71980076AD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 612FBA8C22AA71980076AD1A /* Assets.xcassets */; };
 		612FBA9022AA71980076AD1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612FBA8E22AA71980076AD1A /* LaunchScreen.storyboard */; };
+		612FBA9822AA75F00076AD1A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612FBA9722AA75F00076AD1A /* Extension.swift */; };
+		612FBA9A22ABCA370076AD1A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612FBA9922ABCA370076AD1A /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		612FBA8C22AA71980076AD1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		612FBA8F22AA71980076AD1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		612FBA9122AA71980076AD1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		612FBA9722AA75F00076AD1A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		612FBA9922ABCA370076AD1A /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		7C2251B279EC453AF236B305 /* Pods-itunesAlamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itunesAlamofire.debug.xcconfig"; path = "Target Support Files/Pods-itunesAlamofire/Pods-itunesAlamofire.debug.xcconfig"; sourceTree = "<group>"; };
 		C30223FC8E7CA5E3CC4C14D2 /* Pods-itunesAlamofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-itunesAlamofire.release.xcconfig"; path = "Target Support Files/Pods-itunesAlamofire/Pods-itunesAlamofire.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +71,8 @@
 				612FBA8C22AA71980076AD1A /* Assets.xcassets */,
 				612FBA8E22AA71980076AD1A /* LaunchScreen.storyboard */,
 				612FBA9122AA71980076AD1A /* Info.plist */,
+				612FBA9722AA75F00076AD1A /* Extension.swift */,
+				612FBA9922ABCA370076AD1A /* Data.swift */,
 			);
 			path = itunesAlamofire;
 			sourceTree = "<group>";
@@ -203,8 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612FBA9822AA75F00076AD1A /* Extension.swift in Sources */,
 				612FBA8822AA71970076AD1A /* SearchViewController.swift in Sources */,
 				612FBA8622AA71970076AD1A /* AppDelegate.swift in Sources */,
+				612FBA9A22ABCA370076AD1A /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
