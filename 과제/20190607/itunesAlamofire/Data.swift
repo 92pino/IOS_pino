@@ -10,12 +10,10 @@ import UIKit
 
 // MARK: - Musics
 struct itunesSongs: Codable {
-    let resultCount: Int
     let results: [Result]
     
     enum CodingKeys: String, CodingKey {
         case results
-        case resultCount
     }
 }
 

@@ -13,8 +13,9 @@ class SearchViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    private var url = "https://itunes.apple.com/search?media=music&entity=song&term=*"
     // itunes songs list
-    private var songs: itunesSongs?
+    private var musicInfo: [Result] = []
     
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -53,66 +54,50 @@ class SearchViewController: UIViewController {
         tableView.layout.top().leading().trailing().bottom()
     }
 
-    private func searchApi(_ searchText: String) {
-        
-        guard var components = URLComponents(string: "https://itunes.apple.com/search") else { return print("cant't create URL") }
-        
-        components.queryItems = [
-            URLQueryItem.init(name: "media", value: "music"),
-            URLQueryItem.init(name: "entity", value: "song"),
-            URLQueryItem.init(name: "term", value: searchText),
-        ]
-        
-        guard let url = try? components.asURL() else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard error == nil else { return print(error?.localizedDescription)}
-            guard let response = response as? HTTPURLResponse,
-                200..<400 ~= response.statusCode
-                else { return print("StatusCode is not valid")}
-            
-            if let musicData = try? JSONDecoder().decode(itunesSongs.self, from: data!)
-            {
-                let count = musicData.resultCount as? Int,
-                array = musicData.results
+    private func searchApi() {
+        let req = AF.request(url)
+        req.validate().responseData { (response) in
+            switch response.result {
+            case .success(let value):
+                guard let musicList = try? JSONDecoder().decode(itunesSongs.self, from: value) else { return }
+                self.musicInfo = musicList.results
                 
-                var result = Array<Result>()
-                
-                for info in array {
-                    if let artistName = info.artistName as? String,
-                        let trackName = info.trackName as? String,
-                        let artworkUrl100 = info.artworkUrl100 as? String,
-                        let imageUrl = URL(string: artworkUrl100),
-                        let imageData = try? Data(contentsOf: imageUrl),
-                        let image = UIImage(data: imageData) {
-                        result.append(Result(artistName: artistName, trackName: trackName, artworkUrl100: artworkUrl100))
-                    }
-
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
-                
-                self.songs = itunesSongs(resultCount: count ?? 0, results: result ?? [])
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-            
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-            
-        }.resume()
+        }
     }
 
 }
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs?.resultCount ?? 0
+        return musicInfo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itunes", for: indexPath) ?? UITableViewCell(style: .subtitle, reuseIdentifier: "itunes")
-        cell.imageView?.image = UIImage(named: songs?.results[indexPath.row].artworkUrl100 ?? "")
-        cell.textLabel?.text = songs?.results[indexPath.row].artistName
-        cell.detailTextLabel?.text = songs?.results[indexPath.row].trackName!
+        
+        let url = musicInfo[indexPath.row].artworkUrl100
+        let imgURL = URL(string: url ?? "")!
+        
+        DispatchQueue.main.async {
+            if let data = try? Data(contentsOf: imgURL) {
+                DispatchQueue.main.async {
+                    cell.imageView?.image = UIImage(data: data)
+                }
+            }
+        }
+        
+        print(musicInfo)
+        
+        cell.textLabel?.text = musicInfo[indexPath.row].artistName
+        cell.detailTextLabel?.text = musicInfo[indexPath.row].trackName
+        print(musicInfo[indexPath.row].trackName)
+        
         
         return cell
     }
@@ -123,8 +108,8 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         guard let text = searchBar.text else { return false }
-        
-        searchApi(text)
+        url = "https://itunes.apple.com/search?media=music&entity=song&term=\(searchBar.text!)"
+        searchApi()
         
         return true
     }
