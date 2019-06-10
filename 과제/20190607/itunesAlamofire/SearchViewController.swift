@@ -33,7 +33,6 @@ class SearchViewController: UIViewController {
     
     private func configure() {
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "itunes")
         autoLayout()
         search()
     }
@@ -79,7 +78,13 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itunes", for: indexPath) ?? UITableViewCell(style: .subtitle, reuseIdentifier: "itunes")
+        
+        let cell: UITableViewCell
+        if let reusableCell = tableView.dequeueReusableCell(withIdentifier: "itunes") {
+            cell = reusableCell
+        } else {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "itunes")
+        }
         
         let url = musicInfo[indexPath.row].artworkUrl100
         let imgURL = URL(string: url ?? "")!
