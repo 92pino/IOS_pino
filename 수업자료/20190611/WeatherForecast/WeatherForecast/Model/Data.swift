@@ -13,8 +13,8 @@ class CurrentLocation {
     
     private init(){}
     
-    var lat: String = ""
-    var lon: String = ""
+    var lat: Double = 0
+    var lon: Double = 0
 }
 
 class CurrentTime {
@@ -41,7 +41,13 @@ class CurrentTime {
 
 struct WeatherSummary: Codable {
     struct Weather: Codable {
-        struct Minutely: Codable {
+        
+        let hourly: [Hourly]
+        struct Hourly: Codable {
+            
+            let grid: Grid
+            let sky: Sky
+            let temperature: Temperature
             struct Grid: Codable {
                 let latitude, longitude, city, county, village: String
             }
@@ -52,19 +58,8 @@ struct WeatherSummary: Codable {
             struct Temperature: Codable {
                 let tc, tmax, tmin: String
             }
-            
-            let sky: Sky
-            let temperature: Temperature
         }
-        
-        let minutely: [Minutely]
-    }
-    
-    struct Result: Codable {
-        let code: Int
-        let message: String
     }
     
     let weather: Weather
-    let result: Result
 }

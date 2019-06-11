@@ -69,8 +69,19 @@ class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.global().async {
+            
+            sleep(1)
+            WeatherDataSource.shared.fetchSummary(lat: CurrentLocation.shared.lat, lon: CurrentLocation.shared.lon) {
+                [weak self] in
+                self?.weatherTable.reloadData()
+            }
+        }
     }
     
     private func configure() {
@@ -85,7 +96,8 @@ class WeatherViewController: UIViewController {
         weatherTable.delegate = self
         weatherTable.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.identifier)
         weatherTable.register(WeatherHeaderTableViewCell.self, forCellReuseIdentifier: WeatherHeaderTableViewCell.identifier)
-//        weatherTable.separatorStyle = .none
+        weatherTable.separatorStyle = .none
+        weatherTable.allowsSelection = false
         getLocation()
         getLocation()
         autoLayout()
@@ -152,8 +164,34 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = weatherTable.dequeueReusableCell(withIdentifier: WeatherHeaderTableViewCell.identifier, for: indexPath) as! WeatherHeaderTableViewCell
-            cell.headerWeatherName.text = "tewst"
-            cell.currentTemp.text = "test"
+            if let data = WeatherDataSource.shared.summary?.weather.hourly.first {
+                /*
+                cell.headerCellWeatherImageView.image = UIImage(named: data.sky.code)
+                cell.headerCellStatusLabel.text = data.sky.name
+                
+                let max = Double(data.temperature.tmax) ?? 0.0
+                let min = Double(data.temperature.tmin) ?? 0.0
+                
+                let maxStr = tempFormatter.string(for: max) ?? "-"
+                let minStr = tempFormatter.string(for: min) ?? "-"
+                
+                cell.headerCellMaxMintempLabel.text = "최대 \(maxStr)º 최소 \(minStr)º"
+                
+                let current = Double(data.temperature.tc) ?? 0.0
+                let currentStr = tempFormatter.string(for: current) ?? "-"
+                
+                cell.headerCellThermometerLabel.text = "\(currentStr)º"
+                */
+                
+                var skyCode = data.sky.code.dropFirst(5)
+                cell.headerWeatherImageView.image = UIImage(named: "SKY_\(skyCode)")
+                cell.headerWeatherName.text = data.sky.name
+                cell.headerWeatherMaxMinTemp.text = "\(String(data.temperature.tmin) + "°" + "  " + String(data.temperature.tmax) + "°")"
+                cell.currentTemp.text = "\(19.2)"
+            }
+            
+            
+            
             
             cell.backgroundColor = .clear
             
@@ -181,8 +219,8 @@ extension WeatherViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coor = locationManager.location?.coordinate else { return }
-        CurrentLocation.shared.lat = String(coor.latitude)
-        CurrentLocation.shared.lon = String(coor.longitude)
+        CurrentLocation.shared.lat = coor.latitude
+        CurrentLocation.shared.lon = coor.longitude
     }
     
 }

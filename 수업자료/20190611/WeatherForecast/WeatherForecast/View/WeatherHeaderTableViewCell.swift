@@ -23,6 +23,7 @@ class WeatherHeaderTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 30)
+        label.textColor = .white
         
         return label
     }()
@@ -30,6 +31,8 @@ class WeatherHeaderTableViewCell: UITableViewCell {
     let headerWeatherMaxMinTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 30, weight: .regular)
+        label.textColor = .white
         
         return label
     }()
@@ -37,7 +40,8 @@ class WeatherHeaderTableViewCell: UITableViewCell {
     let currentTemp: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 100, weight: .ultraLight)
+        label.font = UIFont.systemFont(ofSize: 130, weight: .ultraLight)
+        label.textColor = .white
         
         return label
     }()
@@ -73,22 +77,22 @@ class WeatherHeaderTableViewCell: UITableViewCell {
     
     private func autoLayout() {
         NSLayoutConstraint.activate([
-            headerWeatherImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            headerWeatherImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            headerWeatherImageView.topAnchor.constraint(equalTo: headerWeatherMaxMinTemp.topAnchor, constant: -50),
+            headerWeatherImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             headerWeatherImageView.widthAnchor.constraint(equalToConstant: 50),
             headerWeatherImageView.heightAnchor.constraint(equalToConstant: 50),
 
-            headerWeatherName.topAnchor.constraint(equalTo: headerWeatherImageView.topAnchor),
+            headerWeatherName.topAnchor.constraint(equalTo: headerWeatherMaxMinTemp.topAnchor, constant: -50),
             headerWeatherName.heightAnchor.constraint(equalTo: headerWeatherImageView.heightAnchor),
             headerWeatherName.leadingAnchor.constraint(equalTo: headerWeatherImageView.trailingAnchor, constant: 10),
             headerWeatherName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            headerWeatherMaxMinTemp.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            headerWeatherMaxMinTemp.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             headerWeatherMaxMinTemp.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            headerWeatherMaxMinTemp.topAnchor.constraint(equalTo: headerWeatherImageView.bottomAnchor, constant: 10),
+            headerWeatherMaxMinTemp.topAnchor.constraint(equalTo: currentTemp.topAnchor, constant: -50),
             
             currentTemp.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            currentTemp.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            currentTemp.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -140),
             currentTemp.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             currentTemp.heightAnchor.constraint(equalToConstant: 100)
         ])
