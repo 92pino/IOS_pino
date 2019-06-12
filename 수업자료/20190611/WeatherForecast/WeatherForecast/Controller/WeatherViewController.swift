@@ -66,22 +66,31 @@ class WeatherViewController: UIViewController {
         
         return imageView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print(111)
+    }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(222)
         configure()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         DispatchQueue.global().async {
-            
-            sleep(1)
+            sleep(2)
             WeatherDataSource.shared.fetchSummary(lat: CurrentLocation.shared.lat, lon: CurrentLocation.shared.lon) {
                 [weak self] in
+                
                 self?.weatherTable.reloadData()
+                
             }
         }
+        
     }
     
     private func configure() {
@@ -144,6 +153,10 @@ class WeatherViewController: UIViewController {
     @objc private func reloadData(_ sender: UIButton) {
         print("reload")
     }
+    
+    @objc private func timer() {
+        
+    }
 
 }
 
@@ -165,23 +178,6 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             let cell = weatherTable.dequeueReusableCell(withIdentifier: WeatherHeaderTableViewCell.identifier, for: indexPath) as! WeatherHeaderTableViewCell
             if let data = WeatherDataSource.shared.summary?.weather.hourly.first {
-                /*
-                cell.headerCellWeatherImageView.image = UIImage(named: data.sky.code)
-                cell.headerCellStatusLabel.text = data.sky.name
-                
-                let max = Double(data.temperature.tmax) ?? 0.0
-                let min = Double(data.temperature.tmin) ?? 0.0
-                
-                let maxStr = tempFormatter.string(for: max) ?? "-"
-                let minStr = tempFormatter.string(for: min) ?? "-"
-                
-                cell.headerCellMaxMintempLabel.text = "최대 \(maxStr)º 최소 \(minStr)º"
-                
-                let current = Double(data.temperature.tc) ?? 0.0
-                let currentStr = tempFormatter.string(for: current) ?? "-"
-                
-                cell.headerCellThermometerLabel.text = "\(currentStr)º"
-                */
                 
                 var skyCode = data.sky.code.dropFirst(5)
                 cell.headerWeatherImageView.image = UIImage(named: "SKY_\(skyCode)")

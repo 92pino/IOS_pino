@@ -9,18 +9,15 @@
 import UIKit
 
 class CurrentLocation {
-    static let shared = CurrentLocation()
     
-    private init(){}
+    static let shared: CurrentLocation = { return CurrentLocation() } ()
     
     var lat: Double = 0
     var lon: Double = 0
 }
 
 class CurrentTime {
-    static let shared = CurrentTime()
-    
-    private init(){}
+    static let shared: CurrentTime = { return CurrentTime() } ()
     
     private var now: Date {
         return Date()
