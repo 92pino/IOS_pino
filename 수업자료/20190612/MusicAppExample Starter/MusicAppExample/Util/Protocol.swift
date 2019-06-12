@@ -8,5 +8,7 @@
 
 import Foundation
 
-
+protocol CurrentPlayMusicFooterViewDelegate {
+    func playPauseButtonDidTap(footerView: CurrentPlayMusicFooterView)
+}
 

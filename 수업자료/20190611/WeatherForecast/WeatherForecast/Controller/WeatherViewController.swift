@@ -182,8 +182,8 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
                 var skyCode = data.sky.code.dropFirst(5)
                 cell.headerWeatherImageView.image = UIImage(named: "SKY_\(skyCode)")
                 cell.headerWeatherName.text = data.sky.name
-                cell.headerWeatherMaxMinTemp.text = "\(String(data.temperature.tmin) + "°" + "  " + String(data.temperature.tmax) + "°")"
-                cell.currentTemp.text = "\(19.2)"
+                cell.headerWeatherMaxMinTemp.text = "\(String(data.temperature.tmin.dropLast(3)) + "°" + "  " + String(data.temperature.tmax.dropLast(3)) + "°")"
+                cell.currentTemp.text = "\(data.temperature.tc.dropLast(1) + "°")"
             }
             
             

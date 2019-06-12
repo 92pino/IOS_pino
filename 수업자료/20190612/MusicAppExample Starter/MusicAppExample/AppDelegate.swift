@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         let tabBarController = UITabBarController()
-//        tabBarController.addChild(UINavigationController(rootViewController: SearchVC()))
+        // tabbar에 뷰컨트롤러 하나만 추가할 경우 addChild
+        tabBarController.addChild(UINavigationController(rootViewController: SearchVC()))
         window?.rootViewController = tabBarController
         
         window?.makeKeyAndVisible()

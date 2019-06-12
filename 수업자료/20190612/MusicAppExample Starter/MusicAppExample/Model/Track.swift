@@ -8,4 +8,14 @@
 
 import Foundation
 
+struct Result: Decodable {
+    let resultCount: Int
+    let results: [Track]
+}
 
+struct Track: Decodable {
+    let artistName: String
+    let trackName: String
+    let artworkUrl100: String
+    let previewUrl: String
+}
