@@ -14,6 +14,7 @@ class WeatherDataSource {
     private init() {}
     
     var summary: WeatherSummary?
+    var forecast: ShortForecast?
     var forecastList = [Any]()
     lazy var grid = self.summary?.weather?.hourly?[0].grid
     
@@ -70,28 +71,27 @@ class WeatherDataSource {
         
         let apiUrl = "https://api2.sktelecom.com/weather/forecast/3days?version=2&lat=\(lat)&lon=\(lon)&appKey=\(apiKey)"
         let url = URL(string: apiUrl)!
-        let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
-            guard error == nil else { return print(error!) }
-            guard let response = response as? HTTPURLResponse,
-                200..<400 ~= response.statusCode else {return print("StatusCode is not valid")}
-            guard let data = data,
-                let jsonObject = try?
-                    JSONSerialization.jsonObject(with: data) as? [String: Any] else { return print("No Data") }
-            let weather = jsonObject["weather"] as? [String: Any]
-            print(weather)
-            let foreBefore = weather as? [String: Any]
-            let foreAfter = foreBefore!["forecast3days"] as? [Any]
-            let forecast3days = foreAfter![0] as? [String: Any]
-//            print(forecast3days)
-            let fcst3hour = forecast3days!["fcst3hour"] as? [String: Any]
-            // 필요 온도값
-            let temp = fcst3hour!["temperature"] as? [String: Any]
-            // 필요 날씨
-            let sky = fcst3hour!["sky"] as? [String: Any]
-            sky?.forEach { print($0.value) }
+        URLSession.shared.dataTask(with: url) { (data, res, err) in
+            guard let data = data else { return }
+            guard let weather = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                let insideWeather = weather["weather"] as? [String: Any],
+                let forecast3days = insideWeather["forecast3days"] as? [Any],
+                let fcstBefore = forecast3days[0] as? [String: Any],
+                let firstTime = fcstBefore["timeRelease"] as? String,
+                let fcst = fcstBefore["fcst3hour"] as? [String: Any],
+                let sky = fcst["sky"] as? [String: Any],
+                let temp = fcst["temperature"] as? [String: Any]
+                else { return }
             
-            
+            var hour = 4
+            for _ in 0...18 {
+                ResultData.shared.skyHour.append(sky["name\(hour)hour"] as? String)
+                ResultData.shared.tempHour.append(temp["temp\(hour)hour"] as? String)
+                hour += 3
+            }
+            ResultData.shared.firstTime = firstTime
+            print(firstTime)
+            completion()
         }.resume()
         
     }
