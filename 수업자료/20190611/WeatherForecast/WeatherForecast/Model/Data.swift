@@ -5,7 +5,6 @@
 //  Created by JinBae Jeong on 11/06/2019.
 //  Copyright © 2019 giftbot. All rights reserved.
 //
-
 import UIKit
 
 class CurrentLocation {
@@ -14,6 +13,12 @@ class CurrentLocation {
     
     var lat: Double = 0
     var lon: Double = 0
+}
+
+class currentCity {
+    static let shared: CurrentLocation = { return CurrentLocation() } ()
+    
+    
 }
 
 class CurrentTime {
@@ -35,28 +40,37 @@ class CurrentTime {
 }
 
 //실시간
-
+// MARK: - Weather
 struct WeatherSummary: Codable {
-    struct Weather: Codable {
-        
-        let hourly: [Hourly]
-        struct Hourly: Codable {
-            
-            let grid: Grid
-            let sky: Sky
-            let temperature: Temperature
-            struct Grid: Codable {
-                let latitude, longitude, city, county, village: String
-            }
-            struct Sky: Codable {
-                let code, name: String
-            }
-            
-            struct Temperature: Codable {
-                let tc, tmax, tmin: String
-            }
-        }
-    }
-    
-    let weather: Weather
+    let weather: Weather?
+}
+
+// MARK: - WeatherClass
+struct Weather: Codable {
+    let hourly: [Hourly]?
+}
+
+// MARK: - Hourly
+struct Hourly: Codable {
+    let grid: Grid?
+    let sky: Sky?
+    var temperature: Temperature?
+}
+
+// MARK: - Grid
+struct Grid: Codable {
+    let city, county, village: String?
+}
+
+// MARK: - Sky
+struct Sky: Codable {
+    let code: String?
+    let name: String?
+}
+
+// MARK: - Temperature
+struct Temperature: Codable {
+    var tc: String?
+    var tmax: String?
+    var tmin: String?
 }

@@ -5,7 +5,6 @@
 //  Created by giftbot on 11/06/2019.
 //  Copyright © 2019 giftbot. All rights reserved.
 //
-
 import UIKit
 import CoreLocation
 
@@ -13,6 +12,13 @@ class WeatherViewController: UIViewController {
     
     // 현재위치
     var locationManager = CLLocationManager()
+    var firstDateArr: [Date?]? = []
+    
+    let dateFormat: DateFormatter = {
+        let format = DateFormatter()
+        format.dateFormat = "M.dd (EEE)"
+        return format
+    }()
     
     let fakeNavi: UILabel = {
         let label = UILabel()
@@ -24,7 +30,6 @@ class WeatherViewController: UIViewController {
     let fakeNaviTit: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "도시명"
         label.textColor = .white
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 17)
@@ -35,7 +40,6 @@ class WeatherViewController: UIViewController {
     let fakeNaviSubTit: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "\(CurrentTime.shared.nowTime())"
         label.textColor = .white
         label.textAlignment = .center
         
@@ -70,7 +74,7 @@ class WeatherViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         print(111)
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,10 +85,18 @@ class WeatherViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        DispatchQueue.main.async {
+        }
+        
         DispatchQueue.global().async {
             sleep(2)
             WeatherDataSource.shared.fetchSummary(lat: CurrentLocation.shared.lat, lon: CurrentLocation.shared.lon) {
                 [weak self] in
+                
+                print(WeatherDataSource.shared.grid!.county!)
+                
+                self!.fakeNaviTit.text = "\(WeatherDataSource.shared.grid!.city!) \(WeatherDataSource.shared.grid!.county!) \(WeatherDataSource.shared.grid!.village!)"
+                self?.fakeNaviSubTit.text = "\(CurrentTime.shared.nowTime())"
                 
                 self?.weatherTable.reloadData()
                 
@@ -147,7 +159,7 @@ class WeatherViewController: UIViewController {
             weatherTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             weatherTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             weatherTable.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+            ])
     }
     
     @objc private func reloadData(_ sender: UIButton) {
@@ -157,7 +169,7 @@ class WeatherViewController: UIViewController {
     @objc private func timer() {
         
     }
-
+    
 }
 
 extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
@@ -167,23 +179,24 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-            case 0:
-                return 1
-            default:
-                return 20
+        case 0:
+            return 1
+        default:
+            return 20
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = weatherTable.dequeueReusableCell(withIdentifier: WeatherHeaderTableViewCell.identifier, for: indexPath) as! WeatherHeaderTableViewCell
-            if let data = WeatherDataSource.shared.summary?.weather.hourly.first {
+            if let data = WeatherDataSource.shared.summary?.weather?.hourly?.first {
                 
-                var skyCode = data.sky.code.dropFirst(5)
-                cell.headerWeatherImageView.image = UIImage(named: "SKY_\(skyCode)")
-                cell.headerWeatherName.text = data.sky.name
-                cell.headerWeatherMaxMinTemp.text = "\(String(data.temperature.tmin.dropLast(3)) + "°" + "  " + String(data.temperature.tmax.dropLast(3)) + "°")"
-                cell.currentTemp.text = "\(data.temperature.tc.dropLast(1) + "°")"
+                let skyCode = data.sky?.code?.dropFirst(5)
+                print(skyCode)
+                cell.headerWeatherImageView.image = UIImage(named: "SKY_\(skyCode!)")
+                cell.headerWeatherName.text = data.sky?.name
+                cell.headerWeatherMaxMinTemp.text = "\("⬇︎" + String((data.temperature?.tmin?.dropLast(3))!) + "°" + "  " + "⬆︎" + String((data.temperature?.tmax?.dropLast(3))!) + "°")"
+                cell.currentTemp.text = "\((data.temperature?.tc?.dropLast(1))! + "°")"
             }
             
             
@@ -195,6 +208,8 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             let cell = weatherTable.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as! WeatherTableViewCell
             cell.backgroundColor = .clear
+            cell.dateLabel.text = dateFormat.string(from: firstDateArr?[indexPath.row - 1] ?? Date())
+//            cell.time.text = timeFormat.string(from: firstDateArr?[indexPath.row - 1] ?? Date())
             
             return cell
         }
