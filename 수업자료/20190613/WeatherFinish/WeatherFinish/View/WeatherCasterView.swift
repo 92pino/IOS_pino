@@ -15,6 +15,7 @@ final class WeatherCasterView: UIView {
         static let topInfoViewHeight: CGFloat = 45
         static let locationLabelHeight: CGFloat = 23
         static let reloadbuttonSize: CGFloat = 40
+        static let currentForecastHeight: CGFloat = 200
     }
     
     // MARK: - Properties
@@ -45,6 +46,12 @@ final class WeatherCasterView: UIView {
         $0.titleLabel?.font = .preferredFont(forTextStyle: .title1)
         $0.alpha = 0
     }
+    let tableView = UITableView().then {
+        $0.separatorStyle = .none
+        $0.backgroundColor = .clear
+        $0.allowsSelection = false
+        $0.showsVerticalScrollIndicator = false
+    }
     
     
     // MARK: - Initializing
@@ -52,7 +59,7 @@ final class WeatherCasterView: UIView {
     init() {
         super.init(frame: .screenBounds)
         
-        self.addSubviews(imageView, topInfoView)
+        self.addSubviews(imageView, topInfoView, tableView)
         topInfoView.addSubviews(locationLabel, timeLabel, reloadButton)
     }
     
@@ -82,6 +89,13 @@ final class WeatherCasterView: UIView {
             UI.reloadbuttonSize, UI.reloadbuttonSize
         )
         reloadButton.center.y = (UI.topInfoViewHeight / 2) + safeAreaInsets.top
+        
+        tableView.frame = CGRect.make(
+            0, topInfoView.frame.maxY, width, height - topInfoView.frame.maxY
+        )
+        let topInset = tableView.height - UI.currentForecastHeight
+            - (safeAreaInsets.bottom / 2)
+        tableView.contentInset.top = topInset
     }
     
     

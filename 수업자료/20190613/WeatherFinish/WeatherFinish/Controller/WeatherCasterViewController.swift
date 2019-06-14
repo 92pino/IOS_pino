@@ -26,8 +26,23 @@ final class WeatherCasterViewController: UIViewController {
     }
     
     // model
-    private var currentForecast: CurrentForecast?
-    private var shortRangeForecastList: [ShortRangeForecast]?
+    private var currentForecast: CurrentForecast? {
+        didSet {
+            rootView.tableView.alpha = 0
+            rootView.tableView.transform = CGAffineTransform(translationX: 500, y: 0)
+            UIView.animate(withDuration: 0.4, animations: {
+                self.rootView.tableView.alpha = 1
+                self.rootView.tableView.transform = .identity
+                self.rootView.tableView.reloadSections([0], with: .none)
+            })
+        }
+    }
+    private var shortRangeForecastList: [ShortRangeForecast]? {
+        didSet {
+            rootView.tableView.separatorStyle = .singleLine
+            rootView.tableView.reloadSections([1], with: .automatic)
+        }
+    }
     
     
     // MARK: - LifeCycle
@@ -49,7 +64,6 @@ final class WeatherCasterViewController: UIViewController {
     
     // MARK: - Setup
     
-    // 상태바 가려주는 기능
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -61,6 +75,11 @@ final class WeatherCasterViewController: UIViewController {
     
     private func configureViews() {
         rootView.reloadButton.addTarget(action: #selector(updateWeather(_:)))
+        
+        rootView.tableView.register(cell: CurrentForecastCell.self)
+        rootView.tableView.register(cell: ShortRangeForecastCell.self)
+        rootView.tableView.dataSource = self
+        rootView.tableView.delegate = self
     }
     
     private func requestAuthorization() {
@@ -82,7 +101,6 @@ final class WeatherCasterViewController: UIViewController {
     let imageName = ["sunny", "lightning", "cloudy", "rainy"]
     var count = 0
     @objc private func updateWeather(_ sender: UIButton) {
-        // 위치정보랑 업데이트 시간 다시 표현(날씨정보 받아오기)
         locationManager.startUpdatingLocation()
         
         count += 1
@@ -167,11 +185,13 @@ extension WeatherCasterViewController: CLLocationManagerDelegate {
     private func fetchCurrentForecast(lat: Double, lon: Double) {
         forecastService.fetchCurrentForecast(latitude: lat, longitude: lon) {
             [weak self] result in
-            switch result {
-            case .success(let currentForecast):
-                self?.currentForecast = currentForecast
-            case .failure(let error):
-                print(error.localizedDescription)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let currentForecast):
+                    self?.currentForecast = currentForecast
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
@@ -179,12 +199,87 @@ extension WeatherCasterViewController: CLLocationManagerDelegate {
     private func fetchShortRangeForecast(lat: Double, lon: Double) {
         forecastService.fetchShortRangeForecast(latitude: lat, longitude: lon) {
             [weak self] result in
-            switch result {
-            case .success(let value):
-                self?.shortRangeForecastList = value
-            case .failure(let error):
-                print(error.localizedDescription)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let value):
+                    self?.shortRangeForecastList = value
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
         }
     }
 }
+
+
+// MARK: - UITableViewDataSource
+
+extension WeatherCasterViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return ForecastType.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if ForecastType.current.rawValue == section {
+            return currentForecast == nil ? 0 : 1
+        } else {
+            return shortRangeForecastList?.count ?? 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // CurrentForecastCell
+        if ForecastType.current.rawValue == indexPath.section {
+            let cell = tableView.dequeue(CurrentForecastCell.self)
+            print(cell)
+            if let current = currentForecast {
+                // SKY-A01 -> SKY_01
+                let imageName = "SKY_" + current.sky.code.dropFirst(5)
+                let status = current.sky.name
+                let minTemp = current.temperature.tmin
+                let maxTemp = current.temperature.tmax
+                let temp = String(current.temperature.tc.dropLast() + "°")
+                
+                cell.configureCell(
+                    weatherImageName: imageName,
+                    weatherStatus: status,
+                    minMaxTemp: "⤓  \(minTemp.dropLast())°   ⤒  \(maxTemp.dropLast())°",
+                    currentTemp: temp
+                )
+            }
+            return cell
+        }
+        else {
+            // ShortRangeForecastCell
+            let cell = tableView.dequeue(ShortRangeForecastCell.self)
+            if let forecast = shortRangeForecastList?[indexPath.row] {
+                let df = DateFormatter()
+                df.dateFormat = "M.d (E)"
+                let date = df.string(from: forecast.date)
+                
+                df.dateFormat = "HH:mm"
+                let time = df.string(from: forecast.date)
+                let imageName = "SKY_" + forecast.skyCode.dropFirst(5)
+                let temp = String(format: "%.0f°", forecast.temperature)
+                cell.configureCell(
+                    date: date, time: time, imageName: imageName, temperature: temp
+                )
+            }
+            return cell
+        }
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+
+extension WeatherCasterViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if ForecastType.current.rawValue == indexPath.section {
+            return 200
+        } else {
+            return 80
+        }
+    }
+}
+
