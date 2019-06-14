@@ -29,6 +29,7 @@
 		61488D8222B36188000F9E7E /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488D8122B36188000F9E7E /* SampleData.swift */; };
 		61488D8522B36A52000F9E7E /* CurrentForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488D8422B36A52000F9E7E /* CurrentForecastCell.swift */; };
 		61488D8722B37813000F9E7E /* ShortRangeForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488D8622B37813000F9E7E /* ShortRangeForecastCell.swift */; };
+		61488D8922B38053000F9E7E /* ForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488D8822B38053000F9E7E /* ForecastService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		61488D8122B36188000F9E7E /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		61488D8422B36A52000F9E7E /* CurrentForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentForecastCell.swift; sourceTree = "<group>"; };
 		61488D8622B37813000F9E7E /* ShortRangeForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortRangeForecastCell.swift; sourceTree = "<group>"; };
+		61488D8822B38053000F9E7E /* ForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				61488D7722B228CD000F9E7E /* ServiceError.swift */,
 				61488D7022B2285C000F9E7E /* ForecastServiceType.swift */,
 				61488D6E22B22853000F9E7E /* ForecastServiceStub.swift */,
+				61488D8822B38053000F9E7E /* ForecastService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				61488D5D22B21510000F9E7E /* UIViewExtensions.swift in Sources */,
 				61488D7D22B23A1E000F9E7E /* ForecastType.swift in Sources */,
 				61488D6822B22675000F9E7E /* UIButtonExtensions.swift in Sources */,
+				61488D8922B38053000F9E7E /* ForecastService.swift in Sources */,
 				61488D4A22B214F8000F9E7E /* AppDelegate.swift in Sources */,
 				61488D7A22B22D57000F9E7E /* WeatherCasterViewController.swift in Sources */,
 				61488D8722B37813000F9E7E /* ShortRangeForecastCell.swift in Sources */,

@@ -45,6 +45,7 @@ final class CurrentForecastCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
+        separatorInset.left = .screenWidth
         contentView.addSubviews(
             weatherImageView, statusLabel, tempMinMaxLabel, currentTempLabel
         )

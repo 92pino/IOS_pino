@@ -26,6 +26,10 @@ final class WeatherCasterView: UIView {
         $0.contentMode = .scaleAspectFill
     }
     
+    private let blurView = UIVisualEffectView(frame: .screenBounds).then {
+        $0.effect = UIBlurEffect(style: .dark)
+    }
+    
     private let topInfoView = UIView()
     private let locationLabel = UILabel().then {
         $0.textColor = .white
@@ -59,7 +63,7 @@ final class WeatherCasterView: UIView {
     init() {
         super.init(frame: .screenBounds)
         
-        self.addSubviews(imageView, topInfoView, tableView)
+        self.addSubviews(imageView, blurView, topInfoView, tableView)
         topInfoView.addSubviews(locationLabel, timeLabel, reloadButton)
     }
     
@@ -108,6 +112,18 @@ final class WeatherCasterView: UIView {
             animations: {
                 self.imageView.image = UIImage(named: imageName)
         })
+    }
+    
+    func updateBlurView(alpha: CGFloat) {
+        blurView.alpha = alpha
+    }
+    
+    func applyParallaxEffect(translationX: CGFloat) {
+        // CGAffineTransform
+        // rotation : 회전
+        // scale : 확대 축소
+        // translation : 이동
+        imageView.transform = CGAffineTransform(translationX: translationX, y: 0)
     }
     
     func updateTopInfoView(location: String, time: String) {

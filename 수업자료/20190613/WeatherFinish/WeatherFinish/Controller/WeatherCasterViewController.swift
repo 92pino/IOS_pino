@@ -12,7 +12,7 @@ import UIKit
 final class WeatherCasterViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
-    private let forecastService: ForecastServiceType = ForecastServiceStub()
+    private let forecastService: ForecastServiceType = ForecastService()
     private let rootView = WeatherCasterView()
     
     private var lastRequestDate = Date(timeIntervalSinceNow: -10)
@@ -202,7 +202,10 @@ extension WeatherCasterViewController: CLLocationManagerDelegate {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let value):
-                    self?.shortRangeForecastList = value
+                    let shortRangeForecastList = value.filter({
+                        $0.date.timeIntervalSinceNow > 0
+                    })
+                    self?.shortRangeForecastList = shortRangeForecastList
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -231,7 +234,7 @@ extension WeatherCasterViewController: UITableViewDataSource {
         // CurrentForecastCell
         if ForecastType.current.rawValue == indexPath.section {
             let cell = tableView.dequeue(CurrentForecastCell.self)
-            print(cell)
+            
             if let current = currentForecast {
                 // SKY-A01 -> SKY_01
                 let imageName = "SKY_" + current.sky.code.dropFirst(5)
@@ -280,6 +283,16 @@ extension WeatherCasterViewController: UITableViewDelegate {
         } else {
             return 80
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let topInset = scrollView.contentInset.top
+        let offset = (topInset + scrollView.contentOffset.y) / topInset
+        let alpha = 0.8 * (offset > 1 ? 1 : offset)  // 0 ~ 0.8
+        rootView.updateBlurView(alpha: alpha)
+        
+        let translationX = 30 * (offset > 1 ? 1 : offset)  // 0 ~ 30
+        rootView.applyParallaxEffect(translationX: translationX)
     }
 }
 
