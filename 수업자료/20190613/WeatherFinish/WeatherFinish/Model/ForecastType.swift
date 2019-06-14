@@ -12,12 +12,3 @@ enum ForecastType: Int, CaseIterable {
     case current
     case shortRange
 }
-
-// test
-func asdaf() {
-    print(ForecastType.allCases.count)
-    for i in ForecastType.allCases {
-        print(i)
-    }
-}
-

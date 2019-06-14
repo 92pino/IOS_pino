@@ -8,20 +8,24 @@
 
 import Foundation
 
+// 샘플 데이터 테스트용 클래스
 final class ForecastServiceStub: ForecastServiceType {
-    func fetchCurrentForecast(latitude: Double, longitude: Double, completionHandler: @escaping (Result<CurrentForecast, ServiceError>) -> Void) {
-        
-        let data = currentForecastSampleData
+    func fetchCurrentForecast(
+        latitude: Double,
+        longitude: Double,
+        completionHandler: @escaping (Result<CurrentForecast, ServiceError>) -> Void
+        ) {
+        let data = SampleData.currentForecast
         let forecast = try! CurrentForecast.decode(from: data)
-        
         completionHandler(.success(forecast))
-        
     }
     
-    // Result의 왼쪽은 성공헀을 경우, 오른쪽은 error일 경우
-    func fetchShortRangeForecast(latitude: Double, longitude: Double, completionHandler: @escaping (Result<[ShortRangeForecast], ServiceError>) -> Void) {
-        
-        let data = shortRangeForecastSampleData
+    func fetchShortRangeForecast(
+        latitude: Double,
+        longitude: Double,
+        completionHandler: @escaping (Result<[ShortRangeForecast], ServiceError>) -> Void
+        ) {
+        let data = SampleData.shortRangeForecast
         
         guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
             let weather = json["weather"] as? [String: Any],
@@ -37,12 +41,6 @@ final class ForecastServiceStub: ForecastServiceType {
         
         // 실제 필요한 예보 자료 파싱
         var forecastArr: [ShortRangeForecast] = []
-        
-        // 4부터 시작해서 66까지 3씩 증가
-        for i in stride(from: 4, to: 67, by: 3) {}
-        // 4부터 시작해서 67까지 3씩 증가
-        for i in stride(from: 4, through: 67, by: 3) {}
-        
         for hour in stride(from: 4, through: 67, by: 3) {
             guard let skyCode = sky["code\(hour)hour"], !skyCode.isEmpty,
                 let skyName = sky["name\(hour)hour"], !skyName.isEmpty,
@@ -62,6 +60,5 @@ final class ForecastServiceStub: ForecastServiceType {
         }
         
         completionHandler(.success(forecastArr))
-        
     }
 }
