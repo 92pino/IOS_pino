@@ -58,7 +58,7 @@ final class ForecastService: ForecastServiceType {
         var urlComp = URLComponents(string: baseUrl)
         urlComp?.path = "/weather/forecast/3days"
         urlComp?.queryItems = [
-            URLQueryItem(name: "appKey", value: appKey),
+            URLQueryItem(name: "appKey", value: AppKey.first),
             URLQueryItem(name: "version", value: String(2)),
             URLQueryItem(name: "lat", value: String(latitude)),
             URLQueryItem(name: "lon", value: String(longitude)),
