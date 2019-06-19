@@ -26,6 +26,7 @@ class CustomTabBarViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         
         // 컬렉션뷰가 페이징 되도록
+        // false일 경우 페이지 끊어짐 없이 쭉 이어서 스크롤
         collectionView.isPagingEnabled = true
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
