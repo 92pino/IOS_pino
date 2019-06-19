@@ -30,7 +30,6 @@
 
 import UIKit
 import MapKit
-
 class SpotsViewController: UITableViewController {
 
   var vacationSpots = [VacationSpot]()
