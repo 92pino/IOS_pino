@@ -10,21 +10,30 @@ import UIKit
 
 class CustomTabBarViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    let menuBar = MenuBar()
+    
+    var menuTitles = ["menu1", "menu2", "menu3", "menu4"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configureCustomTabBar()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureCustomTabBar() {
+        menuBar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(menuBar)
+        
+        let guide = view.safeAreaLayoutGuide
+        
+        menuBar.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+        menuBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        menuBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        menuBar.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        menuBar.indicatorBar.widthAnchor.constraint(equalToConstant: self.view.frame.width / CGFloat(menuTitles.count)).isActive = true
     }
-    */
-
+    
 }

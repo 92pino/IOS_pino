@@ -11,6 +11,8 @@
 		61488DA722B9FBE3000F9E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61488DA622B9FBE3000F9E7E /* Assets.xcassets */; };
 		61488DAA22B9FBE3000F9E7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61488DA822B9FBE3000F9E7E /* LaunchScreen.storyboard */; };
 		61488DB222B9FC7F000F9E7E /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488DB122B9FC7F000F9E7E /* CustomTabBarViewController.swift */; };
+		61488DB622B9FD3D000F9E7E /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488DB522B9FD3D000F9E7E /* MenuBar.swift */; };
+		61488DB822BA01C6000F9E7E /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61488DB722BA01C6000F9E7E /* MenuCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		61488DA922B9FBE3000F9E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61488DAB22B9FBE3000F9E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61488DB122B9FC7F000F9E7E /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		61488DB522B9FD3D000F9E7E /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		61488DB722BA01C6000F9E7E /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +40,7 @@
 		61488D9322B9FBE0000F9E7E = {
 			isa = PBXGroup;
 			children = (
+				61488DB422B9FCE7000F9E7E /* View */,
 				61488D9E22B9FBE0000F9E7E /* TabbarCustomPractice */,
 				61488D9D22B9FBE0000F9E7E /* Products */,
 			);
@@ -67,6 +72,15 @@
 				61488DB122B9FC7F000F9E7E /* CustomTabBarViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		61488DB422B9FCE7000F9E7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				61488DB522B9FD3D000F9E7E /* MenuBar.swift */,
+				61488DB722BA01C6000F9E7E /* MenuCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +155,8 @@
 			files = (
 				61488DB222B9FC7F000F9E7E /* CustomTabBarViewController.swift in Sources */,
 				61488DA022B9FBE0000F9E7E /* AppDelegate.swift in Sources */,
+				61488DB822BA01C6000F9E7E /* MenuCell.swift in Sources */,
+				61488DB622B9FD3D000F9E7E /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
