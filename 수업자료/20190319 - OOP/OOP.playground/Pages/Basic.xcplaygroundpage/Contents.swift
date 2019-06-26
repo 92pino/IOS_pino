@@ -93,7 +93,7 @@ test1.color
  ### Answer
  ---
  */
-class Car {
+cmlass Car {
   let model = "리어카"
   let modelYear = 2016
   let color = "Cream White"
