@@ -61,6 +61,7 @@ final class CurrentForecastCell: UITableViewCell {
     func setupLayout() {
         statusLabel.width = .screenWidth
 //        ("1" as NSString).size(withAttributes: [NSAttributedString.Key.font : statusLabel.font!]
+        statusLabel.height = "1234".size(with: <#T##UIFont#>)
         statusLabel.height = "아무문자나 상관없음".size(with: statusLabel.font!).height
         statusLabel.x = weatherImageView.maxX + UI.xPadding
         statusLabel.y = weatherImageView.maxY - statusLabel.height

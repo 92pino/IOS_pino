@@ -143,14 +143,21 @@ final class ViewController: UIViewController {
     
     // 기본값 60초
     sessionConfig.timeoutIntervalForRequest = 20
+    // 네트워크로 데이터 요청을 할 때(이미지 다운로드, json 데이터 요청) 지정 시간이 지나면 실패 메시지 출력
     
-    // 기본값 .useProtocolCachePolicy
+    // 네트워크에서 로컬 캐시데이터를 무시하고 무조건 원본 소스에서 가져온다.
     sessionConfig.requestCachePolicy = .reloadIgnoringLocalCacheData
     
+    // 기본값 .useProtocolCachePolicy
+    // 프로토콜마다 캐시 정책이 기본적으로 내장
+    sessionConfig.requestCachePolicy = .useProtocolCachePolicy
+    
     // 기본값 false.
+    // 네트워크 전송을 할때 인터넷 연결이 안되거나 문제가 있을경우 실패가 return (true로 할 경우 연결 실패시 전송이 가능할 때까지 대기)
     sessionConfig.waitsForConnectivity = true
     
     
+    // byte 기준 최대치
     // 16 KB == (16 * 1024 = 16384)
     // 256 MB == (256 * 1024 * 1024 = 268435456)
     let myCache = URLCache(memoryCapacity: 16_384, diskCapacity: 268_435_456, diskPath: nil)
@@ -158,9 +165,9 @@ final class ViewController: UIViewController {
     
     // 기본적인 저장 경로
     // Disk path: (user home directory)/Library/Cacges/(application bundle Id)
-    
     // 경로 알아내기
     print(FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0])
+    
     let cache = URLCache.shared
     sessionConfig.urlCache = cache
     print(cache.diskCapacity)

@@ -12,3 +12,4 @@ enum ForecastType: Int, CaseIterable {
     case current
     case shortRange
 }
+

@@ -6,7 +6,7 @@
 //  Copyright © 2019 pino. All rights reserved.
 //
 
-import UIKit        // A -> Z SystemFramework > 3rd Party
+import Foundation        // A -> Z SystemFramework > 3rd Party
 import Alamofire
 
 class ViewController: UIViewController {
@@ -87,4 +87,3 @@ class ViewController: UIViewController {
     }
 
 }
-

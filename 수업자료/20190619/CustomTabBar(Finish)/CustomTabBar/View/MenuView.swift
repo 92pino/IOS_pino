@@ -80,6 +80,7 @@ class MenuView: UIView {
 
 extension MenuView: MenuBarDelegate{
     func meunBarDidSelected(_ indexPath: IndexPath) {
+        print(1111)
         pageCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
 }

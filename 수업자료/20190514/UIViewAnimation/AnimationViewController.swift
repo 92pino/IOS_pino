@@ -73,8 +73,8 @@ final class AnimationViewController: UIViewController {
     view.endEditing(true)
     
 //    addAnimateKeyframes()
-//    loginButtonAnimation()
-    countDown()
+    loginButtonAnimation()
+//    countDown()
   }
 
   

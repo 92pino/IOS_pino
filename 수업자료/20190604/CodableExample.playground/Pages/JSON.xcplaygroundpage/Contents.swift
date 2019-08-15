@@ -4,6 +4,20 @@
  */
 import Foundation
 
+struct Person: Codable {
+    var name: String
+    var age: Int
+    var sayHello: String
+}
+let encoder = JSONEncoder()
+encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+
+let pino = Person(name: "pino", age: 28, sayHello: "Hello")
+let jsonData = try? encoder.encode(pino)
+if let jsonData = jsonData, let jsonString = String(data: jsonData, encoding: .utf8) {
+    print(jsonString)
+}
+
 struct MacBook: Codable {
   let model: String
   let modelYear: Int
@@ -27,6 +41,10 @@ let macBook = MacBook(
  ---
  */
 print("\n---------- [ Encoder ] ----------\n")
+//let jsonEncoder = JSONEncoder()
+//let encodedMacBook = try! jsonEncoder.encode(macBook)
+//print(encodedMacBook)
+
 let jsonEncoder = JSONEncoder()
 let encodedMacBook = try! jsonEncoder.encode(macBook)
 print(encodedMacBook)
